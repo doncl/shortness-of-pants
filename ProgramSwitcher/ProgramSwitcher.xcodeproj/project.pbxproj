@@ -411,6 +411,7 @@
 				47A4A2CF1B483A2700E611C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		47A4A2D01B483A2700E611C5 /* Build configuration list for PBXNativeTarget "ProgramSwitcherTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +420,7 @@
 				47A4A2D21B483A2700E611C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
