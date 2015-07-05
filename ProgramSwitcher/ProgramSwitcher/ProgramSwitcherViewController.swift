@@ -10,7 +10,11 @@ import UIKit
 import AudioToolbox
 
 class ProgramSwitcherViewController: UIViewController {
+    
     @IBOutlet weak var channelNumber: UITextField!
+    
+    @IBOutlet var channelButtons: [UIButton]!
+    var buttonImage: UIImage!
     
     
     @IBAction func Button2Press(sender: UIButton) {
@@ -85,7 +89,13 @@ class ProgramSwitcherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+/*
+        buttonImage = UIImage(named: "Button.jpg")
+        for channelButton in channelButtons {
+            channelButton.setImage(buttonImage, forState: .Normal)
+        }
+*/
     }
 }
 
