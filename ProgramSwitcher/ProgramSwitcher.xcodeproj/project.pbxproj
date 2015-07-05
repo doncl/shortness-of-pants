@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4733E2C11B48B6E900F668C7 /* Button.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4733E2C01B48B6E900F668C7 /* Button.jpg */; };
+		4771560D1B49D8ED00419A11 /* ButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4771560C1B49D8ED00419A11 /* ButtonSelected.png */; };
 		47A4A2B41B483A2700E611C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A2B31B483A2700E611C5 /* AppDelegate.swift */; };
 		47A4A2B61B483A2700E611C5 /* ProgramSwitcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A2B51B483A2700E611C5 /* ProgramSwitcherViewController.swift */; };
 		47A4A2B91B483A2700E611C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A2B71B483A2700E611C5 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		4733E2C01B48B6E900F668C7 /* Button.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Button.jpg; sourceTree = "<group>"; };
+		4771560C1B49D8ED00419A11 /* ButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonSelected.png; sourceTree = "<group>"; };
 		47A4A2AE1B483A2700E611C5 /* ProgramSwitcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgramSwitcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A4A2B21B483A2700E611C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47A4A2B31B483A2700E611C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		47A4A2B01B483A2700E611C5 /* ProgramSwitcher */ = {
 			isa = PBXGroup;
 			children = (
+				4771560C1B49D8ED00419A11 /* ButtonSelected.png */,
 				4733E2C01B48B6E900F668C7 /* Button.jpg */,
 				47A4A2B31B483A2700E611C5 /* AppDelegate.swift */,
 				47A4A2B51B483A2700E611C5 /* ProgramSwitcherViewController.swift */,
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47A4A2B91B483A2700E611C5 /* Main.storyboard in Resources */,
+				4771560D1B49D8ED00419A11 /* ButtonSelected.png in Resources */,
 				4733E2C11B48B6E900F668C7 /* Button.jpg in Resources */,
 				47A4A2BE1B483A2700E611C5 /* LaunchScreen.xib in Resources */,
 				47A4A2BB1B483A2700E611C5 /* Images.xcassets in Resources */,
