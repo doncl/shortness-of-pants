@@ -15,6 +15,7 @@
 		47A4A2BB1B483A2700E611C5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A2BA1B483A2700E611C5 /* Images.xcassets */; };
 		47A4A2BE1B483A2700E611C5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A4A2BC1B483A2700E611C5 /* LaunchScreen.xib */; };
 		47A4A2CA1B483A2700E611C5 /* ProgramSwitcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A4A2C91B483A2700E611C5 /* ProgramSwitcherTests.swift */; };
+		47F627F91B4A014200D34027 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47F627F81B4A014200D34027 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		47A4A2C31B483A2700E611C5 /* ProgramSwitcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProgramSwitcherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A4A2C81B483A2700E611C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47A4A2C91B483A2700E611C5 /* ProgramSwitcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramSwitcherTests.swift; sourceTree = "<group>"; };
+		47F627F81B4A014200D34027 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47F627F91B4A014200D34027 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +66,7 @@
 		47A4A2A51B483A2700E611C5 = {
 			isa = PBXGroup;
 			children = (
+				47F627F81B4A014200D34027 /* AudioToolbox.framework */,
 				47A4A2B01B483A2700E611C5 /* ProgramSwitcher */,
 				47A4A2C61B483A2700E611C5 /* ProgramSwitcherTests */,
 				47A4A2AF1B483A2700E611C5 /* Products */,

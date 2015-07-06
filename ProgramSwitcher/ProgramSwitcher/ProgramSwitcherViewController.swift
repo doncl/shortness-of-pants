@@ -9,219 +9,244 @@
 import UIKit
 import AudioToolbox
 
-class ProgramSwitcherViewController: UIViewController {
+class ProgramSwitcherViewController: UIViewController{
     
     @IBOutlet weak var channelNumber: UITextField!
+    @IBOutlet weak var bankNumber: UITextField!
+    @IBOutlet weak var programNumber: UITextField!
     
     @IBOutlet var channelButtons: [UIButton]!
-    
     @IBOutlet var bankButtons: [UIButton]!
-    
     @IBOutlet var programButtons: [UIButton]!
     
     var buttonImage: UIImage!
     var buttonSelectedImage: UIImage!
     
+    var midiChannel: Int = 1
+    var bank: Int = 1
+    var program: Int = 1
     
     @IBAction func Button2Press(sender: UIButton) {
-        channelNumber.text = "2"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 2
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
     
     @IBAction func Button1Press(sender: UIButton) {
-        channelNumber.text = "1"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 1
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
 
     @IBAction func Button3Press(sender: UIButton) {
-        channelNumber.text = "3"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 3
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
     
     
     @IBAction func Button4Press(sender: UIButton) {
-        channelNumber.text = "4"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 4
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
     
     @IBAction func Button5Press(sender: UIButton) {
-        channelNumber.text = "5"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 5
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
     
     
     @IBAction func Button6Press(sender: UIButton) {
-        channelNumber.text = "6"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 6
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
     
     @IBAction func Button7Press(sender: UIButton) {
-        channelNumber.text = "7"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 7
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
     
-    
     @IBAction func Button8Press(sender: UIButton) {
-        channelNumber.text = "8"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 8
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
     
     @IBAction func Button9Press(sender: UIButton) {
-        channelNumber.text = "9"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 9
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
     
     @IBAction func Button10Press(sender: UIButton) {
-        channelNumber.text = "10"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 10
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
     
     @IBAction func Button11Press(sender: UIButton) {
-        channelNumber.text = "11"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 11
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
-    
     
     @IBAction func Button12Press(sender: UIButton) {
-        channelNumber.text = "12"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 12
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
-    
     
     @IBAction func Button13Press(sender: UIButton) {
-        channelNumber.text = "13"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 13
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
     
-    
     @IBAction func Button14Press(sender: UIButton) {
-        channelNumber.text = "14"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 14
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
     
     @IBAction func Button15Press(sender: UIButton) {
-        channelNumber.text = "15"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 15
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
     
     @IBAction func Button16Press(sender: UIButton) {
-        channelNumber.text = "16"
-        buttonPressed(sender, buttonGroup:channelButtons)
+        midiChannel = 16
+        buttonPressed(sender, label: channelNumber, value:midiChannel, buttonGroup:channelButtons)
     }
     
-    
     @IBAction func bankButton1Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 1
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton2Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 2
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
-    
     @IBAction func bankButton3Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 3
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton4Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 4
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton5Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 5
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton6Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 6
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton7Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 7
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton8Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 8
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton9Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 9
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton10Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 10
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton11Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 11
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton12Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 12
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton13Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 13
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton14Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 14
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton15Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
+        bank = 15
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
     }
     
     @IBAction func bankButton16Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:bankButtons)
-    }
-    
+        bank = 16
+        buttonPressed(sender, label: bankNumber, value:bank, buttonGroup: bankButtons)
+    }    
     
     @IBAction func programButton1Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:programButtons)
+        program = 1
+        buttonPressed(sender, label: programNumber, value: program, buttonGroup: programButtons)
     }
     
     @IBAction func programButton2Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:programButtons)
+        program = 2
+        buttonPressed(sender, label: programNumber, value: program, buttonGroup: programButtons)
     }
     
     @IBAction func programButton3Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:programButtons)
+        program = 3
+        buttonPressed(sender, label: programNumber, value: program, buttonGroup: programButtons)
     }
     
     @IBAction func programButton4Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:programButtons)
+        program = 4
+        buttonPressed(sender, label: programNumber, value: program, buttonGroup: programButtons)
     }
     
     @IBAction func programButton5Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:programButtons)
+        program = 5
+        buttonPressed(sender, label: programNumber, value: program, buttonGroup: programButtons)
     }
     
     @IBAction func programButton6Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:programButtons)
+        program = 6
+        buttonPressed(sender, label: programNumber, value: program, buttonGroup: programButtons)
     }
     
     @IBAction func programButton7Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:programButtons)
+        program = 7
+        buttonPressed(sender, label: programNumber, value: program, buttonGroup: programButtons)
     }
     
     @IBAction func programButton8Press(sender: UIButton) {
-        buttonPressed(sender, buttonGroup:programButtons)
+        program = 8
+        buttonPressed(sender, label: programNumber, value: program, buttonGroup: programButtons)
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         buttonImage = UIImage(named: "Button.jpg")
         buttonSelectedImage = UIImage(named: "ButtonSelected.png")
-        
+            
+            
         Button1Press(channelButtons[0])
         bankButton1Press(bankButtons[0])
         programButton1Press(programButtons[0])
     }
     
-    func buttonPressed(pressedButton: UIButton, buttonGroup: [UIButton]) {
+    
+    func buttonPressed(pressedButton: UIButton, label: UITextField, value: Int, buttonGroup: [UIButton]) {
         
+        if (label !== programNumber) {
+            label.text = String(value)
+        }
+        programNumber.text = String(((bank - 1) * 8) + program)
         pressedButton.setImage(buttonSelectedImage, forState: .Normal)
         
         for button in buttonGroup {
@@ -231,7 +256,6 @@ class ProgramSwitcherViewController: UIViewController {
         }
 
         self.view.setNeedsDisplay()
-
     }
 }
 
