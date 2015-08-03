@@ -606,7 +606,7 @@
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.20202020202020188" green="0.129864117623472" blue="0.13361188918687603" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.20392156862745098" green="0.16862745098039217" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="rDd-9b-APD" firstAttribute="baseline" secondItem="V6Z-NM-bjQ" secondAttribute="baseline" id="0fo-06-zd7"/>
                             <constraint firstItem="Vzt-Nb-H8g" firstAttribute="baseline" secondItem="R6b-P7-51e" secondAttribute="baseline" id="0y2-St-ag0"/>
