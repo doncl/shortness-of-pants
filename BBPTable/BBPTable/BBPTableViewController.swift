@@ -10,6 +10,8 @@ import UIKit
 
 class BBPTableViewController: UIViewController, UICollectionViewDataSource,
         UICollectionViewDelegate {
+    
+    //MARK: properties
     var tableProperties: TableProperties?
     var model: BBPTableModel?
     var nonFixedView: UICollectionView?
@@ -17,6 +19,7 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
     var fixedModel: BBPTableModel?
     var nonFixedModel: BBPTableModel?
     
+    //MARK: Initialization
     override func viewDidLoad() {
         super.viewDidLoad() // Go ahead and call superclass to get a plain vanilla UIView.
         

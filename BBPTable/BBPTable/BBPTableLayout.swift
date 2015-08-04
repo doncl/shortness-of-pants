@@ -79,7 +79,7 @@ class BBPTableLayout: UICollectionViewLayout {
         
         for (var i = 0; i < columns; i++) {
             var columnSize = calculateColumnSize(model, columnIndex: i, rowCount: rows!)
-            columnWidths.append(columnSize.height)
+            columnWidths.append(columnSize.width)
             if columnSize.height > rowHeight {
                 rowHeight = columnSize.height
             }
