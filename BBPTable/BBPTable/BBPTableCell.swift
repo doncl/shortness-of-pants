@@ -88,7 +88,7 @@ class BBPTableCell: UICollectionViewCell {
         
         var cellLabel = label
         
-        var viewDict = ["cellLabeL" : cellLabel]
+        var viewDict = ["cellLabel" : cellLabel]
         var horizontalConstraints =
         NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[cellLabel]-0-|",
             options: NSLayoutFormatOptions(0), metrics: nil, views: viewDict)
@@ -111,7 +111,7 @@ class BBPTableCell: UICollectionViewCell {
     }
     
     func setupCellInfo(cellType: CellType) {
-        var ci = getCellInfoForTypeOfCell(cellType)
+        var ci = BBPTableCell.getCellInfoForTypeOfCell(cellType)
         layer.borderWidth = ci.borderWidth!
         layer.borderColor = ci.borderColor!.CGColor
         label.baselineAdjustment = ci.baselineAdjustment!
@@ -122,7 +122,7 @@ class BBPTableCell: UICollectionViewCell {
         label.textColor = ci.textColor!
     }
     
-    private func getCellInfoForTypeOfCell(cellType: CellType) -> CellInfo {
+    static func getCellInfoForTypeOfCell(cellType: CellType) -> CellInfo {
         var info = CellInfo()
         info.borderColor = BBPTableCell.borderColor
         info.borderWidth = BBPTableCell.borderWidth

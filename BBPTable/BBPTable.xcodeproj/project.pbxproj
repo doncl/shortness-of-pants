@@ -15,6 +15,8 @@
 		4762BB511B6FB9080085F00B /* BBPTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4762BB501B6FB9080085F00B /* BBPTableCell.swift */; };
 		476EC6901B6FD24B006A2018 /* CellProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476EC68F1B6FD24B006A2018 /* CellProperties.swift */; };
 		476EC6921B6FD504006A2018 /* BBPTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476EC6911B6FD504006A2018 /* BBPTableModel.swift */; };
+		4774598E1B7050DA00708A84 /* TableProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4774598D1B7050DA00708A84 /* TableProperties.swift */; };
+		477459901B70513600708A84 /* BBPTableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4774598F1B70513600708A84 /* BBPTableLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		4762BB501B6FB9080085F00B /* BBPTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBPTableCell.swift; sourceTree = "<group>"; };
 		476EC68F1B6FD24B006A2018 /* CellProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellProperties.swift; sourceTree = "<group>"; };
 		476EC6911B6FD504006A2018 /* BBPTableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBPTableModel.swift; sourceTree = "<group>"; };
+		4774598D1B7050DA00708A84 /* TableProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableProperties.swift; sourceTree = "<group>"; };
+		4774598F1B70513600708A84 /* BBPTableLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBPTableLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 		47614FE91B6FB4F4009F0E91 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
+				4774598F1B70513600708A84 /* BBPTableLayout.swift */,
 			);
 			name = Layout;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 		47614FEB1B6FB514009F0E91 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4774598D1B7050DA00708A84 /* TableProperties.swift */,
 				47614FCA1B6FB250009F0E91 /* BBPTableViewController.swift */,
 			);
 			name = View;
@@ -249,9 +255,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				47614FEF1B6FB56B009F0E91 /* CellInfo.swift in Sources */,
+				477459901B70513600708A84 /* BBPTableLayout.swift in Sources */,
 				47614FCB1B6FB250009F0E91 /* BBPTableViewController.swift in Sources */,
 				4762BB511B6FB9080085F00B /* BBPTableCell.swift in Sources */,
 				476EC6921B6FD504006A2018 /* BBPTableModel.swift in Sources */,
+				4774598E1B7050DA00708A84 /* TableProperties.swift in Sources */,
 				476EC6901B6FD24B006A2018 /* CellProperties.swift in Sources */,
 				47614FC91B6FB250009F0E91 /* AppDelegate.swift in Sources */,
 			);
