@@ -232,7 +232,7 @@ class ProgramSwitcherViewController: UIViewController{
         super.viewDidLoad()
         
         buttonImage = UIImage(named: "Button.jpg")
-        buttonSelectedImage = UIImage(named: "ButtonSelected.png")
+        buttonSelectedImage = UIImage(named: "Button_on.jpg")
             
             
         Button1Press(channelButtons[0])
