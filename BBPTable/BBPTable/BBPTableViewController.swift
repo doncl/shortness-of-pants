@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum TableLoadMode {
+    case DefaultView
+    case CreateView
+}
+
 class BBPTableViewController: UIViewController, UICollectionViewDataSource,
         UICollectionViewDelegate {
     
@@ -18,22 +23,43 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
     var fixedView: UICollectionView?
     var fixedModel: BBPTableModel?
     var nonFixedModel: BBPTableModel?
-    
+    var loadMode: TableLoadMode
+    var viewWidth: CGFloat?
+
     //MARK: Initialization
-    override func viewDidLoad() {
-        super.viewDidLoad() // Go ahead and call superclass to get a plain vanilla UIView.
-        
+    init(loadMode: TableLoadMode) {
+        self.loadMode = loadMode
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    convenience init(loadMode: TableLoadMode, width: CGFloat) {
+        self.init(loadMode: loadMode)
+        viewWidth = width
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func loadView() {
         BBPTableCell.initializeCellProperties(tableProperties!)
         BBPTableModel.buildFixedAndNonFixedModels(model!, fixedColumnModel: &fixedModel,
-            nonFixedColumnModel: &nonFixedModel,
-            fixedColumnCount: tableProperties!.fixedColumns!)
-        
+                nonFixedColumnModel: &nonFixedModel,
+                fixedColumnCount: tableProperties!.fixedColumns!)
+
         var fixedLayout = BBPTableLayout()
         fixedLayout.calculateCellSizes(fixedModel!)
-        
+
         var nonFixedLayout = BBPTableLayout()
         nonFixedLayout.calculateCellSizes(nonFixedModel!)
-        
+
+        if loadMode == .DefaultView {
+            super.loadView() // Go ahead and call superclass to get a plain vanilla UIView.
+        } else {
+            var frame = CGRect(x: 0, y:0, width:viewWidth!, height: fixedLayout.tableHeight!)
+            self.view = UIView(frame: frame)
+        }
+
         fixedView = createCollectionView(view, layout: fixedLayout, x: 0.0,
             width: fixedLayout.tableWidth!)
         

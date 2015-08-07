@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        var vc = BBPTableViewController()
+        var vc = BBPTableViewController(loadMode:.DefaultView)
         setupTableProperties(vc)
             
         window?.rootViewController = vc
