@@ -9,11 +9,36 @@
 import UIKit
 
 class BBPTableModel: NSObject {
+
+    static let regex: NSRegularExpression =
+    NSRegularExpression(pattern:"<table.*?>(.*?)<\\/table>",
+            options:.CaseInsensitive | .DotMatchesLineSeparators,
+            error:nil)!
+
+    static let headRegex: NSRegularExpression =
+    NSRegularExpression(pattern:"<thead.*?>(.*?)<\\/thead>",
+            options:.CaseInsensitive | .DotMatchesLineSeparators,
+            error:nil)!
+
+    static let bodyRegex: NSRegularExpression =
+    NSRegularExpression(pattern:"<tbody.*?>(.*?)<\\/tbody>",
+            options:.CaseInsensitive | .DotMatchesLineSeparators,
+            error:nil)!
+
+    static let rowRegex: NSRegularExpression =
+    NSRegularExpression(pattern:"<tr.*?>(.*?)<\\/tr>",
+            options:.CaseInsensitive | .DotMatchesLineSeparators,
+            error:nil)!
+
+    static let dataRegex: NSRegularExpression =
+    NSRegularExpression(pattern:"<td><a.*?>(.*?)<\\/a><\\/td>|<td>(.*?)<\\/td>",
+            options:.CaseInsensitive | .DotMatchesLineSeparators,
+            error:nil)!
+
     var rowData: Array<Array<String>> = [[]]
     
     override init() {
         super.init()
-        rowData = generateRowData()
     }
 
     var numberOfRows: Int {
@@ -37,6 +62,91 @@ class BBPTableModel: NSObject {
             return .ColumnHeading
         }
         return ((row + 1) % 2) == 0 ? .DataEven : .DataOdd
+    }
+
+    func buildFromText(text: String) ->Bool {
+        var colCount: Int = 0
+        rowData = Array<Array<String>>()
+
+        if let tableText = strMatch(BBPTableModel.regex, text: text, index:1) {
+            if let head = strMatch(BBPTableModel.headRegex, text: tableText, index:1) {
+                if let headRow = strMatch(BBPTableModel.rowRegex, text:head, index:1) {
+                    let headCells = strsMatch(BBPTableModel.dataRegex, text:headRow, index:2)
+                    if headCells.count == 0 {
+                        return false
+                    }
+                    colCount = headCells.count
+                    var headArray = Array<String>()
+                    for headCell in headCells {
+                        headArray.append(headCell)
+                    }
+                    rowData.append(headArray)
+                }
+            }
+            if let body = strMatch(BBPTableModel.bodyRegex, text: tableText, index:1) {
+                let bodyRows = strsMatch(BBPTableModel.rowRegex, text:body, index:1)
+                for bodyRow in bodyRows {
+                    let bodyCells = strsMatch(BBPTableModel.dataRegex, text:bodyRow, index:1)
+                    if bodyCells.count != colCount {
+                        println("Error - expected row to be \(colCount) cells, not " +
+                                "\(bodyCells.count)")
+                        return false
+                    }
+                    var dataRow = Array<String>()
+                    for bodyCell in bodyCells {
+                        dataRow.append(bodyCell)
+                    }
+                    rowData.append(dataRow)
+                }
+            }
+        }
+
+        return true
+    }
+
+    func strMatch(pattern: NSRegularExpression, text:String, index:Int) -> String? {
+        var textToSearch = text.stringByTrimmingCharactersInSet(
+            NSCharacterSet.whitespaceAndNewlineCharacterSet())
+
+        var result = pattern.firstMatchInString(textToSearch, options:nil,
+                    range:NSMakeRange(0, count(textToSearch)))!
+
+        let matchRange = result.range
+        if matchRange.location == NSNotFound {
+            return nil
+        }
+
+        var matchGroupRange = result.rangeAtIndex(index)
+        let nsString = textToSearch as NSString
+        var str =  nsString.substringWithRange(matchGroupRange)
+        return str
+    }
+
+    func strsMatch(pattern: NSRegularExpression, text:String, index: Int)
+                    -> Array<String> {
+
+        var strings:Array<String> = []
+        var textToSearch = text.stringByTrimmingCharactersInSet(
+        NSCharacterSet.whitespaceAndNewlineCharacterSet())
+
+        var matches = pattern.matchesInString(textToSearch, options:nil,
+                range:NSMakeRange(0, count(textToSearch)))
+
+        for match in matches as! [NSTextCheckingResult] {
+            var count = match.numberOfRanges
+            var matchRange = match.rangeAtIndex(index)
+            if matchRange.location == NSNotFound {
+               matchRange = match.rangeAtIndex(index + 1)
+               if matchRange.location == NSNotFound {
+                   fatalError("dang")
+               }
+            }
+
+            let nsString = textToSearch as NSString
+            var str = nsString.substringWithRange(matchRange)
+            strings.append(str)
+        }
+        return strings
     }
 
     //
@@ -71,25 +181,4 @@ class BBPTableModel: NSObject {
         nonFixedColumnModel!.rowData = nonFixedOuterArray
     }
 
-
-    //
-    //  THIS IS SCAFFOLDING that should be replaced.
-    //
-    private func generateRowData() -> Array<Array<String>> {
-        return [
-            ["#",  "PLAYER",          "POS","TEAM",     "BYE","INJURY","AGE","ADP","AAV","PROCJECTED PTS.", "BOX SCORE"],
-            ["1",  "Antonio Brown",   "WR", "Steelers", "11", "",    "27",  "3.88",  "$40", "371.5", "2363"],
-            ["2",  "Odel Beckham",    "WR", "Jets",     "11", "Pro", "22",  "5.23",  "$39", "371.2", "2360"],
-            ["3",  "Jamaal Charles",  "RB", "Chiefs",   "11", "",    "28",  "8.92",  "$33", "313.3", "2354"],
-            ["4",  "Le'Veon Bell",    "RB", "Steelers", "11", "Sus", "22",  "3.96",  "$40", "311.0", "2341"],
-            ["5",  "Matt Forte",      "RB", "Bears",    "7",  "",    "29",  "19.93", "$27", "291.0", "2131"],
-            ["6",  "Rob Gronkowski",  "TE", "Patriots", "4",  "",    "26",  "9.73",  "$37", "303.9", "2116"],
-            ["7",  "Eddie Lacy",      "RB", "Packers",  "7",  "",    "24",  "7.96",  "$35", "288.3", "2104"],
-            ["8",  "Adrian Peterson", "RB", "Vikings",  "5",  "",    "30",  "11.21", "$30", "284.2", "2063"],
-            ["9",  "Julio Jones",     "WR", "Eagles",   "10", "",    "26",  "7.46",  "$37", "339.9", "2047"],
-            ["10", "C.J. Anderson",   "RB", "Broncos",  "7",  "",    "24",  "21.96", "$26", "280.5", "2026"],
-            ["11", "Arian Foster",    "RB", "Texans",   "9",  "",    "28",  "25.22", "$26", "277.1", "1992"],
-            ["12", "Marshawn Lynch",  "RB", "Seahawks", "9",  "",    "29",  "20.83", "$29", "275.8", "1979"]
-        ]
-    }
 }
