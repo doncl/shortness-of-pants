@@ -11,29 +11,24 @@ import UIKit
 class BBPTableModel: NSObject {
 
     static let regex: NSRegularExpression =
-    NSRegularExpression(pattern:"<table.*?>(.*?)<\\/table>",
-            options:.CaseInsensitive | .DotMatchesLineSeparators,
-            error:nil)!
+    try! NSRegularExpression(pattern:"<table.*?>(.*?)<\\/table>",
+            options:[.CaseInsensitive, .DotMatchesLineSeparators])
 
     static let headRegex: NSRegularExpression =
-    NSRegularExpression(pattern:"<thead.*?>(.*?)<\\/thead>",
-            options:.CaseInsensitive | .DotMatchesLineSeparators,
-            error:nil)!
+    try! NSRegularExpression(pattern:"<thead.*?>(.*?)<\\/thead>",
+            options:[.CaseInsensitive, .DotMatchesLineSeparators])
 
     static let bodyRegex: NSRegularExpression =
-    NSRegularExpression(pattern:"<tbody.*?>(.*?)<\\/tbody>",
-            options:.CaseInsensitive | .DotMatchesLineSeparators,
-            error:nil)!
+    try! NSRegularExpression(pattern:"<tbody.*?>(.*?)<\\/tbody>",
+            options:[.CaseInsensitive, .DotMatchesLineSeparators])
 
     static let rowRegex: NSRegularExpression =
-    NSRegularExpression(pattern:"<tr.*?>(.*?)<\\/tr>",
-            options:.CaseInsensitive | .DotMatchesLineSeparators,
-            error:nil)!
+    try! NSRegularExpression(pattern:"<tr.*?>(.*?)<\\/tr>",
+            options:[.CaseInsensitive, .DotMatchesLineSeparators])
 
     static let dataRegex: NSRegularExpression =
-    NSRegularExpression(pattern:"<td><a.*?>(.*?)<\\/a><\\/td>|<td>(.*?)<\\/td>",
-            options:.CaseInsensitive | .DotMatchesLineSeparators,
-            error:nil)!
+    try! NSRegularExpression(pattern:"<td><a.*?>(.*?)<\\/a><\\/td>|<td>(.*?)<\\/td>",
+            options:[.CaseInsensitive, .DotMatchesLineSeparators])
 
     var rowData: Array<Array<String>> = [[]]
     
@@ -88,7 +83,7 @@ class BBPTableModel: NSObject {
                 for bodyRow in bodyRows {
                     let bodyCells = strsMatch(BBPTableModel.dataRegex, text:bodyRow, index:1)
                     if bodyCells.count != colCount {
-                        println("Error - expected row to be \(colCount) cells, not " +
+                        print("Error - expected row to be \(colCount) cells, not " +
                                 "\(bodyCells.count)")
                         return false
                     }
@@ -105,20 +100,20 @@ class BBPTableModel: NSObject {
     }
 
     func strMatch(pattern: NSRegularExpression, text:String, index:Int) -> String? {
-        var textToSearch = text.stringByTrimmingCharactersInSet(
+        let textToSearch = text.stringByTrimmingCharactersInSet(
             NSCharacterSet.whitespaceAndNewlineCharacterSet())
 
-        var result = pattern.firstMatchInString(textToSearch, options:nil,
-                    range:NSMakeRange(0, count(textToSearch)))!
+        let result = pattern.firstMatchInString(textToSearch, options:[],
+                    range:NSMakeRange(0, textToSearch.characters.count))!
 
         let matchRange = result.range
         if matchRange.location == NSNotFound {
             return nil
         }
 
-        var matchGroupRange = result.rangeAtIndex(index)
+        let matchGroupRange = result.rangeAtIndex(index)
         let nsString = textToSearch as NSString
-        var str =  nsString.substringWithRange(matchGroupRange)
+        let str =  nsString.substringWithRange(matchGroupRange)
         return str
     }
 
@@ -126,13 +121,13 @@ class BBPTableModel: NSObject {
                     -> Array<String> {
 
         var strings:Array<String> = []
-        var textToSearch = text.stringByTrimmingCharactersInSet(
+        let textToSearch = text.stringByTrimmingCharactersInSet(
         NSCharacterSet.whitespaceAndNewlineCharacterSet())
 
-        var matches = pattern.matchesInString(textToSearch, options:nil,
-                range:NSMakeRange(0, count(textToSearch)))
+        let matches = pattern.matchesInString(textToSearch, options:[],
+                range:NSMakeRange(0, textToSearch.characters.count))
 
-        for match in matches as! [NSTextCheckingResult] {
+        for match in matches {
             var count = match.numberOfRanges
             var matchRange = match.rangeAtIndex(index)
             if matchRange.location == NSNotFound {
@@ -143,7 +138,7 @@ class BBPTableModel: NSObject {
             }
 
             let nsString = textToSearch as NSString
-            var str = nsString.substringWithRange(matchRange)
+            let str = nsString.substringWithRange(matchRange)
             strings.append(str)
         }
         return strings
@@ -160,7 +155,7 @@ class BBPTableModel: NSObject {
                                             inout fixedColumnModel: BBPTableModel?,
                                             inout nonFixedColumnModel: BBPTableModel?,
                                             fixedColumnCount: Int) {
-        var rows = srcModel.numberOfRows
+        let rows = srcModel.numberOfRows
         var cols = srcModel.numberOfColumns
         
         fixedColumnModel = BBPTableModel()
@@ -171,8 +166,8 @@ class BBPTableModel: NSObject {
                                                 
         for (var i = 0; i < rows; i++) {
             var srcRow = srcModel.rowData[i];
-            var fixedRow = srcRow[0...fixedColumnCount - 1]
-            var nonFixedRow = srcRow[fixedColumnCount...srcRow.count - 1]
+            let fixedRow = srcRow[0...fixedColumnCount - 1]
+            let nonFixedRow = srcRow[fixedColumnCount...srcRow.count - 1]
             
             fixedOuterArray.append(Array(fixedRow))
             nonFixedOuterArray.append(Array(nonFixedRow))

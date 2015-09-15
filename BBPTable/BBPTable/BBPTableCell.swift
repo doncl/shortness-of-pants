@@ -51,13 +51,13 @@ class BBPTableCell: UICollectionViewCell {
         label.setContentCompressionResistancePriority(1000, forAxis:.Horizontal)
         label.numberOfLines = 0
         setupCellInfo(.DataOdd)
-        contentView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
         setupConstraints()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -91,7 +91,7 @@ class BBPTableCell: UICollectionViewCell {
         var viewDict = ["cellLabel" : cellLabel]
         var horizontalConstraints =
         NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[cellLabel]-0-|",
-            options: NSLayoutFormatOptions(0), metrics: nil, views: viewDict)
+            options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict)
         
         let centeringXConstraint =
         NSLayoutConstraint(item: self, attribute:.CenterX,
@@ -111,7 +111,7 @@ class BBPTableCell: UICollectionViewCell {
     }
     
     func setupCellInfo(cellType: CellType) {
-        var ci = BBPTableCell.getCellInfoForTypeOfCell(cellType)
+        let ci = BBPTableCell.getCellInfoForTypeOfCell(cellType)
         layer.borderWidth = ci.borderWidth!
         layer.borderColor = ci.borderColor!.CGColor
         label.baselineAdjustment = ci.baselineAdjustment!
@@ -123,7 +123,7 @@ class BBPTableCell: UICollectionViewCell {
     }
     
     static func getCellInfoForTypeOfCell(cellType: CellType) -> CellInfo {
-        var info = CellInfo()
+        let info = CellInfo()
         info.borderColor = BBPTableCell.borderColor
         info.borderWidth = BBPTableCell.borderWidth
         info.baselineAdjustment = .AlignCenters

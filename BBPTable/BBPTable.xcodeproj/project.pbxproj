@@ -200,6 +200,8 @@
 		47614FBB1B6FB250009F0E91 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Beer Barrel Poker Studios";
 				TargetAttributes = {

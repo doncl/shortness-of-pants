@@ -13,11 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions
+    func application(application    : UIApplication, didFinishLaunchingWithOptions
         launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        var vc = BBPTableViewController(loadMode:.DefaultView)
+        let vc = BBPTableViewController(loadMode:.DefaultView)
         setupTableProperties(vc)
             
         window?.rootViewController = vc
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func setupTableProperties(viewController: BBPTableViewController) {
-        var props = TableProperties()
+        let props = TableProperties()
         props.headerColor = UIColor(red:0.271, green:0.271, blue: 0.271, alpha:1)
         props.fixedColumns = 2
         props.headerFontName = "HelveticaNeue-Bold"
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func generateTestHtml() -> String{
-        var htmlTable = 
+        let htmlTable = 
             "<table width=\"603\" height=\"339\" class=\"responsive-table\">" +
                 "<thead>" +
                     "<tr><td>#</td>\n<td>Player</td>\n<td>Team</td>\n<td>Bye</td>\n<td>Age</td>\n<td>ADP</td>\n<td>AAV</td>\n<td>Project. Points</td>\n</tr>" +

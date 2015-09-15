@@ -37,7 +37,7 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
         viewWidth = width
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -47,24 +47,24 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
                 nonFixedColumnModel: &nonFixedModel,
                 fixedColumnCount: tableProperties!.fixedColumns!)
 
-        var fixedLayout = BBPTableLayout()
+        let fixedLayout = BBPTableLayout()
         fixedLayout.calculateCellSizes(fixedModel!)
 
-        var nonFixedLayout = BBPTableLayout()
+        let nonFixedLayout = BBPTableLayout()
         nonFixedLayout.calculateCellSizes(nonFixedModel!)
 
         if loadMode == .DefaultView {
             super.loadView() // Go ahead and call superclass to get a plain vanilla UIView.
         } else {
-            var frame = CGRect(x: 0, y:0, width:viewWidth!, height: fixedLayout.tableHeight!)
+            let frame = CGRect(x: 0, y:0, width:viewWidth!, height: fixedLayout.tableHeight!)
             self.view = UIView(frame: frame)
         }
 
         fixedView = createCollectionView(view, layout: fixedLayout, x: 0.0,
             width: fixedLayout.tableWidth!)
         
-        var nonFixedX = view.frame.origin.x + fixedLayout.tableWidth!
-        var nonFixedWidth = view.frame.size.width - nonFixedX
+        let nonFixedX = view.frame.origin.x + fixedLayout.tableWidth!
+        let nonFixedWidth = view.frame.size.width - nonFixedX
         
         nonFixedView = createCollectionView(view, layout: nonFixedLayout,
             x: nonFixedX, width: nonFixedWidth)
@@ -82,7 +82,7 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
         let frame = CGRect(x: x, y:parentView.frame.origin.y, width:width,
                 height: parentView.frame.size.height)
             
-        var collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         collectionView.bounces = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
@@ -111,32 +111,32 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
     //MARK: UICollectionViewDataSource methods
     func collectionView(collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
-        var model = getModel(collectionView)
+        let model = getModel(collectionView)
         return model.numberOfColumns
     }
     
     func collectionView(collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
             
-        var model = getModel(collectionView)
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("cellIdentifier",
+        let model = getModel(collectionView)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cellIdentifier",
             forIndexPath: indexPath) as! BBPTableCell
             
-        var layout = collectionView.collectionViewLayout as! BBPTableLayout
-        var columnIdx = indexPath.row
-        var rowIdx = indexPath.section
+        let layout = collectionView.collectionViewLayout as! BBPTableLayout
+        let columnIdx = indexPath.row
+        let rowIdx = indexPath.section
             
-        var cellData = model.dataAtLocation(rowIdx, column: columnIdx)
-        var cellType = getCellType(indexPath)
+        let cellData = model.dataAtLocation(rowIdx, column: columnIdx)
+        let cellType = getCellType(indexPath)
         cell.setupCellInfo(cellType)
         cell.setCellText(cellData)
-        var columnWidth = layout.columnWidths[columnIdx]
+        let columnWidth = layout.columnWidths[columnIdx]
         cell.contentView.bounds = CGRect(x:0, y:0, width:columnWidth, height: layout.rowHeight!)
         return cell
     }
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        var model = getModel(collectionView)
+        let model = getModel(collectionView)
         return model.numberOfRows
     }
     

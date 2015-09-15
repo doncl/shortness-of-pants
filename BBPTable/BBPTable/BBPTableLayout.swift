@@ -26,20 +26,20 @@ class BBPTableLayout: UICollectionViewLayout {
     //MARK: UICollectionViewLayout implementation.
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) ->
         UICollectionViewLayoutAttributes! {
-        var attrs = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+        let attrs = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
         attrs.frame = frameForItemAtIndexPath(indexPath)
         return attrs
     }
 
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
+    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var attrsArray: [UICollectionViewLayoutAttributes] = []
         
         for (var i = 0; i < columns; i++) {
             for (var j = 0; j < rows; j++) {
-                var cellRect = getCellRect(i, row: j)
+                let cellRect = getCellRect(i, row: j)
                 if (CGRectIntersectsRect(cellRect, rect)) {
-                    var indexPath = NSIndexPath(forItem:i, inSection:j)
-                    var attrs = layoutAttributesForItemAtIndexPath(indexPath)
+                    let indexPath = NSIndexPath(forItem:i, inSection:j)
+                    let attrs = layoutAttributesForItemAtIndexPath(indexPath)
                     attrsArray.append(attrs)
                 }
             }
@@ -58,14 +58,14 @@ class BBPTableLayout: UICollectionViewLayout {
     
     private func getCellRect(column: Int, row: Int) -> CGRect {
         var x = CGFloat(0.0)
-        var y = CGFloat(row) * rowHeight!
-        var height = rowHeight!
+        let y = CGFloat(row) * rowHeight!
+        let height = rowHeight!
         
         // The column widths are variable values, so they have to be added up.
         for (var i = 0; i < column; i++) {
             x += columnWidths[i]
         }
-        var width = columnWidths[column]
+        let width = columnWidths[column]
         
         return CGRect(x:x, y:y, width:width, height:height)
     }
@@ -78,7 +78,7 @@ class BBPTableLayout: UICollectionViewLayout {
         rowHeight = 0.0
         
         for (var i = 0; i < columns; i++) {
-            var columnSize = calculateColumnSize(model, columnIndex: i, rowCount: rows!)
+            let columnSize = calculateColumnSize(model, columnIndex: i, rowCount: rows!)
             columnWidths.append(columnSize.width)
             if columnSize.height > rowHeight {
                 rowHeight = columnSize.height
@@ -96,17 +96,17 @@ class BBPTableLayout: UICollectionViewLayout {
         var largestHeight = CGFloat(0.0)
             
         for (var i = 0;  i < rowCount; i++) {
-            var cellData = model.dataAtLocation(i, column: columnIndex)
-            var type = model.getCellType(i)
-            var cellInfo = BBPTableCell.getCellInfoForTypeOfCell(type)
-            var font = UIFont(name: cellInfo.fontName!, size: cellInfo.fontSize!)
+            let cellData = model.dataAtLocation(i, column: columnIndex)
+            let type = model.getCellType(i)
+            let cellInfo = BBPTableCell.getCellInfoForTypeOfCell(type)
+            let font = UIFont(name: cellInfo.fontName!, size: cellInfo.fontSize!)
             
             // The Interwebs suggests we'll get better and more accurate required lengths for
             // strings by replacing the spaces with a capital letter glyph.
-            var newString = cellData.stringByReplacingOccurrencesOfString(" ", withString: "X")
-            var attributes = [NSFontAttributeName : font!]
+            let newString = cellData.stringByReplacingOccurrencesOfString(" ", withString: "X")
+            let attributes = [NSFontAttributeName : font!]
             
-            var rect = NSString(string: newString).boundingRectWithSize(
+            let rect = NSString(string: newString).boundingRectWithSize(
                 CGSize(width:DBL_MAX, height:DBL_MAX),
                 options:NSStringDrawingOptions.UsesLineFragmentOrigin,
                 attributes:attributes,
