@@ -166,6 +166,7 @@
 		47A4A2A61B483A2700E611C5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Beer Barrel Poker Studios";
 				TargetAttributes = {
