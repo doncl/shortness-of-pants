@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,13 +15,82 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SM4-Ky-kKE">
+                                <rect key="frame" x="24" y="250" width="366" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="aLJ-MQ-cn0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Select Country" backgroundImage="drop_down.png">
+                                    <color key="titleColor" red="0.0" green="0.42352944609999998" blue="0.7607843876" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dropDownPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Qi-i9-tWI"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePN-dr-XpU">
+                                <rect key="frame" x="90" y="378" width="234" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.42352944609999998" blue="0.7607843876" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBz-rq-1qo">
+                                <rect key="frame" x="24" y="408" width="366" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Select Country" backgroundImage="drop_down.png">
+                                    <color key="titleColor" red="0.0" green="0.42352944609999998" blue="0.7607843876" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dropDownSingle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Cm-rR-rXn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sh-aW-L3U">
+                                <rect key="frame" x="16" y="240" width="287" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.42352944609999998" blue="0.7607843876" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mutiple Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oih-LN-mGs">
+                                <rect key="frame" x="90" y="220" width="234" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.42352944609999998" blue="0.7607843876" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SM4-Ky-kKE" firstAttribute="top" secondItem="oih-LN-mGs" secondAttribute="bottom" constant="9" id="434-2I-8iL"/>
+                            <constraint firstItem="SM4-Ky-kKE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="-4" id="5yP-zW-gWc"/>
+                            <constraint firstItem="nBz-rq-1qo" firstAttribute="leading" secondItem="SM4-Ky-kKE" secondAttribute="leading" id="8TW-ze-OCD"/>
+                            <constraint firstItem="ePN-dr-XpU" firstAttribute="width" secondItem="oih-LN-mGs" secondAttribute="width" id="AuR-FW-xZC"/>
+                            <constraint firstItem="nBz-rq-1qo" firstAttribute="width" secondItem="SM4-Ky-kKE" secondAttribute="width" id="DL0-yR-8wj"/>
+                            <constraint firstItem="nBz-rq-1qo" firstAttribute="top" secondItem="ePN-dr-XpU" secondAttribute="bottom" constant="9" id="EZv-5o-W9e"/>
+                            <constraint firstItem="SM4-Ky-kKE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="GtP-Rq-HpJ"/>
+                            <constraint firstItem="oih-LN-mGs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="200" id="SxE-uH-Ryb"/>
+                            <constraint firstItem="nBz-rq-1qo" firstAttribute="trailing" secondItem="SM4-Ky-kKE" secondAttribute="trailing" id="TjE-Rv-GXU"/>
+                            <constraint firstItem="ePN-dr-XpU" firstAttribute="top" secondItem="SM4-Ky-kKE" secondAttribute="bottom" constant="100" id="bfC-cJ-Uzq"/>
+                            <constraint firstItem="ePN-dr-XpU" firstAttribute="leading" secondItem="oih-LN-mGs" secondAttribute="leading" id="gCB-7L-XhE"/>
+                            <constraint firstItem="ePN-dr-XpU" firstAttribute="trailing" secondItem="oih-LN-mGs" secondAttribute="trailing" id="hgi-iD-Enz"/>
+                            <constraint firstItem="oih-LN-mGs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="70" id="mbe-Ll-rCJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oih-LN-mGs" secondAttribute="trailing" constant="70" id="nb2-zI-tvC"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="selectedBandNames" destination="8Sh-aW-L3U" id="PCN-7I-xGJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="429" y="545"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="drop_down.png" width="287" height="28"/>
+    </resources>
 </document>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DropDownViewCell" selectionStyle="default" indentationWidth="10" rowHeight="57" id="KaV-Vf-YMR" customClass="BBPDropDownCell" customModule="BBPDropDown" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KaV-Vf-YMR" id="be9-Z9-F2S">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_mark.png" translatesAutoresizingMaskIntoConstraints="NO" id="gsN-ER-x7I" userLabel="CheckMark">
+                        <rect key="frame" x="275" y="15" width="27" height="27"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="jIR-Hc-Muf"/>
+                            <constraint firstAttribute="width" constant="27" id="yMA-Ud-Ewv"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="gsN-ER-x7I" firstAttribute="trailing" secondItem="be9-Z9-F2S" secondAttribute="trailingMargin" constant="-10" id="8nX-4O-5vT"/>
+                    <constraint firstItem="gsN-ER-x7I" firstAttribute="centerY" secondItem="be9-Z9-F2S" secondAttribute="centerY" id="wAo-0S-MWe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="selectionIndicator" destination="gsN-ER-x7I" id="311-aP-xHq"/>
+            </connections>
+            <point key="canvasLocation" x="209" y="64.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="check_mark.png" width="27" height="27"/>
+    </resources>
+</document>
