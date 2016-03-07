@@ -9,7 +9,7 @@
 import UIKit
 
 protocol BBPDropDownDelegate {
-    func requestNewHeight(newHeight: CGFloat);
+    func requestNewHeight(dropDown:BBPDropdown, newHeight: CGFloat);
 }
 
 @IBDesignable class BBPDropdown: UIView, UICollectionViewDelegate, UICollectionViewDataSource,
@@ -25,15 +25,12 @@ protocol BBPDropDownDelegate {
     @IBInspectable var borderColor : UIColor = UIColor.lightGrayColor()
     @IBInspectable var borderWidth : CGFloat = 1.0
     var lozengeData: [String] = []
-    var data : [String] =
-    ["Beatles", "Rolling Stones", "Jimi Hendrix", "King Crimson",
-     "Emerson, Lake and Palmer", "Gentle Giant", "Yes", "Jethro Tull", "Genesis",
-     "The Grateful Dead", "Jefferson Airplane"]
-
+    var data : [String] = []
     var popTable: BBPDropDownPopup?
     
     var view: UIView!  // Our custom view from the Xib file.
     @IBInspectable var delegate: BBPDropDownDelegate?
+    @IBInspectable var isMultiple : Bool = true
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -85,7 +82,7 @@ protocol BBPDropDownDelegate {
         xy = convertPoint(xy, toView: superview)
         popTable = BBPDropDownPopup(title: popupTitle!, options:options,
                 xy: xy,
-            size:CGSizeMake(frame.size.width, 280), isMultiple: true)
+            size:CGSizeMake(frame.size.width, 280), isMultiple: isMultiple)
 
         popTable!.delegate = self
         popTable!.showInView(superview!, animated:true)
@@ -135,7 +132,7 @@ protocol BBPDropDownDelegate {
         if let flowLayout = lozengeCollection.collectionViewLayout as? UICollectionViewFlowLayout {
             let minHeight = flowLayout.itemSize.height + (vertMargin * 2)
             if let delegate = delegate {
-                delegate.requestNewHeight(max(minHeight, height))
+                delegate.requestNewHeight(self, newHeight: max(minHeight, height))
             }
         }
     }

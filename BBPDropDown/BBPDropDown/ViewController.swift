@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Darwin
 
-class ViewController: UIViewController, BBPDropDownPopupDelegate, BBPDropDownDelegate {
+class ViewController: UIViewController, BBPDropDownDelegate {
 
     let data = ["Beatles", "Rolling Stones", "Jimi Hendrix", "King Crimson",
                 "Emerson, Lake and Palmer", "Gentle Giant", "Yes", "Jethro Tull", "Genesis",
@@ -20,89 +20,38 @@ class ViewController: UIViewController, BBPDropDownPopupDelegate, BBPDropDownDel
 
     @IBOutlet var selectedBandNames : UILabel!
 
-    @IBOutlet var bbpDropDown: BBPDropdown!
-    @IBOutlet var bbpDropDownHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var bbpDropDownSingle: BBPDropdown!
+    @IBOutlet var bbpDropDownSingleHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var bbpDropDownMulti: BBPDropdown!
+    @IBOutlet var bbpDropDownMultiHeightConstraint: NSLayoutConstraint!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //bbpDropDown.lozengeData = data
-        bbpDropDown.delegate = self
+        bbpDropDownMulti.delegate = self
+        bbpDropDownMulti.data = data
+        bbpDropDownMulti.isMultiple = true
+        bbpDropDownSingle.delegate = self
+        bbpDropDownSingle.data = data
+        bbpDropDownSingle.isMultiple = false
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        bbpDropDown.readjustHeight()
-    }
-
-    func showPopup(title: String, options: [String], xy: CGPoint, size: CGSize,
-                   isMultiple: Bool) {
-
-        dropDownPopup = BBPDropDownPopup(title: title, options: options, xy: xy, size: size,
-            isMultiple: isMultiple)
-                    
-        dropDownPopup!.delegate = self
-        dropDownPopup!.showInView(view, animated: true)
-                    
-        dropDownPopup!.popupBackgroundColor = UIColor(red: 0.0 / 255.0, green: 108.0 / 255.0,
-                blue: 194.0 / 255.0, alpha: 0.70)
-    }
-
-    func dropDownView(dropDownView: BBPDropDownPopup, didSelectedIndex idx: Int) {
-        selectedBandNames.text = data[idx]
-    }
-
-    func dropDownView(dropDownView: BBPDropDownPopup, dataList: [String]) {
-        if data.count > 0 {
-            selectedBandNames.text = data.joinWithSeparator("\r\n")
-            let size = getHeightDynamic(selectedBandNames)
-            selectedBandNames.frame = CGRectMake(16, 240, 287, size.height)
-        } else {
-            selectedBandNames.text = ""
-        }
-    }
-
-    private func getHeightDynamic(label: UILabel) -> CGSize {
-        //let range = NSMakeRange(0, label.text!.characters.count)
-        //let rangePtr = UnsafeMutablePointer<NSRange>.alloc(1)
-
-        let constraint = CGSize(width: 288.0, height: DBL_MAX)
-        var size : CGSize
-        
-        let nsString : NSString = NSString(string: label.text!)
-        
-        let boundingRect = nsString.boundingRectWithSize(constraint,
-            options: .UsesLineFragmentOrigin, attributes: [:],
-            context: nil)
-        
-        let boundingBox = boundingRect.size
-        
-        size = CGSizeMake(ceil(boundingBox.width), ceil(boundingBox.height))
-        return size
-    }
-
-    @IBAction func dropDownPressed(sender: AnyObject) {
-        if let dropdown = dropDownPopup {
-            dropdown.fadeOut()
-        }
-
-        showPopup("Select Bands", options: data, xy: CGPointMake(16, 58),
-            size: CGSizeMake(287, 330), isMultiple: true)
-    }
-    
-    @IBAction func dropDownSingle(sender: AnyObject) {
-        if let dropdown = dropDownPopup {
-            dropdown.fadeOut()
-        }
-
-        showPopup("SelectBand", options: data, xy: CGPointMake(16, 150),
-            size: CGSizeMake(287, 280), isMultiple: false)
+        bbpDropDownMulti.readjustHeight()
+        bbpDropDownSingle.readjustHeight()
     }
 
     // MARK: - BBPDropDownDelegate implementation
-    func requestNewHeight(newHeight: CGFloat) {
+    func requestNewHeight(dropDown: BBPDropdown, newHeight: CGFloat) {
         UIView.animateWithDuration(0.6, delay:0.2, options:[.CurveEaseInOut], animations: {
-            self.bbpDropDownHeightConstraint.constant = newHeight;
+            if dropDown === self.bbpDropDownMulti {
+                self.bbpDropDownMultiHeightConstraint.constant = newHeight
+            } else {
+                self.bbpDropDownSingleHeightConstraint.constant = newHeight
+            }
+
         }, completion: nil)
     }
 }

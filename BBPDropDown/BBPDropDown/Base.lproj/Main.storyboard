@@ -18,54 +18,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SM4-Ky-kKE">
-                                <rect key="frame" x="24" y="60" width="366" height="28"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="aLJ-MQ-cn0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Select Country" backgroundImage="drop_down.png">
-                                    <color key="titleColor" red="0.0" green="0.42352944609999998" blue="0.7607843876" alpha="1" colorSpace="deviceRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="dropDownPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Qi-i9-tWI"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePN-dr-XpU">
-                                <rect key="frame" x="90" y="188" width="234" height="21"/>
+                                <rect key="frame" x="90" y="95" width="234" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.42352944609999998" blue="0.7607843876" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBz-rq-1qo">
-                                <rect key="frame" x="24" y="218" width="366" height="28"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Select Country" backgroundImage="drop_down.png">
-                                    <color key="titleColor" red="0.0" green="0.42352944609999998" blue="0.7607843876" alpha="1" colorSpace="deviceRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="dropDownSingle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2Cm-rR-rXn"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sh-aW-L3U">
-                                <rect key="frame" x="16" y="240" width="287" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.42352944609999998" blue="0.7607843876" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mutiple Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oih-LN-mGs">
-                                <rect key="frame" x="90" y="30" width="234" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.42352944609999998" blue="0.7607843876" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F8W-ez-L1A" userLabel="bbpDropDown" customClass="BBPDropdown" customModule="BBPDropDown" customModuleProvider="target">
-                                <rect key="frame" x="24" y="296" width="366" height="300"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQ0-vn-Blb" userLabel="bbpDropDownSingle" customClass="BBPDropdown" customModule="BBPDropDown" customModuleProvider="target">
+                                <rect key="frame" x="24" y="138" width="366" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="S3F-lv-9ih"/>
+                                    <constraint firstAttribute="height" constant="60" id="UIC-YS-oC9"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="lozengeBackgroundColor">
+                                        <color key="value" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="lozengeTextColor">
+                                        <color key="value" red="0.52549019610000003" green="0.52549019610000003" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="popupTitle" value="Select Bands"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mutiple Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oih-LN-mGs">
+                                <rect key="frame" x="90" y="331" width="234" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.42352944609999998" blue="0.7607843876" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F8W-ez-L1A" userLabel="bbpDropDownMulti" customClass="BBPDropdown" customModule="BBPDropDown" customModuleProvider="target">
+                                <rect key="frame" x="24" y="379" width="366" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="S3F-lv-9ih"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="lozengeBackgroundColor">
@@ -86,38 +77,32 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="SM4-Ky-kKE" firstAttribute="top" secondItem="oih-LN-mGs" secondAttribute="bottom" constant="9" id="434-2I-8iL"/>
-                            <constraint firstItem="SM4-Ky-kKE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="-4" id="5yP-zW-gWc"/>
-                            <constraint firstItem="nBz-rq-1qo" firstAttribute="leading" secondItem="SM4-Ky-kKE" secondAttribute="leading" id="8TW-ze-OCD"/>
-                            <constraint firstItem="F8W-ez-L1A" firstAttribute="leading" secondItem="nBz-rq-1qo" secondAttribute="leading" id="ASA-WW-WCq"/>
                             <constraint firstItem="ePN-dr-XpU" firstAttribute="width" secondItem="oih-LN-mGs" secondAttribute="width" id="AuR-FW-xZC"/>
-                            <constraint firstItem="F8W-ez-L1A" firstAttribute="top" secondItem="nBz-rq-1qo" secondAttribute="bottom" constant="50" id="B1G-z8-2uU"/>
-                            <constraint firstItem="nBz-rq-1qo" firstAttribute="width" secondItem="SM4-Ky-kKE" secondAttribute="width" id="DL0-yR-8wj"/>
-                            <constraint firstItem="nBz-rq-1qo" firstAttribute="top" secondItem="ePN-dr-XpU" secondAttribute="bottom" constant="9" id="EZv-5o-W9e"/>
-                            <constraint firstItem="SM4-Ky-kKE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="GtP-Rq-HpJ"/>
-                            <constraint firstItem="oih-LN-mGs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="SxE-uH-Ryb"/>
-                            <constraint firstItem="nBz-rq-1qo" firstAttribute="trailing" secondItem="SM4-Ky-kKE" secondAttribute="trailing" id="TjE-Rv-GXU"/>
-                            <constraint firstItem="ePN-dr-XpU" firstAttribute="top" secondItem="SM4-Ky-kKE" secondAttribute="bottom" constant="100" id="bfC-cJ-Uzq"/>
+                            <constraint firstItem="zQ0-vn-Blb" firstAttribute="top" secondItem="ePN-dr-XpU" secondAttribute="bottom" constant="22" id="Cm8-Yi-uY8"/>
+                            <constraint firstItem="F8W-ez-L1A" firstAttribute="top" secondItem="oih-LN-mGs" secondAttribute="bottom" constant="27" id="GYx-Va-snz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zQ0-vn-Blb" secondAttribute="trailing" constant="4" id="OpT-ie-CH5"/>
+                            <constraint firstItem="F8W-ez-L1A" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="PDO-09-M9H"/>
+                            <constraint firstItem="oih-LN-mGs" firstAttribute="top" secondItem="zQ0-vn-Blb" secondAttribute="bottom" constant="133" id="PLZ-Vv-6X5"/>
+                            <constraint firstItem="ePN-dr-XpU" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="75" id="Qmr-pQ-H4o"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="F8W-ez-L1A" secondAttribute="trailing" constant="4" id="ZV1-9B-sbr"/>
+                            <constraint firstItem="zQ0-vn-Blb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="aLc-NM-Blh"/>
                             <constraint firstItem="ePN-dr-XpU" firstAttribute="leading" secondItem="oih-LN-mGs" secondAttribute="leading" id="gCB-7L-XhE"/>
                             <constraint firstItem="ePN-dr-XpU" firstAttribute="trailing" secondItem="oih-LN-mGs" secondAttribute="trailing" id="hgi-iD-Enz"/>
-                            <constraint firstItem="F8W-ez-L1A" firstAttribute="trailing" secondItem="nBz-rq-1qo" secondAttribute="trailing" id="jW2-i1-Vxb"/>
                             <constraint firstItem="oih-LN-mGs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="70" id="mbe-Ll-rCJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oih-LN-mGs" secondAttribute="trailing" constant="70" id="nb2-zI-tvC"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="bbpDropDown" destination="F8W-ez-L1A" id="KWZ-Ia-gFZ"/>
-                        <outlet property="bbpDropDownHeightConstraint" destination="S3F-lv-9ih" id="WsL-Lp-2Uz"/>
-                        <outlet property="selectedBandNames" destination="8Sh-aW-L3U" id="PCN-7I-xGJ"/>
+                        <outlet property="bbpDropDownMulti" destination="F8W-ez-L1A" id="Okz-jO-NlL"/>
+                        <outlet property="bbpDropDownMultiHeightConstraint" destination="S3F-lv-9ih" id="vmh-4M-Uwz"/>
+                        <outlet property="bbpDropDownSingle" destination="zQ0-vn-Blb" id="pSR-DT-Byk"/>
+                        <outlet property="bbpDropDownSingleHeightConstraint" destination="UIC-YS-oC9" id="Lhb-mX-431"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="429" y="545"/>
+            <point key="canvasLocation" x="432" y="573"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="drop_down.png" width="287" height="28"/>
-    </resources>
 </document>
