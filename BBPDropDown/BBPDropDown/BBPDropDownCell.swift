@@ -15,7 +15,7 @@ class BBPDropDownCell: UITableViewCell {
         super.awakeFromNib()
         backgroundColor = UIColor.clearColor()
         textLabel!.textColor = UIColor.whiteColor()
-        textLabel!.font = UIFont(name: "HelveticaNueue", size:15.0)
+        textLabel!.font = UIFont(name: "HelveticaNueue", size:22.0)
     }
     
     required init?(coder aDecoder: NSCoder) {

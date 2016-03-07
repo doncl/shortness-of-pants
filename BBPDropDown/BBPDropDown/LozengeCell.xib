@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LozengeCell" id="28i-wg-IDV" customClass="LozengeCell" customModule="BBPDropDown" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="304" height="67"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="304" height="67"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Delete Filled-50.png" translatesAutoresizingMaskIntoConstraints="NO" id="bE2-xx-UGe">
+                        <rect key="frame" x="286" y="27" width="10" height="15"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="1tH-qx-QQs"/>
+                            <constraint firstAttribute="height" constant="10" id="cTi-G9-BDM"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snk-q6-R8R" userLabel="lozengeText">
+                        <rect key="frame" x="8" y="0.0" width="281" height="67"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="8"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="bE2-xx-UGe" firstAttribute="centerY" secondItem="28i-wg-IDV" secondAttribute="centerY" id="8lg-i7-pUY"/>
+                <constraint firstItem="snk-q6-R8R" firstAttribute="leading" secondItem="28i-wg-IDV" secondAttribute="leadingMargin" id="9lM-70-vwa"/>
+                <constraint firstItem="snk-q6-R8R" firstAttribute="bottom" secondItem="28i-wg-IDV" secondAttribute="bottom" id="Tky-E3-wq8"/>
+                <constraint firstItem="bE2-xx-UGe" firstAttribute="leading" secondItem="snk-q6-R8R" secondAttribute="trailing" id="faw-6L-C6O"/>
+                <constraint firstItem="bE2-xx-UGe" firstAttribute="trailing" secondItem="28i-wg-IDV" secondAttribute="trailingMargin" constant="3" id="khx-UX-4VH"/>
+                <constraint firstItem="snk-q6-R8R" firstAttribute="top" secondItem="28i-wg-IDV" secondAttribute="top" id="lV4-6O-KLR"/>
+            </constraints>
+            <size key="customSize" width="304" height="67"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="10"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="deleteImage" destination="bE2-xx-UGe" id="Cvx-fN-ANm"/>
+                <outlet property="lozengeText" destination="snk-q6-R8R" id="6bw-mC-6sb"/>
+            </connections>
+            <point key="canvasLocation" x="189" y="356.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Delete Filled-50.png" width="50" height="50"/>
+    </resources>
+</document>

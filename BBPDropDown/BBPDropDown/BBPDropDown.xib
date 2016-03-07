@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BBPDropdown" customModule="BBPDropDown" customModuleProvider="target">
+            <connections>
+                <outlet property="lozengeCollection" destination="EhZ-Ox-h9B" id="JAo-8d-yar"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="548" height="353"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="EhZ-Ox-h9B">
+                    <rect key="frame" x="8" y="8" width="507" height="337"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="2" id="ubL-in-mSv">
+                        <size key="itemSize" width="90" height="40"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lz2-N0-AET">
+                    <rect key="frame" x="523" y="0.0" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="q9i-H1-gfJ"/>
+                        <constraint firstAttribute="width" constant="25" id="uZz-it-4u1"/>
+                    </constraints>
+                    <state key="normal" image="Down Filled-50.png">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="dropDownButtonTouched:" destination="-1" eventType="touchUpInside" id="hbK-CQ-VlQ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="EhZ-Ox-h9B" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="98S-z0-EAS"/>
+                <constraint firstItem="Lz2-N0-AET" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="C94-IT-efB"/>
+                <constraint firstItem="EhZ-Ox-h9B" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="-8" id="DfK-Ts-n8J"/>
+                <constraint firstItem="EhZ-Ox-h9B" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="SFR-Re-tVc"/>
+                <constraint firstItem="Lz2-N0-AET" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="gb0-XJ-j2b"/>
+                <constraint firstItem="EhZ-Ox-h9B" firstAttribute="trailing" secondItem="Lz2-N0-AET" secondAttribute="leading" constant="-8" id="q69-gm-JwL"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="293" y="361.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Down Filled-50.png" width="50" height="50"/>
+    </resources>
+</document>

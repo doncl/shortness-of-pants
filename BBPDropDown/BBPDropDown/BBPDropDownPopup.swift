@@ -8,9 +8,9 @@
 
 import UIKit
 
-protocol BBPDropDownDelegate {
-    func dropDownView(dropDownView: BBPDropDown, didSelectedIndex idx:Int);
-    func dropDownView(dropDownView: BBPDropDown, dataList: [AnyObject]);
+protocol BBPDropDownPopupDelegate {
+    func dropDownView(dropDownView: BBPDropDownPopup, didSelectedIndex idx:Int);
+    func dropDownView(dropDownView: BBPDropDownPopup, dataList: [AnyObject]);
 }
 
 struct Constants {
@@ -21,28 +21,22 @@ struct Constants {
     static let cellId : String = "DropDownViewCell"
 }
 
-class BBPDropDown: UIView, UITableViewDataSource, UITableViewDelegate {
-    var tableView : UITableView?
-    var titleText: NSString?
-    var dropDownOption : [String]?
-    
-    private var arryData = [NSIndexPath]()
-    
-    
-    var shadowOffsetWidth : CGFloat = 2.5
-    var shadowOffsetHeight : CGFloat = 2.5
-    var shadowRadius : CGFloat = 2.5
-    var shadowOpacity: Float = 0.5
-    var separatorColor = UIColor(white: 1.0, alpha: 0.2)
-    var tableBackgroundColor = UIColor.clearColor()
-    
-    var red: CGFloat = 1.0
-    var green: CGFloat = 1.0
-    var blue: CGFloat = 1.0
-    var popupAlpha: CGFloat = 1.0
+@IBDesignable class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
+    // MARK: - IBInspectable properties.
+    @IBInspectable var titleText: NSString?
+    @IBInspectable var dropDownOption : [String]?
+    @IBInspectable var shadowOffsetWidth : CGFloat = 2.5
+    @IBInspectable var shadowOffsetHeight : CGFloat = 2.5
+    @IBInspectable var shadowRadius : CGFloat = 2.5
+    @IBInspectable var shadowOpacity: Float = 0.5
+    @IBInspectable var separatorColor = UIColor(white: 1.0, alpha: 0.2)
+    @IBInspectable var popupBackgroundColor : UIColor = UIColor.clearColor()
+    @IBInspectable var isMultipleSelection : Bool = false
 
-    var isMultipleSelection : Bool = false
-    var delegate : BBPDropDownDelegate?
+    var tableView : UITableView?
+    private var selectedItems = [NSIndexPath]()
+
+    var delegate : BBPDropDownPopupDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,7 +73,7 @@ class BBPDropDown: UIView, UITableViewDataSource, UITableViewDelegate {
         tableView = UITableView(frame: tableFrame)
         tableView!.separatorColor = separatorColor
         tableView!.separatorInset = UIEdgeInsetsZero
-        tableView!.backgroundColor = tableBackgroundColor
+        tableView!.backgroundColor = UIColor.clearColor()
         tableView!.dataSource = self
         tableView!.delegate = self
         tableView!.registerNib(UINib(nibName: "BBPDropDownCell", bundle: nil),
@@ -101,10 +95,10 @@ class BBPDropDown: UIView, UITableViewDataSource, UITableViewDelegate {
     // MARK: - Action targets
     
     func clickDone() {
-        print("clockDone called")
+        print("clickDone called")
         if let delegate = delegate {
             var responseData = [String]()
-            for indexPath in arryData {
+            for indexPath in selectedItems {
                 responseData.append((dropDownOption?[indexPath.row])!)
             }
             delegate.dropDownView(self, dataList: responseData)
@@ -139,8 +133,7 @@ class BBPDropDown: UIView, UITableViewDataSource, UITableViewDelegate {
             fadeIn()
         }
     }
-    
-    
+
     // MARK: - UITableView delegate methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (dropDownOption?.count)!
@@ -153,7 +146,7 @@ class BBPDropDown: UIView, UITableViewDataSource, UITableViewDelegate {
         let row = indexPath.row
         cell!.tag = row
 
-        if arryData.contains(indexPath) {
+        if selectedItems.contains(indexPath) {
             cell!.showSelectionMark(true)
         } else {
             cell!.showSelectionMark(false)
@@ -167,12 +160,12 @@ class BBPDropDown: UIView, UITableViewDataSource, UITableViewDelegate {
 //        tableView.deselectRowAtIndexPath(indexPath, animated:true)
 
         if isMultipleSelection {
-            if arryData.contains(indexPath) {
-                if let idx = arryData.indexOf(indexPath) {
-                    arryData.removeAtIndex(idx)
+            if selectedItems.contains(indexPath) {
+                if let idx = selectedItems.indexOf(indexPath) {
+                    selectedItems.removeAtIndex(idx)
                 }
             } else {
-                arryData.append(indexPath)
+                selectedItems.append(indexPath)
             }
             tableView.reloadData()
         } else {
@@ -198,10 +191,11 @@ class BBPDropDown: UIView, UITableViewDataSource, UITableViewDelegate {
         
         let ctx = UIGraphicsGetCurrentContext()
         
-        let backgroundWithShadow = UIColor(red: red / 255.0, green: green / 255.0,
-                blue: blue / 255.0, alpha: popupAlpha)
+        //let backgroundWithShadow = UIColor(red: popupRed / 255.0, green: popupGreen / 255.0,
+          //      blue: popupBlue / 255.0, alpha: popupAlpha)
         
-        backgroundWithShadow.setFill()
+        //backgroundWithShadow.setFill()
+        popupBackgroundColor.setFill()
         
         let x = screenInset
         let y = screenInset
@@ -233,13 +227,6 @@ class BBPDropDown: UIView, UITableViewDataSource, UITableViewDelegate {
         titleText?.drawInRect(titleRect, withAttributes: attrs)
         
         CGContextFillRect(ctx, separatorRect)
-    }
-    
-    func popupBackgroundColor(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-        self.red = red
-        self.green = green
-        self.blue = blue
-        self.popupAlpha = alpha
     }
 }
 

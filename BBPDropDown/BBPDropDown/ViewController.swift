@@ -10,37 +10,49 @@ import Foundation
 import UIKit
 import Darwin
 
-class ViewController: UIViewController, BBPDropDownDelegate {
+class ViewController: UIViewController, BBPDropDownPopupDelegate, BBPDropDownDelegate {
 
     let data = ["Beatles", "Rolling Stones", "Jimi Hendrix", "King Crimson",
                 "Emerson, Lake and Palmer", "Gentle Giant", "Yes", "Jethro Tull", "Genesis",
                 "The Grateful Dead", "Jefferson Airplane"]
 
-    var dropDown : BBPDropDown?
+    var dropDownPopup: BBPDropDownPopup?
 
     @IBOutlet var selectedBandNames : UILabel!
 
+    @IBOutlet var bbpDropDown: BBPDropdown!
+    @IBOutlet var bbpDropDownHeightConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        bbpDropDown.lozengeData = data
+        bbpDropDown.delegate = self
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        bbpDropDown.readjustHeight()
     }
 
     func showPopup(title: String, options: [String], xy: CGPoint, size: CGSize,
                    isMultiple: Bool) {
 
-        dropDown = BBPDropDown(title: title, options: options, xy: xy, size: size,
+        dropDownPopup = BBPDropDownPopup(title: title, options: options, xy: xy, size: size,
             isMultiple: isMultiple)
                     
-        dropDown!.delegate = self
-        dropDown!.showInView(view, animated: true)
+        dropDownPopup!.delegate = self
+        dropDownPopup!.showInView(view, animated: true)
                     
-        dropDown!.popupBackgroundColor(0.0, green: 108.0, blue: 194.0, alpha: 0.70)
+        dropDownPopup!.popupBackgroundColor = UIColor(red: 0.0 / 255.0, green: 108.0 / 255.0,
+                blue: 194.0 / 255.0, alpha: 0.70)
     }
 
-    func dropDownView(dropDownView: BBPDropDown, didSelectedIndex idx: Int) {
+    func dropDownView(dropDownView: BBPDropDownPopup, didSelectedIndex idx: Int) {
         selectedBandNames.text = data[idx]
     }
 
-    func dropDownView(dropDownView: BBPDropDown, dataList: [AnyObject]) {
+    func dropDownView(dropDownView: BBPDropDownPopup, dataList: [AnyObject]) {
         if data.count > 0 {
             selectedBandNames.text = data.joinWithSeparator("\r\n")
             let size = getHeightDynamic(selectedBandNames)
@@ -49,15 +61,6 @@ class ViewController: UIViewController, BBPDropDownDelegate {
             selectedBandNames.text = ""
         }
     }
-
-
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if let touch = touches.first, _ = touch.view  {
-            dropDown!.fadeOut()
-        }
-        super.touchesBegan(touches, withEvent: event)
-    }
-
 
     private func getHeightDynamic(label: UILabel) -> CGSize {
         //let range = NSMakeRange(0, label.text!.characters.count)
@@ -79,7 +82,7 @@ class ViewController: UIViewController, BBPDropDownDelegate {
     }
 
     @IBAction func dropDownPressed(sender: AnyObject) {
-        if let dropdown = dropDown {
+        if let dropdown = dropDownPopup {
             dropdown.fadeOut()
         }
 
@@ -88,13 +91,19 @@ class ViewController: UIViewController, BBPDropDownDelegate {
     }
     
     @IBAction func dropDownSingle(sender: AnyObject) {
-        if let dropdown = dropDown {
+        if let dropdown = dropDownPopup {
             dropdown.fadeOut()
         }
 
         showPopup("SelectBand", options: data, xy: CGPointMake(16, 150),
             size: CGSizeMake(287, 280), isMultiple: false)
     }
-    
+
+    // MARK: - BBPDropDownDelegate implementation
+    func requestNewHeight(newHeight: CGFloat) {
+        UIView.animateWithDuration(0.6, delay:0.2, options:[.CurveEaseInOut], animations: {
+            self.bbpDropDownHeightConstraint.constant = newHeight;
+        }, completion: nil)
+    }
 }
 
