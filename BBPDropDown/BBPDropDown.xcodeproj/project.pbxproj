@@ -1,0 +1,365 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		47682BE31C8D1A9F000F684D /* Delete Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 47682BE21C8D1A9F000F684D /* Delete Filled-50.png */; };
+		47682BE51C8DFE29000F684D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47682BE41C8DFE29000F684D /* Constants.swift */; };
+		478E270E1C8B4251005CC8C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478E270D1C8B4251005CC8C7 /* AppDelegate.swift */; };
+		478E27101C8B4251005CC8C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478E270F1C8B4251005CC8C7 /* ViewController.swift */; };
+		478E27131C8B4251005CC8C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 478E27111C8B4251005CC8C7 /* Main.storyboard */; };
+		478E27151C8B4251005CC8C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 478E27141C8B4251005CC8C7 /* Assets.xcassets */; };
+		478E27181C8B4251005CC8C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 478E27161C8B4251005CC8C7 /* LaunchScreen.storyboard */; };
+		478E27211C8B4437005CC8C7 /* Hand Down-528.png in Resources */ = {isa = PBXBuildFile; fileRef = 478E27201C8B4437005CC8C7 /* Hand Down-528.png */; };
+		478E27241C8B4686005CC8C7 /* BBPDropDownPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478E27231C8B4686005CC8C7 /* BBPDropDownPopup.swift */; };
+		478E27261C8B46A8005CC8C7 /* BBPDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478E27251C8B46A8005CC8C7 /* BBPDropDownCell.swift */; };
+		47A90CAD1C8CD87B00EFE16D /* BBPDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A90CAC1C8CD87B00EFE16D /* BBPDropDownCell.xib */; };
+		47EEBDFC1C8CF7D90099FE8E /* BBPDropDown.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47EEBDFB1C8CF7D90099FE8E /* BBPDropDown.xib */; };
+		47EEBE001C8CFAB10099FE8E /* BBPDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EEBDFF1C8CFAB10099FE8E /* BBPDropdown.swift */; };
+		47EEBE021C8CFC500099FE8E /* Down Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 47EEBE011C8CFC500099FE8E /* Down Filled-50.png */; };
+		47EEBE041C8CFCF00099FE8E /* LozengeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47EEBE031C8CFCF00099FE8E /* LozengeCell.xib */; };
+		47EEBE061C8CFD080099FE8E /* LozengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EEBE051C8CFD080099FE8E /* LozengeCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		47682BE21C8D1A9F000F684D /* Delete Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete Filled-50.png"; sourceTree = "<group>"; };
+		47682BE41C8DFE29000F684D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		478E270A1C8B4251005CC8C7 /* BBPDropDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBPDropDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		478E270D1C8B4251005CC8C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		478E270F1C8B4251005CC8C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		478E27121C8B4251005CC8C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		478E27141C8B4251005CC8C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		478E27171C8B4251005CC8C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		478E27191C8B4251005CC8C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		478E27201C8B4437005CC8C7 /* Hand Down-528.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hand Down-528.png"; sourceTree = "<group>"; };
+		478E27231C8B4686005CC8C7 /* BBPDropDownPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBPDropDownPopup.swift; sourceTree = "<group>"; };
+		478E27251C8B46A8005CC8C7 /* BBPDropDownCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBPDropDownCell.swift; sourceTree = "<group>"; };
+		47A90CAC1C8CD87B00EFE16D /* BBPDropDownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBPDropDownCell.xib; sourceTree = "<group>"; };
+		47EEBDFB1C8CF7D90099FE8E /* BBPDropDown.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBPDropDown.xib; sourceTree = "<group>"; };
+		47EEBDFF1C8CFAB10099FE8E /* BBPDropdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBPDropdown.swift; sourceTree = "<group>"; };
+		47EEBE011C8CFC500099FE8E /* Down Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Down Filled-50.png"; sourceTree = "<group>"; };
+		47EEBE031C8CFCF00099FE8E /* LozengeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LozengeCell.xib; sourceTree = "<group>"; };
+		47EEBE051C8CFD080099FE8E /* LozengeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LozengeCell.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		478E27071C8B4251005CC8C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		478E27011C8B4251005CC8C7 = {
+			isa = PBXGroup;
+			children = (
+				478E270C1C8B4251005CC8C7 /* BBPDropDown */,
+				478E270B1C8B4251005CC8C7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		478E270B1C8B4251005CC8C7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				478E270A1C8B4251005CC8C7 /* BBPDropDown.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		478E270C1C8B4251005CC8C7 /* BBPDropDown */ = {
+			isa = PBXGroup;
+			children = (
+				478E27221C8B4615005CC8C7 /* BBPDropDown */,
+				478E271F1C8B440A005CC8C7 /* ExampleBootstrap */,
+				478E27141C8B4251005CC8C7 /* Assets.xcassets */,
+				478E27191C8B4251005CC8C7 /* Info.plist */,
+			);
+			path = BBPDropDown;
+			sourceTree = "<group>";
+		};
+		478E271F1C8B440A005CC8C7 /* ExampleBootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				478E27111C8B4251005CC8C7 /* Main.storyboard */,
+				478E27161C8B4251005CC8C7 /* LaunchScreen.storyboard */,
+				478E27201C8B4437005CC8C7 /* Hand Down-528.png */,
+				478E270F1C8B4251005CC8C7 /* ViewController.swift */,
+				478E270D1C8B4251005CC8C7 /* AppDelegate.swift */,
+			);
+			name = ExampleBootstrap;
+			sourceTree = "<group>";
+		};
+		478E27221C8B4615005CC8C7 /* BBPDropDown */ = {
+			isa = PBXGroup;
+			children = (
+				47EEBE011C8CFC500099FE8E /* Down Filled-50.png */,
+				47682BE21C8D1A9F000F684D /* Delete Filled-50.png */,
+				478E272D1C8BBD64005CC8C7 /* Xibs */,
+				478E27231C8B4686005CC8C7 /* BBPDropDownPopup.swift */,
+				478E27251C8B46A8005CC8C7 /* BBPDropDownCell.swift */,
+				47EEBDFF1C8CFAB10099FE8E /* BBPDropdown.swift */,
+				47EEBE051C8CFD080099FE8E /* LozengeCell.swift */,
+				47682BE41C8DFE29000F684D /* Constants.swift */,
+			);
+			name = BBPDropDown;
+			sourceTree = "<group>";
+		};
+		478E272D1C8BBD64005CC8C7 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				47A90CAC1C8CD87B00EFE16D /* BBPDropDownCell.xib */,
+				47EEBDFB1C8CF7D90099FE8E /* BBPDropDown.xib */,
+				47EEBE031C8CFCF00099FE8E /* LozengeCell.xib */,
+			);
+			name = Xibs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		478E27091C8B4251005CC8C7 /* BBPDropDown */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 478E271C1C8B4251005CC8C7 /* Build configuration list for PBXNativeTarget "BBPDropDown" */;
+			buildPhases = (
+				478E27061C8B4251005CC8C7 /* Sources */,
+				478E27071C8B4251005CC8C7 /* Frameworks */,
+				478E27081C8B4251005CC8C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BBPDropDown;
+			productName = BBPDropDown;
+			productReference = 478E270A1C8B4251005CC8C7 /* BBPDropDown.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		478E27021C8B4251005CC8C7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Beer Barrel Poker Studios";
+				TargetAttributes = {
+					478E27091C8B4251005CC8C7 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 63HZLY9JEQ;
+					};
+				};
+			};
+			buildConfigurationList = 478E27051C8B4251005CC8C7 /* Build configuration list for PBXProject "BBPDropDown" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 478E27011C8B4251005CC8C7;
+			productRefGroup = 478E270B1C8B4251005CC8C7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				478E27091C8B4251005CC8C7 /* BBPDropDown */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		478E27081C8B4251005CC8C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				478E27181C8B4251005CC8C7 /* LaunchScreen.storyboard in Resources */,
+				478E27151C8B4251005CC8C7 /* Assets.xcassets in Resources */,
+				47682BE31C8D1A9F000F684D /* Delete Filled-50.png in Resources */,
+				478E27131C8B4251005CC8C7 /* Main.storyboard in Resources */,
+				47EEBE021C8CFC500099FE8E /* Down Filled-50.png in Resources */,
+				47EEBE041C8CFCF00099FE8E /* LozengeCell.xib in Resources */,
+				478E27211C8B4437005CC8C7 /* Hand Down-528.png in Resources */,
+				47A90CAD1C8CD87B00EFE16D /* BBPDropDownCell.xib in Resources */,
+				47EEBDFC1C8CF7D90099FE8E /* BBPDropDown.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		478E27061C8B4251005CC8C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				478E27101C8B4251005CC8C7 /* ViewController.swift in Sources */,
+				47EEBE061C8CFD080099FE8E /* LozengeCell.swift in Sources */,
+				47EEBE001C8CFAB10099FE8E /* BBPDropdown.swift in Sources */,
+				478E27261C8B46A8005CC8C7 /* BBPDropDownCell.swift in Sources */,
+				47682BE51C8DFE29000F684D /* Constants.swift in Sources */,
+				478E27241C8B4686005CC8C7 /* BBPDropDownPopup.swift in Sources */,
+				478E270E1C8B4251005CC8C7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		478E27111C8B4251005CC8C7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				478E27121C8B4251005CC8C7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		478E27161C8B4251005CC8C7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				478E27171C8B4251005CC8C7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		478E271A1C8B4251005CC8C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		478E271B1C8B4251005CC8C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		478E271D1C8B4251005CC8C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = BBPDropDown/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.beerbarrelpoker.BBPDropDown;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		478E271E1C8B4251005CC8C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = BBPDropDown/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.beerbarrelpoker.BBPDropDown;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		478E27051C8B4251005CC8C7 /* Build configuration list for PBXProject "BBPDropDown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				478E271A1C8B4251005CC8C7 /* Debug */,
+				478E271B1C8B4251005CC8C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		478E271C1C8B4251005CC8C7 /* Build configuration list for PBXNativeTarget "BBPDropDown" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				478E271D1C8B4251005CC8C7 /* Debug */,
+				478E271E1C8B4251005CC8C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 478E27021C8B4251005CC8C7 /* Project object */;
+}
