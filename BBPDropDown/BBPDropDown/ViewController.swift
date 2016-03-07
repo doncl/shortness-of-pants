@@ -52,7 +52,7 @@ class ViewController: UIViewController, BBPDropDownPopupDelegate, BBPDropDownDel
         selectedBandNames.text = data[idx]
     }
 
-    func dropDownView(dropDownView: BBPDropDownPopup, dataList: [AnyObject]) {
+    func dropDownView(dropDownView: BBPDropDownPopup, dataList: [String]) {
         if data.count > 0 {
             selectedBandNames.text = data.joinWithSeparator("\r\n")
             let size = getHeightDynamic(selectedBandNames)

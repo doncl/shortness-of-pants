@@ -80,12 +80,15 @@ protocol BBPDropDownDelegate {
     }
 
     func initializePopup(options: [String]) {
+        resignFirstResponder()
+        var xy = CGPoint(x: 0, y: frame.size.height)
+        xy = convertPoint(xy, toView: superview)
         popTable = BBPDropDownPopup(title: popupTitle!, options:options,
-                xy: CGPointMake(0, frame.size.height),
+                xy: xy,
             size:CGSizeMake(frame.size.width, 280), isMultiple: true)
 
         popTable!.delegate = self
-        popTable!.showInView(view, animated:true)
+        popTable!.showInView(superview!, animated:true)
         popTable!.popupBackgroundColor = UIColor(red: 0.0 / 255.0, green: 108.0 / 255.0,
                 blue: 194.0 / 255.0, alpha: 0.70)
     }
@@ -122,8 +125,8 @@ protocol BBPDropDownDelegate {
         //lozengeData.append("More Data")
 
         initializePopup(data)
-        lozengeCollection.reloadData()
-        readjustHeight()
+        //lozengeCollection.reloadData()
+        //readjustHeight()
     }
     
     func readjustHeight() {
@@ -145,14 +148,17 @@ protocol BBPDropDownDelegate {
         }
     }
 
+    // MARK: - BBPDropDownPopupDelegate
     func dropDownView(dropDownView: BBPDropDownPopup, didSelectedIndex idx: Int) {
         let itemData = data[idx]
         lozengeData.append(itemData)
         lozengeCollection.reloadData()
     }
 
-    func dropDownView(dropDownView: BBPDropDownPopup, dataList: [AnyObject]) {
+    func dropDownView(dropDownView: BBPDropDownPopup, dataList: [String]) {
         print("dropDownView:dataList: called")
+        lozengeData = dataList
+        lozengeCollection.reloadData()
+        readjustHeight()
     }
-
 }

@@ -62,10 +62,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F8W-ez-L1A" userLabel="bbpDropDown" customClass="BBPDropdown" customModule="BBPDropDown" customModuleProvider="target">
-                                <rect key="frame" x="24" y="296" width="366" height="60"/>
+                                <rect key="frame" x="24" y="296" width="366" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="S3F-lv-9ih"/>
+                                    <constraint firstAttribute="height" constant="300" id="S3F-lv-9ih"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="lozengeBackgroundColor">

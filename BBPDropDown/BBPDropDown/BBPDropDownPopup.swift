@@ -10,7 +10,7 @@ import UIKit
 
 protocol BBPDropDownPopupDelegate {
     func dropDownView(dropDownView: BBPDropDownPopup, didSelectedIndex idx:Int);
-    func dropDownView(dropDownView: BBPDropDownPopup, dataList: [AnyObject]);
+    func dropDownView(dropDownView: BBPDropDownPopup, dataList: [String]);
 }
 
 struct Constants {
@@ -19,6 +19,8 @@ struct Constants {
     static let radius : CGFloat = 5.0
     static let rowHeight: CGFloat = 44.0
     static let cellId : String = "DropDownViewCell"
+    static let buttonHeight: CGFloat = 31.0
+    static let buttonWidth: CGFloat = 82.0
 }
 
 @IBDesignable class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
@@ -71,6 +73,8 @@ struct Constants {
                 Constants.headerHeight - Constants.radius)
         
         tableView = UITableView(frame: tableFrame)
+        tableView!.allowsSelection = true
+        tableView!.userInteractionEnabled = true
         tableView!.separatorColor = separatorColor
         tableView!.separatorInset = UIEdgeInsetsZero
         tableView!.backgroundColor = UIColor.clearColor()
@@ -83,8 +87,11 @@ struct Constants {
         
         if isMultipleSelection {
             let btnDone = UIButton(type: .Custom)
-            let btnFrame = CGRect(x: rect.origin.x + 182, y:rect.origin.y - 45, width:82,
-                height:31)
+
+            let btnFrame = CGRect(x: size.width - Constants.buttonWidth - 8,
+                    y:(Constants.headerHeight / 2) - (Constants.buttonHeight / 2),
+                    width:Constants.buttonWidth, height:Constants.buttonHeight)
+
             btnDone.frame = btnFrame
             btnDone.setImage(UIImage(named: "done@2x.png"), forState: .Normal)
             btnDone.addTarget(self, action: "clickDone", forControlEvents: .TouchUpInside)
@@ -190,11 +197,6 @@ struct Constants {
             width: rect.size.width - 2.0, height: 2.0)
         
         let ctx = UIGraphicsGetCurrentContext()
-        
-        //let backgroundWithShadow = UIColor(red: popupRed / 255.0, green: popupGreen / 255.0,
-          //      blue: popupBlue / 255.0, alpha: popupAlpha)
-        
-        //backgroundWithShadow.setFill()
         popupBackgroundColor.setFill()
         
         let x = screenInset
