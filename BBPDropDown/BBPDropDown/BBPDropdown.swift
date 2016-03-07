@@ -14,24 +14,48 @@ protocol BBPDropDownDelegate {
 
 @IBDesignable class BBPDropdown: UIView, UICollectionViewDelegate, UICollectionViewDataSource,
         LozengeCellDelegate, BBPDropDownPopupDelegate {
+
+    // MARK: - private constants
     private let cellId = "LozengeCell"
     private let vertMargin : CGFloat = 8.0
 
-    @IBOutlet var lozengeCollection: UICollectionView!
+    // MARK: - private properties
+    private var lozengeData: [String] = []
+    private var popTable: BBPDropDownPopup?
+    private var view: UIView!  // Our custom view from the Xib file.
+    private var rightGutterTapRecognizer : UITapGestureRecognizer?
+    private var collectionViewTapRecognizer: UITapGestureRecognizer?
+    private var backgroundViewTapRecognizer: UITapGestureRecognizer?
 
-    @IBInspectable var popupTitle : String?
+    // MARK: - IBOutlets
+    @IBOutlet var lozengeCollection: UICollectionView!
+    @IBOutlet var rightGutter: UIView!
+
+    // MARK: - public non-inspectable properties
+    var data : [String] = []
+
+    // MARK: - Inspectable properties
     @IBInspectable var lozengeBackgroundColor : UIColor?
     @IBInspectable var lozengeTextColor : UIColor?
     @IBInspectable var borderColor : UIColor = UIColor.lightGrayColor()
     @IBInspectable var borderWidth : CGFloat = 1.0
-    var lozengeData: [String] = []
-    var data : [String] = []
-    var popTable: BBPDropDownPopup?
-    
-    var view: UIView!  // Our custom view from the Xib file.
     @IBInspectable var delegate: BBPDropDownDelegate?
     @IBInspectable var isMultiple : Bool = true
-    
+
+    // MARK: - Inspectable properties forwarded to contained popup
+
+    // Ugh:  -- Apple encourages long, descriptive identifier names, but if I do that, these
+    // get clipped in InterfaceBuilder.    These are not great names, and they get clipped, but
+    // it's the best compromise I could find.
+    @IBInspectable var popTitle: String?
+    @IBInspectable var popBGColor: UIColor = UIColor(red: 204.0 / 255.0,
+        green: 208.0 / 255.0, blue: 218.0 / 225.0, alpha: 0.70)
+    @IBInspectable var shadOffCX: CGFloat = 2.5
+    @IBInspectable var shadOffCY: CGFloat = 2.5
+    @IBInspectable var shadRadius: CGFloat = 2.5
+    @IBInspectable var shadAlpha: Float = 0.5
+    @IBInspectable var sepColor : UIColor = UIColor(white: 1.0, alpha: 0.2)
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -74,22 +98,52 @@ protocol BBPDropDownDelegate {
         lozengeCollection.reloadData()
         layer.borderColor = borderColor.CGColor
         layer.borderWidth = borderWidth
+        rightGutterTapRecognizer = setupTapRecog()
+        rightGutter.addGestureRecognizer(rightGutterTapRecognizer!)
+        collectionViewTapRecognizer = setupTapRecog()
+        lozengeCollection.addGestureRecognizer(collectionViewTapRecognizer!)
+        backgroundViewTapRecognizer = setupTapRecog()
+        addGestureRecognizer(backgroundViewTapRecognizer!)
+    }
+    
+    private func setupTapRecog() -> UITapGestureRecognizer {
+        let recog = UITapGestureRecognizer()
+        recog.numberOfTouchesRequired = 1
+        recog.numberOfTapsRequired  = 1
+        recog.enabled = true
+        recog.addTarget(self, action: "tappedForPopup:")
+        return recog;
     }
 
     func initializePopup(options: [String]) {
         resignFirstResponder()
         var xy = CGPoint(x: 0, y: frame.size.height)
         xy = convertPoint(xy, toView: superview)
-        popTable = BBPDropDownPopup(title: popupTitle!, options:options,
+        
+        // TODO:  This initializer is kind of...not ideal.  Just set the properties.
+        popTable = BBPDropDownPopup(title: popTitle!, options:options,
                 xy: xy,
             size:CGSizeMake(frame.size.width, 280), isMultiple: isMultiple)
 
+        popTable!.shadowOffsetWidth = shadOffCX
+        popTable!.shadowOffsetHeight = shadOffCY
+        popTable!.shadowRadius = shadRadius
+        popTable!.shadowOpacity = shadAlpha
+        popTable!.separatorColor = sepColor
+        popTable!.popupBackgroundColor = popBGColor
         popTable!.delegate = self
         popTable!.showInView(superview!, animated:true)
-        popTable!.popupBackgroundColor = UIColor(red: 0.0 / 255.0, green: 108.0 / 255.0,
-                blue: 194.0 / 255.0, alpha: 0.70)
+    }
+    
+    // MARK: - tap handlers
+    
+    // Ugh! - why can't these be private?  Evidently targets for tap handlers cannot be.
+    func tappedForPopup(sender: AnyObject) {
+        print("tap, tap, tap...")
+        initializePopup(data)
     }
 
+    // MARK: - UICollectionViewDelegate
     func collectionView(collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         return lozengeData.count
@@ -119,11 +173,7 @@ protocol BBPDropDownDelegate {
 
     // MARK: - IBActions
     @IBAction func dropDownButtonTouched(sender: AnyObject) {
-        //lozengeData.append("More Data")
-
         initializePopup(data)
-        //lozengeCollection.reloadData()
-        //readjustHeight()
     }
     
     func readjustHeight() {

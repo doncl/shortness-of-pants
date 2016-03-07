@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BBPDropdown" customModule="BBPDropDown" customModuleProvider="target">
             <connections>
                 <outlet property="lozengeCollection" destination="EhZ-Ox-h9B" id="JAo-8d-yar"/>
+                <outlet property="rightGutter" destination="VRo-JF-Dwr" id="363-1k-Nia"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -16,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="EhZ-Ox-h9B">
-                    <rect key="frame" x="8" y="8" width="507" height="337"/>
+                    <rect key="frame" x="8" y="8" width="515" height="337"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="2" id="ubL-in-mSv">
                         <size key="itemSize" width="90" height="40"/>
@@ -25,28 +26,40 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lz2-N0-AET">
-                    <rect key="frame" x="523" y="0.0" width="25" height="25"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRo-JF-Dwr" userLabel="RightGutter">
+                    <rect key="frame" x="523" y="0.0" width="25" height="353"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lz2-N0-AET">
+                            <rect key="frame" x="0.0" y="164" width="25" height="25"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="q9i-H1-gfJ"/>
+                                <constraint firstAttribute="width" constant="25" id="uZz-it-4u1"/>
+                            </constraints>
+                            <state key="normal" image="Down Filled-50.png">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="dropDownButtonTouched:" destination="-1" eventType="touchUpInside" id="hbK-CQ-VlQ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="25" id="q9i-H1-gfJ"/>
-                        <constraint firstAttribute="width" constant="25" id="uZz-it-4u1"/>
+                        <constraint firstItem="Lz2-N0-AET" firstAttribute="centerX" secondItem="VRo-JF-Dwr" secondAttribute="centerX" id="LeH-Wc-5gA"/>
                     </constraints>
-                    <state key="normal" image="Down Filled-50.png">
-                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="dropDownButtonTouched:" destination="-1" eventType="touchUpInside" id="hbK-CQ-VlQ"/>
-                    </connections>
-                </button>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="EhZ-Ox-h9B" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="-25" id="0tm-9H-qHA"/>
                 <constraint firstItem="EhZ-Ox-h9B" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="98S-z0-EAS"/>
-                <constraint firstItem="Lz2-N0-AET" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="C94-IT-efB"/>
                 <constraint firstItem="EhZ-Ox-h9B" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="-8" id="DfK-Ts-n8J"/>
                 <constraint firstItem="EhZ-Ox-h9B" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="SFR-Re-tVc"/>
-                <constraint firstItem="Lz2-N0-AET" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="gb0-XJ-j2b"/>
-                <constraint firstItem="EhZ-Ox-h9B" firstAttribute="trailing" secondItem="Lz2-N0-AET" secondAttribute="leading" constant="-8" id="q69-gm-JwL"/>
+                <constraint firstItem="Lz2-N0-AET" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="f0A-CS-djo"/>
+                <constraint firstItem="VRo-JF-Dwr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="j4B-iT-eFa"/>
+                <constraint firstAttribute="trailing" secondItem="VRo-JF-Dwr" secondAttribute="trailing" id="mwM-eX-S2h"/>
+                <constraint firstItem="VRo-JF-Dwr" firstAttribute="leading" secondItem="EhZ-Ox-h9B" secondAttribute="trailing" id="teB-J2-q6B"/>
+                <constraint firstItem="VRo-JF-Dwr" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="we8-8M-TzY"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

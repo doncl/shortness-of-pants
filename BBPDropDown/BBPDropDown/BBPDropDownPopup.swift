@@ -13,33 +13,25 @@ protocol BBPDropDownPopupDelegate {
     func dropDownView(dropDownView: BBPDropDownPopup, dataList: [String]);
 }
 
-struct Constants {
-    static let screenInset : CGFloat = 0
-    static let headerHeight : CGFloat = 50.0
-    static let radius : CGFloat = 5.0
-    static let rowHeight: CGFloat = 44.0
-    static let cellId : String = "DropDownViewCell"
-    static let buttonHeight: CGFloat = 31.0
-    static let buttonWidth: CGFloat = 82.0
-}
-
-@IBDesignable class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
-    // MARK: - IBInspectable properties.
-    @IBInspectable var titleText: NSString?
-    @IBInspectable var dropDownOption : [String]?
-    @IBInspectable var shadowOffsetWidth : CGFloat = 2.5
-    @IBInspectable var shadowOffsetHeight : CGFloat = 2.5
-    @IBInspectable var shadowRadius : CGFloat = 2.5
-    @IBInspectable var shadowOpacity: Float = 0.5
-    @IBInspectable var separatorColor = UIColor(white: 1.0, alpha: 0.2)
-    @IBInspectable var popupBackgroundColor : UIColor = UIColor.clearColor()
-    @IBInspectable var isMultipleSelection : Bool = false
-
-    var tableView : UITableView?
-    private var selectedItems = [NSIndexPath]()
-
+class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
+    // MARK: - public properties.
+    var titleText: NSString?
+    var dropDownOption : [String]?
+    var shadowOffsetWidth : CGFloat = 2.5
+    var shadowOffsetHeight : CGFloat = 2.5
+    var shadowRadius : CGFloat = 2.5
+    var shadowOpacity: Float = 0.5
+    var separatorColor = UIColor(white: 1.0, alpha: 0.2)
+    var popupBackgroundColor : UIColor = UIColor.clearColor()
+    var isMultipleSelection : Bool = false
     var delegate : BBPDropDownPopupDelegate?
 
+    // MARK: - private properties
+    private var tableView : UITableView?
+    private var selectedItems = [NSIndexPath]()
+
+
+    // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -51,8 +43,8 @@ struct Constants {
     convenience init(title: String, options:[String], xy point: CGPoint, size: CGSize,
             isMultiple: Bool) {
                 
-        let height = min(size.height, Constants.headerHeight + (CGFloat(options.count) *
-            Constants.rowHeight))
+        let height = min(size.height, Constants.popupHeaderHeight + (CGFloat(options.count) *
+            Constants.popupRowHeight))
                 
         let rect = CGRect(x:point.x, y: point.y, width: size.width, height: height)
         self.init(frame:rect)
@@ -66,11 +58,11 @@ struct Constants {
         
         titleText = title
         dropDownOption = options
-        let tableFrame = CGRect(x: Constants.screenInset,
-            y: Constants.screenInset + Constants.headerHeight,
-            width: rect.size.width - (2 * Constants.screenInset),
-            height: rect.size.height - (2 * Constants.screenInset) -
-                Constants.headerHeight - Constants.radius)
+        let tableFrame = CGRect(x: Constants.popupScreenInset,
+            y: Constants.popupScreenInset + Constants.popupHeaderHeight,
+            width: rect.size.width - (2 * Constants.popupScreenInset),
+            height: rect.size.height - (2 * Constants.popupScreenInset) -
+                Constants.popupHeaderHeight - Constants.popupRadius)
         
         tableView = UITableView(frame: tableFrame)
         tableView!.allowsSelection = true
@@ -81,19 +73,24 @@ struct Constants {
         tableView!.dataSource = self
         tableView!.delegate = self
         tableView!.registerNib(UINib(nibName: "BBPDropDownCell", bundle: nil),
-                    forCellReuseIdentifier: Constants.cellId)
+                    forCellReuseIdentifier: Constants.popupCellId)
                
         addSubview(tableView!)
         
         if isMultipleSelection {
             let btnDone = UIButton(type: .Custom)
+            
 
-            let btnFrame = CGRect(x: size.width - Constants.buttonWidth - 8,
-                    y:(Constants.headerHeight / 2) - (Constants.buttonHeight / 2),
-                    width:Constants.buttonWidth, height:Constants.buttonHeight)
+            let btnFrame = CGRect(x: size.width - Constants.popupButtonWidth - 8,
+                    y:(Constants.popupHeaderHeight / 2) - (Constants.popupButtonHeight / 2),
+                    width:Constants.popupButtonWidth, height:Constants.popupButtonHeight)
 
             btnDone.frame = btnFrame
-            btnDone.setImage(UIImage(named: "done@2x.png"), forState: .Normal)
+            //btnDone.setImage(UIImage(named: "done@2x.png"), forState: .Normal)
+            btnDone.layer.cornerRadius = 10.0
+            btnDone .backgroundColor = UIColor(red: 116.0 / 255.0, green: 116.0 / 255.0, blue: 116.0 / 255.0, alpha: 0.7)
+            btnDone.setTitle("Done", forState:.Normal)
+            btnDone.titleLabel!.textColor = UIColor(red: 238.0 / 255.0, green: 238.0 / 255.0, blue: 238.0 / 255.0, alpha: 1.0)
             btnDone.addTarget(self, action: "clickDone", forControlEvents: .TouchUpInside)
             addSubview(btnDone)
         }
@@ -148,7 +145,7 @@ struct Constants {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
                     -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.cellId) as?
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.popupCellId) as?
                        BBPDropDownCell
         let row = indexPath.row
         cell!.tag = row
@@ -164,8 +161,6 @@ struct Constants {
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        tableView.deselectRowAtIndexPath(indexPath, animated:true)
-
         if isMultipleSelection {
             if selectedItems.contains(indexPath) {
                 if let idx = selectedItems.indexOf(indexPath) {
@@ -186,9 +181,9 @@ struct Constants {
     // MARK: - Drawing
     override func drawRect(rect: CGRect) {
         
-        let screenInset = Constants.screenInset
-        let headerHeight = Constants.headerHeight
-        let radius = Constants.radius
+        let screenInset = Constants.popupScreenInset
+        let headerHeight = Constants.popupHeaderHeight
+        let radius = Constants.popupRadius
         
         let bgRect = CGRectInset(rect, screenInset, screenInset)
         let titleRect = CGRect(x: screenInset + 10.0, y:screenInset + 10.0 + 5.0,

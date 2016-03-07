@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_mark.png" translatesAutoresizingMaskIntoConstraints="NO" id="gsN-ER-x7I" userLabel="CheckMark">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="gsN-ER-x7I" userLabel="CheckMark">
                         <rect key="frame" x="275" y="15" width="27" height="27"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -37,6 +37,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="check_mark.png" width="27" height="27"/>
+        <image name="Checkmark" width="50" height="50"/>
     </resources>
 </document>
