@@ -13,17 +13,24 @@ protocol BBPDropDownDelegate {
 }
 
 @IBDesignable class BBPDropdown: UIView, UICollectionViewDelegate, UICollectionViewDataSource,
-        LozengeCellDelegate {
+        LozengeCellDelegate, BBPDropDownPopupDelegate {
     private let cellId = "LozengeCell"
     private let vertMargin : CGFloat = 8.0
 
     @IBOutlet var lozengeCollection: UICollectionView!
 
+    @IBInspectable var popupTitle : String?
     @IBInspectable var lozengeBackgroundColor : UIColor?
     @IBInspectable var lozengeTextColor : UIColor?
     @IBInspectable var borderColor : UIColor = UIColor.lightGrayColor()
     @IBInspectable var borderWidth : CGFloat = 1.0
     var lozengeData: [String] = []
+    var data : [String] =
+    ["Beatles", "Rolling Stones", "Jimi Hendrix", "King Crimson",
+     "Emerson, Lake and Palmer", "Gentle Giant", "Yes", "Jethro Tull", "Genesis",
+     "The Grateful Dead", "Jefferson Airplane"]
+
+    var popTable: BBPDropDownPopup?
     
     var view: UIView!  // Our custom view from the Xib file.
     @IBInspectable var delegate: BBPDropDownDelegate?
@@ -61,9 +68,6 @@ protocol BBPDropDownDelegate {
         return view
     }
 
-    @available(iOS 8.0, *) func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-    }
-
     func commonInitStuff() {
         let bundle = NSBundle(forClass: self.dynamicType)
         let nib = UINib(nibName: cellId, bundle:bundle)
@@ -73,6 +77,17 @@ protocol BBPDropDownDelegate {
         lozengeCollection.reloadData()
         layer.borderColor = borderColor.CGColor
         layer.borderWidth = borderWidth
+    }
+
+    func initializePopup(options: [String]) {
+        popTable = BBPDropDownPopup(title: popupTitle!, options:options,
+                xy: CGPointMake(0, frame.size.height),
+            size:CGSizeMake(frame.size.width, 280), isMultiple: true)
+
+        popTable!.delegate = self
+        popTable!.showInView(view, animated:true)
+        popTable!.popupBackgroundColor = UIColor(red: 0.0 / 255.0, green: 108.0 / 255.0,
+                blue: 194.0 / 255.0, alpha: 0.70)
     }
 
     func collectionView(collectionView: UICollectionView,
@@ -104,7 +119,9 @@ protocol BBPDropDownDelegate {
 
     // MARK: - IBActions
     @IBAction func dropDownButtonTouched(sender: AnyObject) {
-        lozengeData.append("More Data")
+        //lozengeData.append("More Data")
+
+        initializePopup(data)
         lozengeCollection.reloadData()
         readjustHeight()
     }
@@ -127,4 +144,15 @@ protocol BBPDropDownDelegate {
             lozengeCollection.deleteItemsAtIndexPaths([path])
         }
     }
+
+    func dropDownView(dropDownView: BBPDropDownPopup, didSelectedIndex idx: Int) {
+        let itemData = data[idx]
+        lozengeData.append(itemData)
+        lozengeCollection.reloadData()
+    }
+
+    func dropDownView(dropDownView: BBPDropDownPopup, dataList: [AnyObject]) {
+        print("dropDownView:dataList: called")
+    }
+
 }

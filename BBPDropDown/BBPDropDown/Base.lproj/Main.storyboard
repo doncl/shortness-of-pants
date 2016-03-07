@@ -80,6 +80,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="popupTitle" value="Select Bands"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>

@@ -25,7 +25,7 @@ class ViewController: UIViewController, BBPDropDownPopupDelegate, BBPDropDownDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bbpDropDown.lozengeData = data
+        //bbpDropDown.lozengeData = data
         bbpDropDown.delegate = self
     }
 
