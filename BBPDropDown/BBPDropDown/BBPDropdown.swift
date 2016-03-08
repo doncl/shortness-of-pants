@@ -10,6 +10,8 @@ import UIKit
 
 protocol BBPDropDownDelegate {
     func requestNewHeight(dropDown:BBPDropdown, newHeight: CGFloat);
+    func dropDownView(dropDown: BBPDropdown, didSelectedItem item:String);
+    func dropDownView(dropDown: BBPDropdown, dataList: [String]);
 }
 
 @IBDesignable class BBPDropdown: UIView, UICollectionViewDelegate, UICollectionViewDataSource,
@@ -242,6 +244,9 @@ protocol BBPDropDownDelegate {
         lozengeData.append(itemData)
         lozengeCollection.reloadData()
         singleItemLabel.text = itemData
+        if let delegate = delegate {
+            delegate.dropDownView(self, didSelectedItem: itemData)
+        }
     }
 
     func dropDownView(dropDownView: BBPDropDownPopup, dataList: [String]) {
@@ -249,5 +254,8 @@ protocol BBPDropDownDelegate {
         lozengeData = dataList
         lozengeCollection.reloadData()
         readjustHeight()
+        if let delegate = delegate {
+            delegate.dropDownView(self, dataList:dataList)
+        }
     }
 }

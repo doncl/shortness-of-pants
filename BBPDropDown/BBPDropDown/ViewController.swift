@@ -54,5 +54,15 @@ class ViewController: UIViewController, BBPDropDownDelegate {
 
         }, completion: nil)
     }
+
+    func dropDownView(dropDown: BBPDropdown, didSelectedItem item: String) {
+        // DO nothing for this example.
+        print("single select item selected \(item)")
+    }
+
+    func dropDownView(dropDown: BBPDropdown, dataList: [String]) {
+        // DO nothing for this example.
+        print("multi-select items selected \(dataList)")
+    }
 }
 
