@@ -25,10 +25,11 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
     var popupBackgroundColor : UIColor = UIColor.clearColor()
     var isMultipleSelection : Bool = false
     var delegate : BBPDropDownPopupDelegate?
+    var selectedItems = [NSIndexPath]()
 
     // MARK: - private properties
     private var tableView : UITableView?
-    private var selectedItems = [NSIndexPath]()
+
 
 
     // MARK: - Initializers

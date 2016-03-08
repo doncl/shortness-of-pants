@@ -31,6 +31,7 @@ protocol BBPDropDownDelegate {
     // MARK: - IBOutlets
     @IBOutlet var lozengeCollection: UICollectionView!
     @IBOutlet var rightGutter: UIView!
+    @IBOutlet var singleItemLabel: UILabel!
 
     // MARK: - public non-inspectable properties
     var data : [String] = []
@@ -43,7 +44,8 @@ protocol BBPDropDownDelegate {
     @IBInspectable var delegate: BBPDropDownDelegate?
     @IBInspectable var isMultiple : Bool = true {
         didSet(newValue){
-            lozengeCollection.hidden = !newValue
+            lozengeCollection.alpha = newValue ? 1.0 : 0.0
+            singleItemLabel.alpha = newValue ? 0.0 : 1.0
         }
     }
 
@@ -111,8 +113,8 @@ protocol BBPDropDownDelegate {
         backgroundViewTapRecognizer = setupTapRecog()
         addGestureRecognizer(backgroundViewTapRecognizer!)
         labelTapRecognizer = setupTapRecog()
-        //singleItemLabel.addGestureRecognizer(labelTapRecognizer!)
-        //singleItemLabel.translatesAutoresizingMaskIntoConstraints = false
+        singleItemLabel.addGestureRecognizer(labelTapRecognizer!)
+        singleItemLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setupTapRecog() -> UITapGestureRecognizer {
@@ -126,14 +128,20 @@ protocol BBPDropDownDelegate {
 
     func initializePopup(options: [String]) {
         resignFirstResponder()
+        if let popTable = popTable {
+            popTable.fadeOut()
+        }
         var xy = CGPoint(x: 0, y: frame.size.height)
         xy = convertPoint(xy, toView: superview)
+        
+        let indexes = getIndexesForSelectedItems()
         
         // TODO:  This initializer is kind of...not ideal.  Just set the properties.
         popTable = BBPDropDownPopup(title: popTitle!, options:options,
                 xy: xy,
             size:CGSizeMake(frame.size.width, 280), isMultiple: isMultiple)
 
+        popTable!.selectedItems = indexes
         popTable!.shadowOffsetWidth = shadOffCX
         popTable!.shadowOffsetHeight = shadOffCY
         popTable!.shadowRadius = shadRadius
@@ -142,6 +150,26 @@ protocol BBPDropDownDelegate {
         popTable!.popupBackgroundColor = popBGColor
         popTable!.delegate = self
         popTable!.showInView(superview!, animated:true)
+    }
+
+    func getIndexesForSelectedItems() -> [NSIndexPath] {
+        var indexes = [NSIndexPath]()
+        if isMultiple {
+            // If it's the mult-select case, grovel through the lozengeData
+            for lozengeDatum in lozengeData {
+                if let idx = data.indexOf(lozengeDatum) {
+                    let indexPath = NSIndexPath(forItem: idx, inSection: 0)
+                    indexes.append(indexPath)
+                }
+            }
+        } else {
+            // if it's the single-selectet, the singleItemLabel has the data.
+            if let text = singleItemLabel.text, idx = data.indexOf(text) {
+                let indexPath = NSIndexPath(forItem: idx, inSection: 0)
+                indexes.append(indexPath)
+            }
+        }
+        return indexes
     }
     
     // MARK: - tap handlers
@@ -209,7 +237,7 @@ protocol BBPDropDownDelegate {
         let itemData = data[idx]
         lozengeData.append(itemData)
         lozengeCollection.reloadData()
-        //singleItemLabel!.text = itemData
+        singleItemLabel.text = itemData
     }
 
     func dropDownView(dropDownView: BBPDropDownPopup, dataList: [String]) {
