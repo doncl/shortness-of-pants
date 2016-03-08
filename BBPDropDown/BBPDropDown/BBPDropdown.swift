@@ -214,6 +214,10 @@ protocol BBPDropDownDelegate {
     }
     
     func readjustHeight() {
+        if isMultiple == false {
+            // Don't grow the height for the single-selection case.
+            return
+        }
         let size = lozengeCollection.collectionViewLayout.collectionViewContentSize()
         let height = size.height + (vertMargin * 2)
         if let flowLayout = lozengeCollection.collectionViewLayout as? UICollectionViewFlowLayout {
