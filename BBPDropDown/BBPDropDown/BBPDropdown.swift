@@ -26,6 +26,7 @@ protocol BBPDropDownDelegate {
     private var rightGutterTapRecognizer : UITapGestureRecognizer?
     private var collectionViewTapRecognizer: UITapGestureRecognizer?
     private var backgroundViewTapRecognizer: UITapGestureRecognizer?
+    private var labelTapRecognizer: UITapGestureRecognizer?
 
     // MARK: - IBOutlets
     @IBOutlet var lozengeCollection: UICollectionView!
@@ -40,7 +41,12 @@ protocol BBPDropDownDelegate {
     @IBInspectable var borderColor : UIColor = UIColor.lightGrayColor()
     @IBInspectable var borderWidth : CGFloat = 1.0
     @IBInspectable var delegate: BBPDropDownDelegate?
-    @IBInspectable var isMultiple : Bool = true
+    @IBInspectable var isMultiple : Bool = true {
+        didSet(newValue){
+            lozengeCollection.hidden = !newValue
+        }
+    }
+
 
     // MARK: - Inspectable properties forwarded to contained popup
 
@@ -104,6 +110,9 @@ protocol BBPDropDownDelegate {
         lozengeCollection.addGestureRecognizer(collectionViewTapRecognizer!)
         backgroundViewTapRecognizer = setupTapRecog()
         addGestureRecognizer(backgroundViewTapRecognizer!)
+        labelTapRecognizer = setupTapRecog()
+        //singleItemLabel.addGestureRecognizer(labelTapRecognizer!)
+        //singleItemLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setupTapRecog() -> UITapGestureRecognizer {
@@ -200,6 +209,7 @@ protocol BBPDropDownDelegate {
         let itemData = data[idx]
         lozengeData.append(itemData)
         lozengeCollection.reloadData()
+        //singleItemLabel!.text = itemData
     }
 
     func dropDownView(dropDownView: BBPDropDownPopup, dataList: [String]) {

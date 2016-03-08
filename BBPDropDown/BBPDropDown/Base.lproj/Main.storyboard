@@ -43,8 +43,8 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="popupTitle" value="Select Bands"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="popTitle" value="Pick Band"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isMultiple" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mutiple Selection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oih-LN-mGs">
@@ -72,8 +72,8 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="popupTitle" value="Select Bands"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="popTitle" value="Pick Bands"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isMultiple" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
