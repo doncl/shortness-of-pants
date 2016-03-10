@@ -23,14 +23,16 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
     var shadowOpacity: Float = 0.5
     var separatorColor = UIColor(white: 1.0, alpha: 0.2)
     var popupBackgroundColor : UIColor = UIColor.clearColor()
+    var popupTextColor : UIColor = UIColor.blackColor()
     var isMultipleSelection : Bool = false
     var delegate : BBPDropDownPopupDelegate?
     var selectedItems = [NSIndexPath]()
+    var cellSelectionImage : UIImage?
+    var showsHeader : Bool = true
+    var headerTextColor : UIColor = UIColor.whiteColor()
 
     // MARK: - private properties
     private var tableView : UITableView?
-
-
 
     // MARK: - Initializers
     override init(frame: CGRect) {
@@ -42,13 +44,16 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
     }
 
     convenience init(title: String, options:[String], xy point: CGPoint, size: CGSize,
-            isMultiple: Bool) {
-                
-        let height = min(size.height, Constants.popupHeaderHeight + (CGFloat(options.count) *
+            isMultiple: Bool, showsHeader: Bool) {
+
+        let headerHeight = showsHeader ? Constants.popupHeaderHeight : 0.0
+        let height = min(size.height, headerHeight + (CGFloat(options.count) *
             Constants.popupRowHeight))
-                
+
         let rect = CGRect(x:point.x, y: point.y, width: size.width, height: height)
         self.init(frame:rect)
+        self.showsHeader = showsHeader
+
         isMultipleSelection = isMultiple
 
         backgroundColor = UIColor.clearColor()
@@ -60,10 +65,10 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
         titleText = title
         dropDownOption = options
         let tableFrame = CGRect(x: Constants.popupScreenInset,
-            y: Constants.popupScreenInset + Constants.popupHeaderHeight,
+            y: Constants.popupScreenInset + headerHeight,
             width: rect.size.width - (2 * Constants.popupScreenInset),
             height: rect.size.height - (2 * Constants.popupScreenInset) -
-                Constants.popupHeaderHeight - Constants.popupRadius)
+                headerHeight - Constants.popupRadius)
         
         tableView = UITableView(frame: tableFrame)
         tableView!.allowsSelection = true
@@ -157,6 +162,10 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
             cell!.showSelectionMark(false)
         }
         cell?.textLabel!.text = dropDownOption![row]
+        cell?.textLabel!.textColor = popupTextColor
+        if let image = cellSelectionImage {
+            cell?.selectionImage = image
+        }
                         
         return cell!
     }
@@ -183,7 +192,7 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
     override func drawRect(rect: CGRect) {
         
         let screenInset = Constants.popupScreenInset
-        let headerHeight = Constants.popupHeaderHeight
+        let headerHeight = showsHeader ? Constants.popupHeaderHeight : 0.0
         let radius = Constants.popupRadius
         
         let bgRect = CGRectInset(rect, screenInset, screenInset)
@@ -210,21 +219,22 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
         CGContextAddPath(ctx, path)
         CGContextFillPath(ctx)
 
-        // Title and separator shadow
-        CGContextSetShadowWithColor(ctx, CGSize(width: 1.0, height: 1.0), 0.5,
-            UIColor.blackColor().CGColor)
-        
-        UIColor(white: 1.0, alpha: 1.0).setFill()
-        
-        let font = UIFont(name: "HelveticaNeue", size: 16.0)!
-        let cl = UIColor.whiteColor()
-        
-        let attrs : [String :AnyObject] = [NSFontAttributeName : font,
-            NSForegroundColorAttributeName: cl]
-        
-        titleText?.drawInRect(titleRect, withAttributes: attrs)
-        
-        CGContextFillRect(ctx, separatorRect)
+        if showsHeader {
+            // Title and separator shadow
+            CGContextSetShadowWithColor(ctx, CGSize(width: 1.0, height: 1.0), 0.5,
+                    UIColor.blackColor().CGColor)
+
+            UIColor(white: 1.0, alpha: 1.0).setFill()
+
+            let font = UIFont(name: "HelveticaNeue", size: 16.0)!
+
+            let attrs : [String :AnyObject] = [NSFontAttributeName : font,
+                                               NSForegroundColorAttributeName: headerTextColor]
+
+            titleText?.drawInRect(titleRect, withAttributes: attrs)
+
+            CGContextFillRect(ctx, separatorRect)
+        }
     }
 }
 

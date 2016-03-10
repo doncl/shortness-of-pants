@@ -10,6 +10,15 @@ import UIKit
 
 class BBPDropDownCell: UITableViewCell {
     @IBOutlet var selectionIndicator: UIImageView!
+
+    var selectionImage : UIImage? {
+        get {
+            return selectionIndicator.image
+        }
+        set (newImage) {
+            selectionIndicator.image = newImage
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

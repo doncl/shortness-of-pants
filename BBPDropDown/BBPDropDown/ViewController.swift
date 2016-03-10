@@ -54,5 +54,12 @@ class ViewController: UIViewController, BBPDropDownDelegate {
 
         }, completion: nil)
     }
+
+    func dropDownView(dropDown: BBPDropdown, didSelectedItem item: String) {
+    }
+
+    func dropDownView(dropDown: BBPDropdown, dataList: [String]) {
+    }
+
 }
 

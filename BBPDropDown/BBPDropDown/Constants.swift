@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 struct Constants {
     static let popupScreenInset: CGFloat = 0
     static let popupHeaderHeight: CGFloat = 50.0

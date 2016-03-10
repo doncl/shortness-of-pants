@@ -3,12 +3,12 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BBPDropdown" customModule="BBPDropDown" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BBPDropdown" customModule="ScoutPublisherVideo" customModuleProvider="target">
             <connections>
                 <outlet property="lozengeCollection" destination="EhZ-Ox-h9B" id="JAo-8d-yar"/>
+                <outlet property="placeHolderLabel" destination="nHY-Mw-YaH" id="d54-Bb-TPs"/>
                 <outlet property="rightGutter" destination="VRo-JF-Dwr" id="363-1k-Nia"/>
                 <outlet property="singleItemLabel" destination="oyn-LC-lhr" id="onb-PT-jR5"/>
             </connections>
@@ -19,19 +19,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyn-LC-lhr" userLabel="singleItemLabel">
-                    <rect key="frame" x="8" y="0.0" width="515" height="353"/>
+                    <rect key="frame" x="10" y="0.0" width="513" height="353"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="EhZ-Ox-h9B">
                     <rect key="frame" x="8" y="8" width="515" height="337"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="2" id="ubL-in-mSv">
-                        <size key="itemSize" width="90" height="40"/>
+                        <size key="itemSize" width="105" height="40"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRo-JF-Dwr" userLabel="RightGutter">
@@ -44,7 +44,7 @@
                                 <constraint firstAttribute="height" constant="25" id="q9i-H1-gfJ"/>
                                 <constraint firstAttribute="width" constant="25" id="uZz-it-4u1"/>
                             </constraints>
-                            <state key="normal" image="Down Filled-50.png">
+                            <state key="normal" image="Down Filled-50">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -57,14 +57,25 @@
                         <constraint firstItem="Lz2-N0-AET" firstAttribute="centerX" secondItem="VRo-JF-Dwr" secondAttribute="centerX" id="LeH-Wc-5gA"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHY-Mw-YaH" userLabel="PlaceholderLabel">
+                    <rect key="frame" x="10" y="0.0" width="513" height="353"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <constraints>
                 <constraint firstItem="EhZ-Ox-h9B" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="-25" id="0tm-9H-qHA"/>
-                <constraint firstItem="oyn-LC-lhr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="4c4-cS-Iht"/>
+                <constraint firstItem="oyn-LC-lhr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="4c4-cS-Iht"/>
+                <constraint firstItem="nHY-Mw-YaH" firstAttribute="top" secondItem="oyn-LC-lhr" secondAttribute="top" id="73C-Iu-zKc"/>
                 <constraint firstItem="EhZ-Ox-h9B" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="98S-z0-EAS"/>
                 <constraint firstItem="EhZ-Ox-h9B" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="-8" id="DfK-Ts-n8J"/>
+                <constraint firstItem="nHY-Mw-YaH" firstAttribute="height" secondItem="oyn-LC-lhr" secondAttribute="height" id="EmL-Jq-TRn"/>
                 <constraint firstItem="oyn-LC-lhr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FU2-rb-bzK"/>
+                <constraint firstItem="nHY-Mw-YaH" firstAttribute="bottom" secondItem="oyn-LC-lhr" secondAttribute="bottom" id="RyZ-fc-O9y"/>
                 <constraint firstItem="EhZ-Ox-h9B" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="SFR-Re-tVc"/>
+                <constraint firstItem="nHY-Mw-YaH" firstAttribute="width" secondItem="oyn-LC-lhr" secondAttribute="width" id="bVI-bg-ZOM"/>
+                <constraint firstItem="oyn-LC-lhr" firstAttribute="leading" secondItem="nHY-Mw-YaH" secondAttribute="leading" id="e1R-eb-eQj"/>
                 <constraint firstItem="Lz2-N0-AET" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="f0A-CS-djo"/>
                 <constraint firstItem="VRo-JF-Dwr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="j4B-iT-eFa"/>
                 <constraint firstItem="oyn-LC-lhr" firstAttribute="trailing" secondItem="VRo-JF-Dwr" secondAttribute="leading" id="l6t-wF-hn3"/>
@@ -79,6 +90,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Down Filled-50.png" width="50" height="50"/>
+        <image name="Down Filled-50" width="50" height="50"/>
     </resources>
 </document>

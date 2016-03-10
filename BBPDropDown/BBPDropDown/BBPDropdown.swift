@@ -10,6 +10,8 @@ import UIKit
 
 protocol BBPDropDownDelegate {
     func requestNewHeight(dropDown:BBPDropdown, newHeight: CGFloat);
+    func dropDownView(dropDown: BBPDropdown, didSelectedItem item:String);
+    func dropDownView(dropDown: BBPDropdown, dataList: [String]);
 }
 
 @IBDesignable class BBPDropdown: UIView, UICollectionViewDelegate, UICollectionViewDataSource,
@@ -27,42 +29,93 @@ protocol BBPDropDownDelegate {
     private var collectionViewTapRecognizer: UITapGestureRecognizer?
     private var backgroundViewTapRecognizer: UITapGestureRecognizer?
     private var labelTapRecognizer: UITapGestureRecognizer?
+    private var dropDownVisible : Bool = false
+    private var ready : Bool = false
+
+    private func showPlaceholder(show: Bool) {
+        placeHolderLabel.alpha =  show ? 1.0 : 0.0
+        placeHolderLabel.hidden = !show
+
+        showSingleItemLabel(!isMultiple && !show)
+        showLozengeCollection(isMultiple && !show)
+    }
+
+    private func showSingleItemLabel(show: Bool) {
+        singleItemLabel.alpha = show ? 1.0 : 0.0
+        singleItemLabel.hidden = !show
+    }
+
+    private func showLozengeCollection(show: Bool) {
+        lozengeCollection.alpha = show ? 1.0 : 0.0
+        lozengeCollection.hidden = !show
+    }
 
     // MARK: - IBOutlets
     @IBOutlet var lozengeCollection: UICollectionView!
     @IBOutlet var rightGutter: UIView!
     @IBOutlet var singleItemLabel: UILabel!
+    @IBOutlet var placeHolderLabel: UILabel!
 
     // MARK: - public non-inspectable properties
-    var data : [String] = []
+    var data : [String] = [] {
+        didSet (newValue) {
+            ready = true
+        }
+    }
+
+    var singleItemText : String? {
+        get {
+            return singleItemLabel.text
+        }
+        set (newValue) {
+            var placeHolder : Bool = false
+            singleItemLabel.text = newValue
+            if let text = newValue {
+                placeHolder = text != "" ? false : true
+            } else {
+                placeHolder = true
+            }
+            showPlaceholder(placeHolder)
+        }
+    }
 
     // MARK: - Inspectable properties
+    @IBInspectable var placeHolderText : String? {
+        get {
+            return placeHolderLabel.text
+        }
+        set (newValue) {
+            placeHolderLabel.text = newValue
+        }       
+    }
     @IBInspectable var lozengeBackgroundColor : UIColor?
     @IBInspectable var lozengeTextColor : UIColor?
     @IBInspectable var borderColor : UIColor = UIColor.lightGrayColor()
     @IBInspectable var borderWidth : CGFloat = 1.0
     @IBInspectable var delegate: BBPDropDownDelegate?
-    @IBInspectable var isMultiple : Bool = true {
+    @IBInspectable var isMultiple : Bool = false {
         didSet(newValue){
-            lozengeCollection.alpha = newValue ? 1.0 : 0.0
-            singleItemLabel.alpha = newValue ? 0.0 : 1.0
+            setUIStateForSelectionMode(newValue)
         }
     }
-
 
     // MARK: - Inspectable properties forwarded to contained popup
 
     // Ugh:  -- Apple encourages long, descriptive identifier names, but if I do that, these
     // get clipped in InterfaceBuilder.    These are not great names, and they get clipped, but
     // it's the best compromise I could find.
-    @IBInspectable var popTitle: String?
+    @IBInspectable var popTitle: String = ""
     @IBInspectable var popBGColor: UIColor = UIColor(red: 204.0 / 255.0,
         green: 208.0 / 255.0, blue: 218.0 / 225.0, alpha: 0.70)
+    @IBInspectable var popTextColor : UIColor = UIColor.blackColor()
     @IBInspectable var shadOffCX: CGFloat = 2.5
     @IBInspectable var shadOffCY: CGFloat = 2.5
     @IBInspectable var shadRadius: CGFloat = 2.5
     @IBInspectable var shadAlpha: Float = 0.5
     @IBInspectable var sepColor : UIColor = UIColor(white: 1.0, alpha: 0.2)
+    @IBInspectable var selectImage : UIImage?
+    @IBInspectable var showsHeader : Bool = false
+    @IBInspectable var headerTextColor : UIColor?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -115,8 +168,14 @@ protocol BBPDropDownDelegate {
         labelTapRecognizer = setupTapRecog()
         singleItemLabel.addGestureRecognizer(labelTapRecognizer!)
         singleItemLabel.translatesAutoresizingMaskIntoConstraints = false
+        setUIStateForSelectionMode(isMultiple)
     }
-    
+
+    func setUIStateForSelectionMode(multiSelect: Bool) {
+        lozengeCollection.alpha = multiSelect ? 1.0 : 0.0
+        singleItemLabel.alpha = multiSelect ? 0.0 : 1.0
+    }
+
     private func setupTapRecog() -> UITapGestureRecognizer {
         let recog = UITapGestureRecognizer()
         recog.numberOfTouchesRequired = 1
@@ -137,10 +196,20 @@ protocol BBPDropDownDelegate {
         let indexes = getIndexesForSelectedItems()
         
         // TODO:  This initializer is kind of...not ideal.  Just set the properties.
-        popTable = BBPDropDownPopup(title: popTitle!, options:options,
+        popTable = BBPDropDownPopup(title: popTitle, options:options,
                 xy: xy,
-            size:CGSizeMake(frame.size.width, 280), isMultiple: isMultiple)
+            size:CGSizeMake(frame.size.width, 280), isMultiple: isMultiple,
+                showsHeader: showsHeader)
 
+        // If they specified an image in the storyboard/xib, honor it.
+        if let selectImage = selectImage {
+            popTable!.cellSelectionImage = selectImage
+        }
+        if let headerTextColor = headerTextColor {
+            popTable!.headerTextColor = headerTextColor
+        }
+
+        popTable!.popupTextColor = popTextColor
         popTable!.selectedItems = indexes
         popTable!.shadowOffsetWidth = shadOffCX
         popTable!.shadowOffsetHeight = shadOffCY
@@ -150,6 +219,7 @@ protocol BBPDropDownDelegate {
         popTable!.popupBackgroundColor = popBGColor
         popTable!.delegate = self
         popTable!.showInView(superview!, animated:true)
+        dropDownVisible = true
     }
 
     func getIndexesForSelectedItems() -> [NSIndexPath] {
@@ -164,7 +234,7 @@ protocol BBPDropDownDelegate {
             }
         } else {
             // if it's the single-selectet, the singleItemLabel has the data.
-            if let text = singleItemLabel.text, idx = data.indexOf(text) {
+            if let text = singleItemText, idx = data.indexOf(text) {
                 let indexPath = NSIndexPath(forItem: idx, inSection: 0)
                 indexes.append(indexPath)
             }
@@ -176,8 +246,18 @@ protocol BBPDropDownDelegate {
     
     // Ugh! - why can't these be private?  Evidently targets for tap handlers cannot be.
     func tappedForPopup(sender: AnyObject) {
-        print("tap, tap, tap...")
-        initializePopup(data)
+        if !ready {
+            return
+        }
+        if dropDownVisible {
+            if let popTable = popTable {
+                popTable.fadeOut()
+            }
+            dropDownVisible = false
+        } else {
+            initializePopup(data)
+            dropDownVisible = true
+        }
     }
 
     // MARK: - UICollectionViewDelegate
@@ -210,7 +290,7 @@ protocol BBPDropDownDelegate {
 
     // MARK: - IBActions
     @IBAction func dropDownButtonTouched(sender: AnyObject) {
-        initializePopup(data)
+        tappedForPopup(sender)
     }
     
     func readjustHeight() {
@@ -233,6 +313,9 @@ protocol BBPDropDownDelegate {
         if let path = lozengeCollection.indexPathForCell(cell) {
             lozengeData.removeAtIndex(path.row)
             lozengeCollection.deleteItemsAtIndexPaths([path])
+            if lozengeData.count == 0 {
+                showPlaceholder(true)
+            }
         }
     }
 
@@ -241,7 +324,11 @@ protocol BBPDropDownDelegate {
         let itemData = data[idx]
         lozengeData.append(itemData)
         lozengeCollection.reloadData()
-        singleItemLabel.text = itemData
+        singleItemText = itemData
+        showPlaceholder(itemData == "")
+        if let delegate = delegate {
+            delegate.dropDownView(self, didSelectedItem: itemData)
+        }
     }
 
     func dropDownView(dropDownView: BBPDropDownPopup, dataList: [String]) {
@@ -249,5 +336,10 @@ protocol BBPDropDownDelegate {
         lozengeData = dataList
         lozengeCollection.reloadData()
         readjustHeight()
+        let placeHolder = dataList.count == 0
+        showPlaceholder(placeHolder)
+        if let delegate = delegate {
+            delegate.dropDownView(self, dataList:dataList)
+        }
     }
 }
