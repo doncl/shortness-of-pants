@@ -326,6 +326,7 @@ protocol BBPDropDownDelegate {
         lozengeCollection.reloadData()
         singleItemText = itemData
         showPlaceholder(itemData == "")
+        singleItemLabel.text = itemData
         if let delegate = delegate {
             delegate.dropDownView(self, didSelectedItem: itemData)
         }
