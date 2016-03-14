@@ -9,9 +9,10 @@
 import UIKit
 
 protocol BBPDropDownDelegate {
-    func requestNewHeight(dropDown:BBPDropdown, newHeight: CGFloat);
-    func dropDownView(dropDown: BBPDropdown, didSelectedItem item:String);
-    func dropDownView(dropDown: BBPDropdown, dataList: [String]);
+    func requestNewHeight(dropDown:BBPDropdown, newHeight: CGFloat)
+    func dropDownView(dropDown: BBPDropdown, didSelectedItem item:String)
+    func dropDownView(dropDown: BBPDropdown, dataList: [String])
+    func dropDownWillAppear(dropDown: BBPDropdown)
 }
 
 @IBDesignable class BBPDropdown: UIView, UICollectionViewDelegate, UICollectionViewDataSource,
@@ -22,7 +23,8 @@ protocol BBPDropDownDelegate {
     private let vertMargin : CGFloat = 8.0
 
     // MARK: - private properties
-    private var lozengeData: [String] = []
+    private var lozengeData: [String] = [String]()
+
     private var popTable: BBPDropDownPopup?
     private var view: UIView!  // Our custom view from the Xib file.
     private var rightGutterTapRecognizer : UITapGestureRecognizer?
@@ -58,8 +60,22 @@ protocol BBPDropDownDelegate {
 
     // MARK: - public non-inspectable properties
     var data : [String] = [] {
-        didSet (newValue) {
+        willSet (newValue) {
             ready = true
+        }
+    }
+
+    var selections : [String] {
+        get {
+            return lozengeData
+        }
+        set (newValue){
+            lozengeData = newValue
+            lozengeCollection.reloadData()
+
+            // Hide the placeholder if there's data, show it if not.
+            showPlaceholder(newValue.count == 0)
+            readjustHeight()
         }
     }
 
@@ -185,14 +201,22 @@ protocol BBPDropDownDelegate {
         return recog;
     }
 
-    func initializePopup(options: [String]) {
-        resignFirstResponder()
+    func fadeOut() {
         if let popTable = popTable {
             popTable.fadeOut()
         }
+    }
+
+    func initializePopup(options: [String]) {
+        resignFirstResponder()
+        fadeOut()
+        if let delegate = delegate {
+            delegate.dropDownWillAppear(self)
+        }
+
         var xy = CGPoint(x: 0, y: frame.size.height)
         xy = convertPoint(xy, toView: superview)
-        
+
         let indexes = getIndexesForSelectedItems()
         
         // TODO:  This initializer is kind of...not ideal.  Just set the properties.
@@ -226,8 +250,8 @@ protocol BBPDropDownDelegate {
         var indexes = [NSIndexPath]()
         if isMultiple {
             // If it's the mult-select case, grovel through the lozengeData
-            for lozengeDatum in lozengeData {
-                if let idx = data.indexOf(lozengeDatum) {
+            for selection in lozengeData {
+                if let idx = data.indexOf(selection) {
                     let indexPath = NSIndexPath(forItem: idx, inSection: 0)
                     indexes.append(indexPath)
                 }
@@ -326,7 +350,6 @@ protocol BBPDropDownDelegate {
         lozengeCollection.reloadData()
         singleItemText = itemData
         showPlaceholder(itemData == "")
-        singleItemLabel.text = itemData
         if let delegate = delegate {
             delegate.dropDownView(self, didSelectedItem: itemData)
         }
