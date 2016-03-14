@@ -64,5 +64,9 @@ class ViewController: UIViewController, BBPDropDownDelegate {
         // DO nothing for this example.
         print("multi-select items selected \(dataList)")
     }
+
+    func dropDownWillAppear(dropDown: BBPDropdown) {
+        print("dropdown will appear")
+    }
 }
 
