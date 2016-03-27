@@ -39,7 +39,7 @@ class LozengeCell: UICollectionViewCell {
         tapDeleteImageRecognizer = UITapGestureRecognizer()
         tapDeleteImageRecognizer!.numberOfTapsRequired = 1
         tapDeleteImageRecognizer!.numberOfTouchesRequired = 1
-        tapDeleteImageRecognizer!.addTarget(self, action: "tappedDelete")
+        tapDeleteImageRecognizer!.addTarget(self, action: #selector(LozengeCell.tappedDelete))
         tapDeleteImageRecognizer!.enabled = true
         addGestureRecognizer(tapDeleteImageRecognizer!)
     }

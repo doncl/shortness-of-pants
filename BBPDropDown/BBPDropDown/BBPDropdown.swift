@@ -197,7 +197,7 @@ protocol BBPDropDownDelegate {
         recog.numberOfTouchesRequired = 1
         recog.numberOfTapsRequired  = 1
         recog.enabled = true
-        recog.addTarget(self, action: "tappedForPopup:")
+        recog.addTarget(self, action: #selector(BBPDropdown.tappedForPopup(_:)))
         return recog;
     }
 

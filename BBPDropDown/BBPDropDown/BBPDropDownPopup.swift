@@ -97,7 +97,7 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
             btnDone .backgroundColor = UIColor(red: 116.0 / 255.0, green: 116.0 / 255.0, blue: 116.0 / 255.0, alpha: 0.7)
             btnDone.setTitle("Done", forState:.Normal)
             btnDone.titleLabel!.textColor = UIColor(red: 238.0 / 255.0, green: 238.0 / 255.0, blue: 238.0 / 255.0, alpha: 1.0)
-            btnDone.addTarget(self, action: "clickDone", forControlEvents: .TouchUpInside)
+            btnDone.addTarget(self, action: #selector(BBPDropDownPopup.clickDone), forControlEvents: .TouchUpInside)
             addSubview(btnDone)
         }
     }
@@ -129,7 +129,7 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
         UIView.animateWithDuration(0.35, animations: {
             self.transform = CGAffineTransformMakeScale(1.3, 1.3)
             self.alpha = 0.0
-            }, completion: {(BOOL finished) in
+            }, completion: {(finished) in
                 if finished {
                     self.removeFromSuperview()
                 }
