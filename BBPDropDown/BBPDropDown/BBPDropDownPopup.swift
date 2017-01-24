@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import QuartzCore
 
 protocol BBPDropDownPopupDelegate {
-    func dropDownView(dropDownView: BBPDropDownPopup, didSelectedIndex idx:Int);
-    func dropDownView(dropDownView: BBPDropDownPopup, dataList: [String]);
+    func dropDownView(_ dropDownView: BBPDropDownPopup, didSelectedIndex idx:Int);
+    func dropDownView(_ dropDownView: BBPDropDownPopup, dataList: [String]);
 }
 
 class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
@@ -22,17 +23,17 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
     var shadowRadius : CGFloat = 2.5
     var shadowOpacity: Float = 0.5
     var separatorColor = UIColor(white: 1.0, alpha: 0.2)
-    var popupBackgroundColor : UIColor = UIColor.clearColor()
-    var popupTextColor : UIColor = UIColor.blackColor()
+    var popupBackgroundColor : UIColor = UIColor.clear
+    var popupTextColor : UIColor = UIColor.black
     var isMultipleSelection : Bool = false
     var delegate : BBPDropDownPopupDelegate?
-    var selectedItems = [NSIndexPath]()
+    var selectedItems = [IndexPath]()
     var cellSelectionImage : UIImage?
     var showsHeader : Bool = true
-    var headerTextColor : UIColor = UIColor.whiteColor()
+    var headerTextColor : UIColor = UIColor.white
 
     // MARK: - private properties
-    private var tableView : UITableView?
+    fileprivate var tableView : UITableView?
 
     // MARK: - Initializers
     override init(frame: CGRect) {
@@ -56,13 +57,13 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
 
         isMultipleSelection = isMultiple
 
-        backgroundColor = UIColor.clearColor()
-        layer.shadowColor = UIColor.blackColor().CGColor
+        backgroundColor = UIColor.clear
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: shadowOffsetWidth, height: shadowOffsetHeight)
         layer.shadowRadius = shadowRadius
         layer.shadowOpacity = shadowOpacity
         
-        titleText = title
+        titleText = title as NSString?
         dropDownOption = options
         let tableFrame = CGRect(x: Constants.popupScreenInset,
             y: Constants.popupScreenInset + headerHeight,
@@ -72,19 +73,19 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
         
         tableView = UITableView(frame: tableFrame)
         tableView!.allowsSelection = true
-        tableView!.userInteractionEnabled = true
+        tableView!.isUserInteractionEnabled = true
         tableView!.separatorColor = separatorColor
-        tableView!.separatorInset = UIEdgeInsetsZero
-        tableView!.backgroundColor = UIColor.clearColor()
+        tableView!.separatorInset = UIEdgeInsets.zero
+        tableView!.backgroundColor = UIColor.clear
         tableView!.dataSource = self
         tableView!.delegate = self
-        tableView!.registerNib(UINib(nibName: "BBPDropDownCell", bundle: nil),
+        tableView!.register(UINib(nibName: "BBPDropDownCell", bundle: nil),
                     forCellReuseIdentifier: Constants.popupCellId)
                
         addSubview(tableView!)
         
         if isMultipleSelection {
-            let btnDone = UIButton(type: .Custom)
+            let btnDone = UIButton(type: .custom)
             
 
             let btnFrame = CGRect(x: size.width - Constants.popupButtonWidth - 8,
@@ -95,9 +96,9 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
             //btnDone.setImage(UIImage(named: "done@2x.png"), forState: .Normal)
             btnDone.layer.cornerRadius = 10.0
             btnDone .backgroundColor = UIColor(red: 116.0 / 255.0, green: 116.0 / 255.0, blue: 116.0 / 255.0, alpha: 0.7)
-            btnDone.setTitle("Done", forState:.Normal)
+            btnDone.setTitle("Done", for:UIControlState())
             btnDone.titleLabel!.textColor = UIColor(red: 238.0 / 255.0, green: 238.0 / 255.0, blue: 238.0 / 255.0, alpha: 1.0)
-            btnDone.addTarget(self, action: #selector(BBPDropDownPopup.clickDone), forControlEvents: .TouchUpInside)
+            btnDone.addTarget(self, action: #selector(BBPDropDownPopup.clickDone), for: .touchUpInside)
             addSubview(btnDone)
         }
     }
@@ -116,18 +117,18 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
         fadeOut()
     }
 
-    private func fadeIn() {
-        transform = CGAffineTransformMakeScale(1.3, 1.3)
+    fileprivate func fadeIn() {
+        transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         alpha = 0.0
-        UIView.animateWithDuration(0.35, animations: {
+        UIView.animate(withDuration: 0.35, animations: {
             self.alpha = 1.0
-            self.transform = CGAffineTransformIdentity
+            self.transform = CGAffineTransform.identity
         })
     }
     
     func fadeOut() {
-        UIView.animateWithDuration(0.35, animations: {
-            self.transform = CGAffineTransformMakeScale(1.3, 1.3)
+        UIView.animate(withDuration: 0.35, animations: {
+            self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.alpha = 0.0
             }, completion: {(finished) in
                 if finished {
@@ -137,7 +138,7 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
     }
     
     // MARK: - Instance methods
-    func showInView(view: UIView, animated: Bool) {
+    func showInView(_ view: UIView, animated: Bool) {
         view.addSubview(self)
         if animated {
             fadeIn()
@@ -145,13 +146,13 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
     }
 
     // MARK: - UITableView delegate methods
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (dropDownOption?.count)!
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
                     -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.popupCellId) as?
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.popupCellId) as?
                        BBPDropDownCell
         let row = indexPath.row
         cell!.tag = row
@@ -170,11 +171,11 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
         return cell!
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isMultipleSelection {
             if selectedItems.contains(indexPath) {
-                if let idx = selectedItems.indexOf(indexPath) {
-                    selectedItems.removeAtIndex(idx)
+                if let idx = selectedItems.index(of: indexPath) {
+                    selectedItems.remove(at: idx)
                 }
             } else {
                 selectedItems.append(indexPath)
@@ -189,13 +190,13 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
     }
     
     // MARK: - Drawing
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         let screenInset = Constants.popupScreenInset
         let headerHeight = showsHeader ? Constants.popupHeaderHeight : 0.0
         let radius = Constants.popupRadius
         
-        let bgRect = CGRectInset(rect, screenInset, screenInset)
+        let bgRect = rect.insetBy(dx: screenInset, dy: screenInset)
         let titleRect = CGRect(x: screenInset + 10.0, y:screenInset + 10.0 + 5.0,
             width: rect.size.width - (2 * (screenInset + 10)), height: 30.0)
         let separatorRect = CGRect(x: screenInset, y: screenInset + headerHeight - 2,
@@ -209,20 +210,30 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
         let cx = bgRect.size.width
         let cy = bgRect.size.height
         
-        let path = CGPathCreateMutable()
-        CGPathMoveToPoint(path, nil, x, y + radius)
-        CGPathAddArcToPoint(path, nil, x, y, x + radius, y, radius)
-        CGPathAddArcToPoint(path, nil, x + cx, y, x + cx, y + radius, radius)
-        CGPathAddArcToPoint(path, nil, x + cx, y + cy, x + cx - radius, y + cy, radius)
-        CGPathAddArcToPoint(path, nil, x, y + cy, x, y + cy - radius, radius)
-        CGPathCloseSubpath(path)
-        CGContextAddPath(ctx, path)
-        CGContextFillPath(ctx)
+        let path = CGMutablePath()
+      
+        path.move(to: CGPoint(x: x, y: y + radius))
+      
+        path.addArc(tangent1End: CGPoint(x: x, y: y), tangent2End: CGPoint(x: x + radius, y: y),
+          radius: radius)
+      
+        path.addArc(tangent1End: CGPoint(x: x + cx, y: y),
+         tangent2End: CGPoint(x:x + cx, y: y + radius), radius: radius)
+      
+        path.addArc(tangent1End: CGPoint(x: x + cx ,y: y + cy),
+          tangent2End: CGPoint(x: x + cx - radius, y: y + cy), radius: radius)
+      
+        path.addArc(tangent1End: CGPoint(x:x, y: y + cy), tangent2End: CGPoint(x: x, y: y + cy),
+         radius: radius)
+      
+        path.closeSubpath()
+        ctx!.addPath(path)
+        ctx!.fillPath()
 
         if showsHeader {
             // Title and separator shadow
-            CGContextSetShadowWithColor(ctx, CGSize(width: 1.0, height: 1.0), 0.5,
-                    UIColor.blackColor().CGColor)
+            ctx!.setShadow(offset: CGSize(width: 1.0, height: 1.0), blur: 0.5,
+                    color: UIColor.black.cgColor)
 
             UIColor(white: 1.0, alpha: 1.0).setFill()
 
@@ -231,9 +242,9 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
             let attrs : [String :AnyObject] = [NSFontAttributeName : font,
                                                NSForegroundColorAttributeName: headerTextColor]
 
-            titleText?.drawInRect(titleRect, withAttributes: attrs)
+            titleText?.draw(in: titleRect, withAttributes: attrs)
 
-            CGContextFillRect(ctx, separatorRect)
+            ctx!.fill(separatorRect)
         }
     }
 }

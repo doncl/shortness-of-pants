@@ -22,8 +22,8 @@ class BBPDropDownCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = UIColor.clearColor()
-        textLabel!.textColor = UIColor.whiteColor()
+        backgroundColor = UIColor.clear
+        textLabel!.textColor = UIColor.white
         textLabel!.font = UIFont(name: "HelveticaNueue", size:22.0)
     }
     
@@ -34,11 +34,11 @@ class BBPDropDownCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        imageView!.frame = CGRectOffset(imageView!.frame, 6, 0)
-        textLabel!.frame = CGRectOffset(textLabel!.frame, 6, 0)
+        imageView!.frame = imageView!.frame.offsetBy(dx: 6, dy: 0)
+        textLabel!.frame = textLabel!.frame.offsetBy(dx: 6, dy: 0)
     }
 
-    func showSelectionMark(selected: Bool) {
-        selectionIndicator.hidden = !selected
+    func showSelectionMark(_ selected: Bool) {
+        selectionIndicator.isHidden = !selected
     }
 }

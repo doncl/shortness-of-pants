@@ -36,7 +36,7 @@ class ViewController: UIViewController, BBPDropDownDelegate {
         bbpDropDownSingle.isMultiple = false
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         bbpDropDownMulti.readjustHeight()
@@ -44,8 +44,8 @@ class ViewController: UIViewController, BBPDropDownDelegate {
     }
 
     // MARK: - BBPDropDownDelegate implementation
-    func requestNewHeight(dropDown: BBPDropdown, newHeight: CGFloat) {
-        UIView.animateWithDuration(0.6, delay:0.2, options:[.CurveEaseInOut], animations: {
+    func requestNewHeight(_ dropDown: BBPDropdown, newHeight: CGFloat) {
+        UIView.animate(withDuration: 0.6, delay:0.2, options:UIViewAnimationOptions(), animations: {
             if dropDown === self.bbpDropDownMulti {
                 self.bbpDropDownMultiHeightConstraint.constant = newHeight
             } else {
@@ -55,17 +55,17 @@ class ViewController: UIViewController, BBPDropDownDelegate {
         }, completion: nil)
     }
 
-    func dropDownView(dropDown: BBPDropdown, didSelectedItem item: String) {
+    func dropDownView(_ dropDown: BBPDropdown, didSelectedItem item: String) {
         // DO nothing for this example.
         print("single select item selected \(item)")
     }
 
-    func dropDownView(dropDown: BBPDropdown, dataList: [String]) {
+    func dropDownView(_ dropDown: BBPDropdown, dataList: [String]) {
         // DO nothing for this example.
         print("multi-select items selected \(dataList)")
     }
 
-    func dropDownWillAppear(dropDown: BBPDropdown) {
+    func dropDownWillAppear(_ dropDown: BBPDropdown) {
         print("dropdown will appear")
     }
 }

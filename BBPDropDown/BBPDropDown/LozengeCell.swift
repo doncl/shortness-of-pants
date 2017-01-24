@@ -9,7 +9,7 @@
 import UIKit
 
 protocol LozengeCellDelegate {
-    func deleteTapped(cell: LozengeCell)
+    func deleteTapped(_ cell: LozengeCell)
 }
 
 class LozengeCell: UICollectionViewCell {
@@ -29,18 +29,18 @@ class LozengeCell: UICollectionViewCell {
     }
 
     func setupDeleteTap() {
-        userInteractionEnabled = true
+        isUserInteractionEnabled = true
         
         if let _ = tapDeleteImageRecognizer {
             return
         }
 
-        deleteImage.userInteractionEnabled = true
+        deleteImage.isUserInteractionEnabled = true
         tapDeleteImageRecognizer = UITapGestureRecognizer()
         tapDeleteImageRecognizer!.numberOfTapsRequired = 1
         tapDeleteImageRecognizer!.numberOfTouchesRequired = 1
         tapDeleteImageRecognizer!.addTarget(self, action: #selector(LozengeCell.tappedDelete))
-        tapDeleteImageRecognizer!.enabled = true
+        tapDeleteImageRecognizer!.isEnabled = true
         addGestureRecognizer(tapDeleteImageRecognizer!)
     }
     
