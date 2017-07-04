@@ -12,23 +12,23 @@ class BBPTableModel: NSObject {
 
     static let regex: NSRegularExpression =
     try! NSRegularExpression(pattern:"<table.*?>(.*?)<\\/table>",
-            options:[.CaseInsensitive, .DotMatchesLineSeparators])
+            options:[.caseInsensitive, .dotMatchesLineSeparators])
 
     static let headRegex: NSRegularExpression =
     try! NSRegularExpression(pattern:"<thead.*?>(.*?)<\\/thead>",
-            options:[.CaseInsensitive, .DotMatchesLineSeparators])
+            options:[.caseInsensitive, .dotMatchesLineSeparators])
 
     static let bodyRegex: NSRegularExpression =
     try! NSRegularExpression(pattern:"<tbody.*?>(.*?)<\\/tbody>",
-            options:[.CaseInsensitive, .DotMatchesLineSeparators])
+            options:[.caseInsensitive, .dotMatchesLineSeparators])
 
     static let rowRegex: NSRegularExpression =
     try! NSRegularExpression(pattern:"<tr.*?>(.*?)<\\/tr>",
-            options:[.CaseInsensitive, .DotMatchesLineSeparators])
+            options:[.caseInsensitive, .dotMatchesLineSeparators])
 
     static let dataRegex: NSRegularExpression =
     try! NSRegularExpression(pattern:"<td><a.*?>(.*?)<\\/a><\\/td>|<td>(.*?)<\\/td>",
-            options:[.CaseInsensitive, .DotMatchesLineSeparators])
+            options:[.caseInsensitive, .dotMatchesLineSeparators])
 
     var rowData: Array<Array<String>> = [[]]
     
@@ -48,18 +48,18 @@ class BBPTableModel: NSObject {
         }
     }
 
-    func dataAtLocation(row: Int, column: Int) -> String {
+    func dataAtLocation(_ row: Int, column: Int) -> String {
         return rowData[row][column];
     }
 
-    func getCellType(row: Int) -> CellType {
+    func getCellType(_ row: Int) -> CellType {
         if (row == 0) {
-            return .ColumnHeading
+            return .columnHeading
         }
-        return ((row + 1) % 2) == 0 ? .DataEven : .DataOdd
+        return ((row + 1) % 2) == 0 ? .dataEven : .dataOdd
     }
 
-    func buildFromText(text: String) ->Bool {
+    func buildFromText(_ text: String) ->Bool {
         var colCount: Int = 0
         rowData = Array<Array<String>>()
 
@@ -99,11 +99,11 @@ class BBPTableModel: NSObject {
         return true
     }
 
-    func strMatch(pattern: NSRegularExpression, text:String, index:Int) -> String? {
-        let textToSearch = text.stringByTrimmingCharactersInSet(
-            NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    func strMatch(_ pattern: NSRegularExpression, text:String, index:Int) -> String? {
+        let textToSearch = text.trimmingCharacters(
+            in: CharacterSet.whitespacesAndNewlines)
 
-        let result = pattern.firstMatchInString(textToSearch, options:[],
+        let result = pattern.firstMatch(in: textToSearch, options:[],
                     range:NSMakeRange(0, textToSearch.characters.count))!
 
         let matchRange = result.range
@@ -111,34 +111,33 @@ class BBPTableModel: NSObject {
             return nil
         }
 
-        let matchGroupRange = result.rangeAtIndex(index)
+        let matchGroupRange = result.rangeAt(index)
         let nsString = textToSearch as NSString
-        let str =  nsString.substringWithRange(matchGroupRange)
+        let str =  nsString.substring(with: matchGroupRange)
         return str
     }
 
-    func strsMatch(pattern: NSRegularExpression, text:String, index: Int)
+    func strsMatch(_ pattern: NSRegularExpression, text:String, index: Int)
                     -> Array<String> {
 
         var strings:Array<String> = []
-        let textToSearch = text.stringByTrimmingCharactersInSet(
-        NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let textToSearch = text.trimmingCharacters(
+        in: CharacterSet.whitespacesAndNewlines)
 
-        let matches = pattern.matchesInString(textToSearch, options:[],
+        let matches = pattern.matches(in: textToSearch, options:[],
                 range:NSMakeRange(0, textToSearch.characters.count))
 
         for match in matches {
-            var count = match.numberOfRanges
-            var matchRange = match.rangeAtIndex(index)
+            var matchRange = match.rangeAt(index)
             if matchRange.location == NSNotFound {
-               matchRange = match.rangeAtIndex(index + 1)
+               matchRange = match.rangeAt(index + 1)
                if matchRange.location == NSNotFound {
                    fatalError("dang")
                }
             }
 
             let nsString = textToSearch as NSString
-            let str = nsString.substringWithRange(matchRange)
+            let str = nsString.substring(with: matchRange)
             strings.append(str)
         }
         return strings
@@ -151,20 +150,18 @@ class BBPTableModel: NSObject {
     //  UICollectionViewLayout-derived object (BBPTableLayout) can work for each part of the
     //  table identically.
     //
-    static func buildFixedAndNonFixedModels(srcModel: BBPTableModel,
-                                            inout fixedColumnModel: BBPTableModel?,
-                                            inout nonFixedColumnModel: BBPTableModel?,
+    static func buildFixedAndNonFixedModels(_ srcModel: BBPTableModel,
+                                            fixedColumnModel: inout BBPTableModel?,
+                                            nonFixedColumnModel: inout BBPTableModel?,
                                             fixedColumnCount: Int) {
         let rows = srcModel.numberOfRows
-        var cols = srcModel.numberOfColumns
-        
         fixedColumnModel = BBPTableModel()
         nonFixedColumnModel = BBPTableModel()
                                                 
         var fixedOuterArray = Array<Array<String>>()
         var nonFixedOuterArray = Array<Array<String>>()
                                                 
-        for (var i = 0; i < rows; i++) {
+        for i in 0..<rows {
             var srcRow = srcModel.rowData[i];
             let fixedRow = srcRow[0...fixedColumnCount - 1]
             let nonFixedRow = srcRow[fixedColumnCount...srcRow.count - 1]

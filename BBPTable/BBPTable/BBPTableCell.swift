@@ -9,9 +9,9 @@
 import UIKit
 
 enum CellType : Int {
-    case ColumnHeading = 1
-    case DataOdd = 2
-    case DataEven = 4
+    case columnHeading = 1
+    case dataOdd = 2
+    case dataEven = 4
 }
 
 class BBPTableCell: UICollectionViewCell {
@@ -47,10 +47,10 @@ class BBPTableCell: UICollectionViewCell {
         super.init(frame: frame)
 
         label = UILabel(frame: self.contentView.bounds)
-        label.setContentHuggingPriority(0, forAxis:.Horizontal)
-        label.setContentCompressionResistancePriority(1000, forAxis:.Horizontal)
+        label.setContentHuggingPriority(0, for:.horizontal)
+        label.setContentCompressionResistancePriority(1000, for:.horizontal)
         label.numberOfLines = 0
-        setupCellInfo(.DataOdd)
+        setupCellInfo(.dataOdd)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
@@ -61,7 +61,7 @@ class BBPTableCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    static func initializeCellProperties(props: CellProperties) {
+    static func initializeCellProperties(_ props: CellProperties) {
         headerColor = props.headerColor!
         
         headerFontName = props.headerFontName!
@@ -74,46 +74,42 @@ class BBPTableCell: UICollectionViewCell {
         
         oddRowColor = props.oddRowColor!
         evenRowColor = props.evenRowColor!
-        
         borderColor = props.borderColor!
         borderWidth = props.borderWidth!
     }
     
     // MARK: instance methods
-    func setCellText(text: String) {
+    func setCellText(_ text: String) {
         label.text = text
     }
     
     func setupConstraints() {
-        
-        var cellLabel = label
-        
-        var viewDict = ["cellLabel" : cellLabel]
-        var horizontalConstraints =
-        NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[cellLabel]-0-|",
+        let viewDict = ["cellLabel" : label! as Any]
+        let horizontalConstraints =
+        NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[cellLabel]-0-|",
             options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict)
         
         let centeringXConstraint =
-        NSLayoutConstraint(item: self, attribute:.CenterX,
-            relatedBy:.Equal, toItem:label,
-            attribute:.CenterX, multiplier:1.0, constant:0.0)
+        NSLayoutConstraint(item: self, attribute:.centerX,
+            relatedBy:.equal, toItem:label,
+            attribute:.centerX, multiplier:1.0, constant:0.0)
         
         let centeringYConstraint =
-        NSLayoutConstraint(item: self, attribute:.CenterY,
-            relatedBy:.Equal, toItem:label,
-            attribute:.CenterY, multiplier:1.0, constant:0.0)
+        NSLayoutConstraint(item: self, attribute:.centerY,
+            relatedBy:.equal, toItem:label,
+            attribute:.centerY, multiplier:1.0, constant:0.0)
         
         let centeringConstraints = [centeringXConstraint, centeringYConstraint]
         
         addConstraints(horizontalConstraints)
-        NSLayoutConstraint.activateConstraints(horizontalConstraints)
-        NSLayoutConstraint.activateConstraints(centeringConstraints)
+        NSLayoutConstraint.activate(horizontalConstraints)
+        NSLayoutConstraint.activate(centeringConstraints)
     }
     
-    func setupCellInfo(cellType: CellType) {
+    func setupCellInfo(_ cellType: CellType) {
         let ci = BBPTableCell.getCellInfoForTypeOfCell(cellType)
         layer.borderWidth = ci.borderWidth!
-        layer.borderColor = ci.borderColor!.CGColor
+        layer.borderColor = ci.borderColor!.cgColor
         label.baselineAdjustment = ci.baselineAdjustment!
         label.backgroundColor = ci.backgroundColor
         backgroundColor = ci.backgroundColor
@@ -122,21 +118,21 @@ class BBPTableCell: UICollectionViewCell {
         label.textColor = ci.textColor!
     }
     
-    static func getCellInfoForTypeOfCell(cellType: CellType) -> CellInfo {
+    static func getCellInfoForTypeOfCell(_ cellType: CellType) -> CellInfo {
         let info = CellInfo()
         info.borderColor = BBPTableCell.borderColor
         info.borderWidth = BBPTableCell.borderWidth
-        info.baselineAdjustment = .AlignCenters
-        info.textAlignment = .Center
+        info.baselineAdjustment = .alignCenters
+        info.textAlignment = .center
         
         // TODO: a Swift switch statement might be better here.
-        if cellType == .DataOdd || cellType == .DataEven {
+        if cellType == .dataOdd || cellType == .dataEven {
             info.textColor = BBPTableCell.dataCellTextColor
             info.fontSize = BBPTableCell.dataCellFontSize
             info.fontName = BBPTableCell.dataCellFontName
-            info.backgroundColor = cellType == .DataOdd ?
+            info.backgroundColor = cellType == .dataOdd ?
                 BBPTableCell.oddRowColor : BBPTableCell.evenRowColor
-        } else if cellType == .ColumnHeading {
+        } else if cellType == .columnHeading {
             info.backgroundColor = BBPTableCell.headerColor
             info.textColor = BBPTableCell.headerTextColor
             info.fontSize = BBPTableCell.headerFontSize

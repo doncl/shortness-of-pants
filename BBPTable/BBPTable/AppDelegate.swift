@@ -13,21 +13,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(application    : UIApplication, didFinishLaunchingWithOptions
-        launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application    : UIApplication, didFinishLaunchingWithOptions
+        launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let vc = BBPTableViewController(loadMode:.DefaultView)
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let vc = BBPTableViewController(loadMode:.defaultView)
         setupTableProperties(vc)
             
         window?.rootViewController = vc
         vc.model = BBPTableModel()
-        vc.model?.buildFromText(self.generateTestHtml())
+        _ = vc.model?.buildFromText(self.generateTestHtml())
         window?.makeKeyAndVisible()
         return true
     }
     
-    private func setupTableProperties(viewController: BBPTableViewController) {
+    fileprivate func setupTableProperties(_ viewController: BBPTableViewController) {
         let props = TableProperties()
         props.headerColor = UIColor(red:0.271, green:0.271, blue: 0.271, alpha:1)
         props.fixedColumns = 2
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         viewController.tableProperties = props
     }
     
-    private func generateTestHtml() -> String{
+    fileprivate func generateTestHtml() -> String{
         let htmlTable = 
             "<table width=\"603\" height=\"339\" class=\"responsive-table\">" +
                 "<thead>" +
@@ -68,19 +68,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return htmlTable
     }
 
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
     }
 }
 

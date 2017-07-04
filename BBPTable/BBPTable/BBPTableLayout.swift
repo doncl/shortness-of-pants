@@ -7,6 +7,30 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class BBPTableLayout: UICollectionViewLayout {
     //MARK: static constants
@@ -24,45 +48,48 @@ class BBPTableLayout: UICollectionViewLayout {
     var columns: Int?
 
     //MARK: UICollectionViewLayout implementation.
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) ->
-        UICollectionViewLayoutAttributes! {
-        let attrs = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+    override func layoutAttributesForItem(at indexPath: IndexPath) ->
+        UICollectionViewLayoutAttributes? {
+        let attrs = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         attrs.frame = frameForItemAtIndexPath(indexPath)
         return attrs
     }
 
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var attrsArray: [UICollectionViewLayoutAttributes] = []
-        
-        for (var i = 0; i < columns; i++) {
-            for (var j = 0; j < rows; j++) {
+      
+        guard let columns = columns, let rows = rows else {
+          return attrsArray
+        }
+        for i in 0..<columns {
+            for j in 0..<rows {
                 let cellRect = getCellRect(i, row: j)
-                if (CGRectIntersectsRect(cellRect, rect)) {
-                    let indexPath = NSIndexPath(forItem:i, inSection:j)
-                    let attrs = layoutAttributesForItemAtIndexPath(indexPath)
-                    attrsArray.append(attrs)
+                if (cellRect.intersects(rect)) {
+                    let indexPath = IndexPath(item:i, section:j)
+                    let attrs = layoutAttributesForItem(at: indexPath)
+                    attrsArray.append(attrs!)
                 }
             }
         }
         return attrsArray
     }
     
-    override func collectionViewContentSize() -> CGSize {
+    override var collectionViewContentSize : CGSize {
         return CGSize(width: tableWidth!, height: tableHeight!)
     }
     
-    private func frameForItemAtIndexPath(indexPath:NSIndexPath) -> CGRect {
+    fileprivate func frameForItemAtIndexPath(_ indexPath:IndexPath) -> CGRect {
         // section is row, row is column.
         return getCellRect(indexPath.row, row: indexPath.section)
     }
     
-    private func getCellRect(column: Int, row: Int) -> CGRect {
+    fileprivate func getCellRect(_ column: Int, row: Int) -> CGRect {
         var x = CGFloat(0.0)
         let y = CGFloat(row) * rowHeight!
         let height = rowHeight!
         
         // The column widths are variable values, so they have to be added up.
-        for (var i = 0; i < column; i++) {
+        for i in 0..<column {
             x += columnWidths[i]
         }
         let width = columnWidths[column]
@@ -71,13 +98,17 @@ class BBPTableLayout: UICollectionViewLayout {
     }
     
     //MARK: CalculateCellSizes implementation.
-    func calculateCellSizes(model: BBPTableModel) {
+    func calculateCellSizes(_ model: BBPTableModel) {
         tableWidth = 0.0
         columns = model.numberOfColumns
         rows = model.numberOfRows
         rowHeight = 0.0
-        
-        for (var i = 0; i < columns; i++) {
+      
+        guard let columns = columns else {
+          return
+        }
+      
+        for i in 0..<columns {
             let columnSize = calculateColumnSize(model, columnIndex: i, rowCount: rows!)
             columnWidths.append(columnSize.width)
             if columnSize.height > rowHeight {
@@ -88,14 +119,14 @@ class BBPTableLayout: UICollectionViewLayout {
         tableHeight = rowHeight! * CGFloat(rows!)
     }
     
-    private func calculateColumnSize(
-        model: BBPTableModel,
+    fileprivate func calculateColumnSize(
+        _ model: BBPTableModel,
         columnIndex: Int,
         rowCount: Int) -> CGSize {
         var largestWidth = CGFloat(0.0)
         var largestHeight = CGFloat(0.0)
             
-        for (var i = 0;  i < rowCount; i++) {
+        for i in 0..<rowCount {
             let cellData = model.dataAtLocation(i, column: columnIndex)
             let type = model.getCellType(i)
             let cellInfo = BBPTableCell.getCellInfoForTypeOfCell(type)
@@ -103,12 +134,12 @@ class BBPTableLayout: UICollectionViewLayout {
             
             // The Interwebs suggests we'll get better and more accurate required lengths for
             // strings by replacing the spaces with a capital letter glyph.
-            let newString = cellData.stringByReplacingOccurrencesOfString(" ", withString: "X")
+            let newString = cellData.replacingOccurrences(of: " ", with: "X")
             let attributes = [NSFontAttributeName : font!]
             
-            let rect = NSString(string: newString).boundingRectWithSize(
-                CGSize(width:DBL_MAX, height:DBL_MAX),
-                options:NSStringDrawingOptions.UsesLineFragmentOrigin,
+            let rect = NSString(string: newString).boundingRect(
+                with: CGSize(width: CGFloat.greatestFiniteMagnitude, height:CGFloat.greatestFiniteMagnitude),
+                options:NSStringDrawingOptions.usesLineFragmentOrigin,
                 attributes:attributes,
                 context:nil)
             

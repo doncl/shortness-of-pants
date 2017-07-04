@@ -9,8 +9,8 @@
 import UIKit
 
 enum TableLoadMode {
-    case DefaultView
-    case CreateView
+    case defaultView
+    case createView
 }
 
 class BBPTableViewController: UIViewController, UICollectionViewDataSource,
@@ -53,7 +53,7 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
         let nonFixedLayout = BBPTableLayout()
         nonFixedLayout.calculateCellSizes(nonFixedModel!)
 
-        if loadMode == .DefaultView {
+        if loadMode == .defaultView {
             super.loadView() // Go ahead and call superclass to get a plain vanilla UIView.
         } else {
             let frame = CGRect(x: 0, y:0, width:viewWidth!, height: fixedLayout.tableHeight!)
@@ -69,14 +69,14 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
         nonFixedView = createCollectionView(view, layout: nonFixedLayout,
             x: nonFixedX, width: nonFixedWidth)
         
-        nonFixedView!.scrollEnabled = true
+        nonFixedView!.isScrollEnabled = true
         nonFixedView!.showsHorizontalScrollIndicator = true
         
         view.addSubview(fixedView!)
         view.addSubview(nonFixedView!)
     }
     
-    private func createCollectionView(parentView: UIView,
+    fileprivate func createCollectionView(_ parentView: UIView,
         layout: BBPTableLayout, x: CGFloat, width: CGFloat) -> UICollectionView {
             
         let frame = CGRect(x: x, y:parentView.frame.origin.y, width:width,
@@ -87,14 +87,14 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.registerClass(BBPTableCell.self,
+        collectionView.register(BBPTableCell.self,
             forCellWithReuseIdentifier: "cellIdentifier")
-        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionView.backgroundColor = UIColor.white
         return collectionView
     }
     
     //MARK: Handling synchronized scrolling.
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == fixedView! {
             matchScrollView(nonFixedView!, second:fixedView!)
         } else {
@@ -102,25 +102,25 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
         }
     }
     
-    private func matchScrollView(first: UIScrollView, second: UIScrollView) {
+    fileprivate func matchScrollView(_ first: UIScrollView, second: UIScrollView) {
         var offset = first.contentOffset
         offset.y = second.contentOffset.y
         first.setContentOffset(offset, animated:false)
     }
     
     //MARK: UICollectionViewDataSource methods
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
         let model = getModel(collectionView)
         return model.numberOfColumns
     }
     
-    func collectionView(collectionView: UICollectionView,
-        cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             
         let model = getModel(collectionView)
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cellIdentifier",
-            forIndexPath: indexPath) as! BBPTableCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellIdentifier",
+            for: indexPath) as! BBPTableCell
             
         let layout = collectionView.collectionViewLayout as! BBPTableLayout
         let columnIdx = indexPath.row
@@ -135,24 +135,24 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
         return cell
     }
 
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         let model = getModel(collectionView)
         return model.numberOfRows
     }
     
-    private func getCellType(indexPath: NSIndexPath) -> CellType {
+    fileprivate func getCellType(_ indexPath: IndexPath) -> CellType {
         var cellType: CellType
         if indexPath.section == 0 {
-            cellType = .ColumnHeading
+            cellType = .columnHeading
         } else if ((indexPath.section + 1) % 2) == 0 {
-            cellType = .DataEven
+            cellType = .dataEven
         } else {
-            cellType = .DataOdd
+            cellType = .dataOdd
         }
         return cellType
     }
     
-    private func getModel(view: UICollectionView) -> BBPTableModel {
+    fileprivate func getModel(_ view: UICollectionView) -> BBPTableModel {
         if (view == fixedView!) {
             return fixedModel!
         } else {
