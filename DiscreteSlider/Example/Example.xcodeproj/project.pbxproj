@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4773E3451F33B20800913498 /* DiscreteSlider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4773E3441F33B20800913498 /* DiscreteSlider.framework */; };
 		4773E3461F33B21900913498 /* DiscreteSlider.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4773E3441F33B20800913498 /* DiscreteSlider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		47AF8A821F3370F7002B1552 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AF8A811F3370F7002B1552 /* AppDelegate.swift */; };
 		47AF8A841F3370F7002B1552 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AF8A831F3370F7002B1552 /* ViewController.swift */; };
@@ -45,7 +44,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4773E3451F33B20800913498 /* DiscreteSlider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
