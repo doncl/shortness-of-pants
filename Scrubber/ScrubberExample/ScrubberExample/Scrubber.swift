@@ -25,12 +25,28 @@ class Scrubber: UIControl {
   private let textXOffset : CGFloat = 18.0
   private let textYOffset : CGFloat = 4.0
   private let textSize : CGFloat = 12.0
+  private let trackX : CGFloat = 59.0
+  private let trackY : CGFloat = 28.0
+  private let trackWidth : CGFloat = 6.0
+  private let trackDistanceFromBottom : CGFloat = 30.0
+  private let trackRadii : CGSize = CGSize(width: 20.0, height: 20.0)
+  private let thumbRadii : CGSize = CGSize(width: 30.0, height: 30.0)
+  
+  private let thumbBorderColor : CGColor = #colorLiteral(red: 0.8784313725, green: 0.8784313725, blue: 0.8784313725, alpha: 1).cgColor
+  private let thumbBorderWidth : CGFloat = 1.0
   
   private let bracketColor : CGColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1).cgColor
   private let bracketBorderColor : CGColor = #colorLiteral(red: 0.8784313725, green: 0.8784313725, blue: 0.8784313725, alpha: 1).cgColor
   
-  private let track : CAShapeLayer = CAShapeLayer()  
-  
+  private let scrubberTrack : CAShapeLayer = CAShapeLayer()
+  private let scrubberTrackColor : CGColor = #colorLiteral(red: 0.7411764706, green: 0.7411764706, blue: 0.7411764706, alpha: 1).cgColor
+ 
+  private let thumb : CAShapeLayer = CAShapeLayer()
+  private let thumbX : CGFloat = -3.0
+  private let thumbWidth : CGFloat = 12.0
+  private let thumbHeight : CGFloat = 24.0
+
+ 
   var startIndex : Int = 1
   var endIndex : Int = 100
   
@@ -67,6 +83,33 @@ class Scrubber: UIControl {
     
     setupTextLabel(newest, text: "Newest", parentRect: topBracket.frame)
     setupTextLabel(oldest, text: "Oldest", parentRect: bottomBracket.frame)
+    
+    layer.addSublayer(scrubberTrack)
+    let trackRect : CGRect = CGRect(x: trackX, y: trackY, width: trackWidth,
+                                    height: height - trackDistanceFromBottom - trackY)
+    
+    
+    let trackPath = UIBezierPath(roundedRect: trackRect, byRoundingCorners: UIRectCorner.allCorners,
+                            cornerRadii: trackRadii)
+    
+    
+    scrubberTrack.path = trackPath.cgPath
+    scrubberTrack.fillColor = scrubberTrackColor
+    
+    scrubberTrack.addSublayer(thumb)
+    thumb.masksToBounds = false
+    
+    let thumbRect : CGRect = CGRect(x: trackRect.origin.x + thumbX , y: trackRect.origin.y,
+                                    width: thumbWidth, height: thumbHeight)
+    
+    let thumbPath = UIBezierPath(roundedRect: thumbRect,
+                                 byRoundingCorners: UIRectCorner.allCorners,
+                                 cornerRadii: thumbRadii)
+    
+    thumb.borderColor = thumbBorderColor
+    thumb.fillColor = UIColor.white.cgColor
+    thumb.borderWidth = thumbBorderWidth
+    thumb.path = thumbPath.cgPath
   }
   
   required init?(coder aDecoder: NSCoder) {
