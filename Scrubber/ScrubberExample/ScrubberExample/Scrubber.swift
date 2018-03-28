@@ -9,9 +9,9 @@
 import UIKit
 
 class Scrubber: UIControl {
-  private let width : CGFloat = 77.0
-  private let height : CGFloat = 275.0
-  private let bracketHeight : CGFloat = 22.0
+  private let width : CGFloat = 108.0
+  private let height : CGFloat = 385.0
+  private let bracketHeight : CGFloat = 31.0
   private let bracketBorderWidth : CGFloat = 1.0
   private let touchSlop : CGFloat = 10.0
   
@@ -24,12 +24,12 @@ class Scrubber: UIControl {
   private let newest : CATextLayer = CATextLayer()
   private let oldest : CATextLayer = CATextLayer()
   private let textXOffset : CGFloat = 18.0
-  private let textYOffset : CGFloat = 4.0
+  private let textYOffset : CGFloat = 9.0
   private let textSize : CGFloat = 12.0
-  private let trackX : CGFloat = 59.0
-  private let trackY : CGFloat = 28.0
+  private let trackX : CGFloat = 78.0
+  private let trackY : CGFloat = 38.0
   private let trackWidth : CGFloat = 6.0
-  private let trackDistanceFromBottom : CGFloat = 30.0
+  private let trackDistanceFromBottom : CGFloat = 40.0
   private let trackRadii : CGSize = CGSize(width: 20.0, height: 20.0)
   private let thumbRadii : CGSize = CGSize(width: 30.0, height: 30.0)
   
