@@ -163,6 +163,10 @@ class Scrubber: UIControl {
     thumb.lineWidth = thumbBorderWidth
     thumb.fillColor = UIColor.white.cgColor
     thumb.allowsEdgeAntialiasing = true
+    thumb.shadowColor = UIColor.darkGray.cgColor
+    thumb.shadowRadius = 4.0
+    thumb.shadowOpacity = 0.4
+    thumb.shadowOffset = CGSize(width: 0, height: 0)
     thumb.path = thumbPath.cgPath
   }
   
