@@ -28,13 +28,13 @@ class Scrubber: UIControl {
   private let textSize : CGFloat = 12.0
   private let trackX : CGFloat = 78.0
   private let trackY : CGFloat = 38.0
-  private let trackWidth : CGFloat = 6.0
+  private let trackWidth : CGFloat = 8.0
   private let trackDistanceFromBottom : CGFloat = 40.0
   private let trackRadii : CGSize = CGSize(width: 20.0, height: 20.0)
   private let thumbRadii : CGSize = CGSize(width: 30.0, height: 30.0)
   
   private let thumbBorderColor : CGColor = #colorLiteral(red: 0.8784313725, green: 0.8784313725, blue: 0.8784313725, alpha: 1).cgColor
-  private let thumbBorderWidth : CGFloat = 1.0
+  private let thumbBorderWidth : CGFloat = 1.4
   
   private let bracketColor : CGColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1).cgColor
   private let bracketBorderColor : CGColor = #colorLiteral(red: 0.8784313725, green: 0.8784313725, blue: 0.8784313725, alpha: 1).cgColor
@@ -44,9 +44,9 @@ class Scrubber: UIControl {
  
   private let thumb : CAShapeLayer = CAShapeLayer()
   private let thumbBorder : CAShapeLayer = CAShapeLayer()
-  private let thumbX : CGFloat = -3.0
-  private let thumbWidth : CGFloat = 12.0
-  private let thumbHeight : CGFloat = 24.0
+  private let thumbX : CGFloat = -5.0
+  private let thumbWidth : CGFloat = 18.0
+  private let thumbHeight : CGFloat = 34.0
   private var thumbYOrg : CGFloat = 0.0
  
   var startIndex : Int = 1
