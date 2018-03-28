@@ -51,7 +51,6 @@ class Scrubber: UIControl {
   var startIndex : Int = 1
   var endIndex : Int = 100
   var maxY : CGFloat = 0
-
   
   var trackRect : CGRect = .zero
   
@@ -62,10 +61,8 @@ class Scrubber: UIControl {
       } else if thumbY < 0 {
         thumbY = 0
       }
-      //print("newValue = \(thumbY)")
-      let yOffset = thumbY - oldValue
-      let newPosition = CGPoint(x: thumb.position.x, y: thumbY)
-      thumb.position = newPosition
+      let xlate = CATransform3DMakeTranslation(0, thumbY, 0)
+      thumb.transform = xlate
     }
   }
   
@@ -107,14 +104,15 @@ class Scrubber: UIControl {
     setupTextLabel(oldest, text: "Oldest", parentRect: bottomBracket.frame)
     
     layer.addSublayer(scrubberTrack)
+    let trackHeight = height - trackDistanceFromBottom - trackY
     trackRect = CGRect(x: trackX, y: trackY, width: trackWidth,
-                                    height: height - trackDistanceFromBottom - trackY)
+                                    height: trackHeight)
     
     
     let trackPath = UIBezierPath(roundedRect: trackRect, byRoundingCorners: UIRectCorner.allCorners,
                             cornerRadii: trackRadii)
     
-    maxY = trackRect.maxY - (thumbHeight / 2.0)
+    maxY = trackHeight - thumbHeight
     scrubberTrack.path = trackPath.cgPath
     scrubberTrack.fillColor = scrubberTrackColor
     
@@ -155,9 +153,9 @@ class Scrubber: UIControl {
       return
     }
     if hitTest(location) {
+      thumbYOrg = thumbY
       initialThumbTouchY = location.y
       inSlide = true
-      print("inSlide = true")
     }
   }
   
@@ -165,15 +163,13 @@ class Scrubber: UIControl {
     guard let path = thumb.path else {
       return false
     }
-    let adjustedRect = path.boundingBoxOfPath.offsetBy(dx: 0.0, dy: thumb.position.y)
+    let adjustedRect = path.boundingBoxOfPath.offsetBy(dx: 0.0, dy: thumb.transform.m42)
     let ret = adjustedRect.contains(point)
-    print("hitTest returns \(ret)")
     return ret
   }
   
   fileprivate func calculateNewThumbY(_ location: CGPoint) {
     let deltaY = location.y - initialThumbTouchY
-//    print("deltaY = \(deltaY)")
     thumbY = thumbYOrg + deltaY
   }
   
@@ -193,6 +189,7 @@ class Scrubber: UIControl {
     defer {
       initialThumbTouchY = 0.0
       inSlide = false
+      thumbYOrg = 0.0
     }
     
     guard inSlide else {
@@ -204,7 +201,6 @@ class Scrubber: UIControl {
       return
     }
     
-    print("location = \(location.y)")
     calculateNewThumbY(location)
   }
   
