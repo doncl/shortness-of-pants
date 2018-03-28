@@ -20,8 +20,8 @@ class Scrubber: UIControl {
   private let bottomBracket : CALayer = CALayer()
   private let bottomBracketBorder : CALayer = CALayer()
   
-  private let newest : UILabel = UILabel()
-  private let oldest : UILabel = UILabel()
+  private let newest : CATextLayer = CATextLayer()
+  private let oldest : CATextLayer = CATextLayer()
   private let textXOffset : CGFloat = 18.0
   private let textYOffset : CGFloat = 4.0
   private let textSize : CGFloat = 12.0
@@ -100,8 +100,8 @@ class Scrubber: UIControl {
                                        height: bracketBorderWidth)
     bottomBracketBorder.backgroundColor = bracketBorderColor
     
-    setupTextLabel(newest, text: "Newest", parentRect: topBracket.frame)
-    setupTextLabel(oldest, text: "Oldest", parentRect: bottomBracket.frame)
+    setupTextLayer(newest, text: "Newest", parentLayer: topBracket)
+    setupTextLayer(oldest, text: "Oldest", parentLayer: bottomBracket)
     
     layer.addSublayer(scrubberTrack)
     let trackHeight = height - trackDistanceFromBottom - trackY
@@ -212,16 +212,51 @@ class Scrubber: UIControl {
       return touch.location(in: touch.view)
   }
   
-  private func setupTextLabel(_ label: UILabel, text: String, parentRect : CGRect) {
-    
-    addSubview(label)
-    
-    label.text = text
-    label.font = UIFont.systemFont(ofSize: textSize)
-    label.textColor = #colorLiteral(red: 0.2941176471, green: 0.2941176471, blue: 0.2941176471, alpha: 1)
-    label.textAlignment = .center
-    label.backgroundColor = .clear
-    
-    label.frame = parentRect
+  private func setupTextLayer(_ textLayer: CATextLayer, text: String, parentLayer : CALayer) {
+    parentLayer.addSublayer(textLayer)
+    let attrsString = NSAttributedString(string: text, attributes: [
+      NSAttributedStringKey.font : UIFont.systemFont(ofSize: textSize),
+      NSAttributedStringKey.foregroundColor : #colorLiteral(red: 0.2941176471, green: 0.2941176471, blue: 0.2941176471, alpha: 1),
+      NSAttributedStringKey.backgroundColor : UIColor.clear,
+    ])
+
+    textLayer.alignmentMode = kCAAlignmentCenter
+    textLayer.string = attrsString
+    textLayer.frame = parentLayer.bounds.offsetBy(dx: 0.0, dy: textYOffset)
+    textLayer.contentsScale = UIScreen.main.scale
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
