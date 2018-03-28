@@ -13,6 +13,7 @@ class Scrubber: UIControl {
   private let height : CGFloat = 275.0
   private let bracketHeight : CGFloat = 22.0
   private let bracketBorderWidth : CGFloat = 1.0
+  private let touchSlop : CGFloat = 10.0
   
   private let topBracket : CALayer = CALayer()
   private let topBracketBorder : CALayer = CALayer()
@@ -61,9 +62,13 @@ class Scrubber: UIControl {
       } else if thumbY < 0 {
         thumbY = 0
       }
-      let xlate = CATransform3DMakeTranslation(0, thumbY, 0)
-      thumb.transform = xlate
-    }
+     }
+  }
+  
+  private var thumbRect : CGRect {
+    let r : CGRect = CGRect(x: trackRect.origin.x + thumbX , y: trackRect.origin.y + thumbY,
+                            width: thumbWidth, height: thumbHeight)
+    return r
   }
   
   private var initialThumbTouchY : CGFloat = 0.0
@@ -73,8 +78,9 @@ class Scrubber: UIControl {
     super.init(frame: .zero)
     translatesAutoresizingMaskIntoConstraints = false
     bounds = CGRect(x: 0, y: 0, width: width, height: height)
-    layer.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1).cgColor
-    
+    backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
+    layer.backgroundColor = backgroundColor?.cgColor
+
     layer.shadowColor = UIColor.darkGray.cgColor
     layer.shadowOpacity = 0.4
     layer.shadowOffset = CGSize(width: -3.0, height: -3.0)
@@ -109,33 +115,17 @@ class Scrubber: UIControl {
                                     height: trackHeight)
     
     
-    let trackPath = UIBezierPath(roundedRect: trackRect, byRoundingCorners: UIRectCorner.allCorners,
-                            cornerRadii: trackRadii)
+    let trackPath = UIBezierPath(roundedRect: trackRect,
+                                 byRoundingCorners: UIRectCorner.allCorners,
+                                 cornerRadii: trackRadii)
     
     maxY = trackHeight - thumbHeight
     scrubberTrack.path = trackPath.cgPath
     scrubberTrack.fillColor = scrubberTrackColor
     
-    scrubberTrack.addSublayer(thumb)
-    thumb.masksToBounds = false
-    
-    let thumbRect = CGRect(x: trackRect.origin.x + thumbX , y: trackRect.origin.y,
-                           width: thumbWidth, height: thumbHeight)
-    
-    thumbYOrg = thumbRect.origin.y
-    
-    let thumbPath = UIBezierPath(roundedRect: thumbRect,
-                                 byRoundingCorners: UIRectCorner.allCorners,
-                                 cornerRadii: thumbRadii)
-    
-    thumb.zPosition = 0.0
-    thumb.strokeColor = thumbBorderColor
-    thumb.lineWidth = thumbBorderWidth
-    thumb.fillColor = UIColor.white.cgColor
-    thumb.path = thumbPath.cgPath
+    thumbYOrg = trackRect.origin.y
     isUserInteractionEnabled = true
     isMultipleTouchEnabled = false
-    
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -146,6 +136,23 @@ class Scrubber: UIControl {
     get {
       return CGSize(width: width, height: height)
     }
+  }
+  
+  fileprivate func drawThumbLayer() {
+    scrubberTrack.addSublayer(thumb)
+    thumb.masksToBounds = false
+
+    let r = thumbRect
+    
+    let thumbPath = UIBezierPath(roundedRect: r, byRoundingCorners: UIRectCorner.allCorners,
+                                 cornerRadii: thumbRadii)
+
+    thumb.zPosition = 0.0
+    thumb.strokeColor = thumbBorderColor
+    thumb.lineWidth = thumbBorderWidth
+    thumb.fillColor = UIColor.white.cgColor
+    thumb.allowsEdgeAntialiasing = true
+    thumb.path = thumbPath.cgPath
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -160,17 +167,23 @@ class Scrubber: UIControl {
   }
   
   private func hitTest(_ point : CGPoint) -> Bool {
-    guard let path = thumb.path else {
-      return false
-    }
-    let adjustedRect = path.boundingBoxOfPath.offsetBy(dx: 0.0, dy: thumb.transform.m42)
-    let ret = adjustedRect.contains(point)
-    return ret
+    let r = thumbRect
+    let twoXSlop = touchSlop * 2.0
+    let slopRect : CGRect = CGRect(x: r.origin.x - touchSlop, y: r.origin.y - touchSlop,
+                                   width: r.width + twoXSlop, height: r.height + twoXSlop)
+    return slopRect.contains(point)
   }
   
   fileprivate func calculateNewThumbY(_ location: CGPoint) {
     let deltaY = location.y - initialThumbTouchY
     thumbY = thumbYOrg + deltaY
+    setNeedsDisplay()
+  }
+  
+  override func draw(_ rect: CGRect) {
+    super.draw(rect)
+    
+    drawThumbLayer()
   }
   
   override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -182,9 +195,7 @@ class Scrubber: UIControl {
     }
     calculateNewThumbY(location)
   }
-  
-  
-  
+
   override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     defer {
       initialThumbTouchY = 0.0
@@ -197,8 +208,7 @@ class Scrubber: UIControl {
     }
 
     guard let location = locationOfFirstTouch(inTouches: touches) else {
-      print("touchesEnded - couldn't get location")
-      return
+     return
     }
     
     calculateNewThumbY(location)

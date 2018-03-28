@@ -16,10 +16,17 @@ class ViewController: UIViewController {
     
     view.addSubview(scrubber)
     
-    NSLayoutConstraint.activate([
-      scrubber.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-      scrubber.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-    ])
+    if #available(iOS 11.0, *) {
+      NSLayoutConstraint.activate([
+        scrubber.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+        scrubber.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+    } else {
+      NSLayoutConstraint.activate([
+        scrubber.rightAnchor.constraint(equalTo: view.rightAnchor),
+        scrubber.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      ])
+    }
     
     
   }
