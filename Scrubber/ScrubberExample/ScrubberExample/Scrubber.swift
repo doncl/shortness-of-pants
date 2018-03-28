@@ -48,6 +48,8 @@ class Scrubber: UIControl {
   private let thumbWidth : CGFloat = 18.0
   private let thumbHeight : CGFloat = 34.0
   private var thumbYOrg : CGFloat = 0.0
+  
+  private let compactXForm : CGAffineTransform = CGAffineTransform.init(scaleX: 0.7, y: 0.7)
  
   var startIndex : Int = 1
   var endIndex : Int = 100
@@ -136,6 +138,15 @@ class Scrubber: UIControl {
     get {
       return CGSize(width: width, height: height)
     }
+  }
+  
+  override func layoutSubviews() {
+    if traitCollection.verticalSizeClass == .compact {
+      transform = compactXForm
+    } else {
+      transform = .identity
+    }
+    super.layoutSubviews()
   }
   
   fileprivate func drawThumbLayer() {

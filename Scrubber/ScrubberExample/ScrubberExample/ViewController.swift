@@ -30,6 +30,10 @@ class ViewController: UIViewController {
     
     
   }
+  
+  override func viewWillLayoutSubviews() {
+    scrubber.setNeedsLayout()
+  }
 
 }
 
