@@ -1,0 +1,480 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		47926D8B210E500E004EF2F7 /* TreesAndTriesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 47926D8A210E500E004EF2F7 /* TreesAndTriesTests.m */; };
+		47926D8D210E500E004EF2F7 /* libTreesAndTries.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47926D78210E4FF2004EF2F7 /* libTreesAndTries.a */; };
+		47926D97210E5095004EF2F7 /* AVLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 47926D95210E5095004EF2F7 /* AVLNode.h */; };
+		47926D98210E5095004EF2F7 /* AVLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 47926D96210E5095004EF2F7 /* AVLNode.m */; };
+		47926D9B210E56EF004EF2F7 /* AVLTree.h in Headers */ = {isa = PBXBuildFile; fileRef = 47926D99210E56EF004EF2F7 /* AVLTree.h */; };
+		47926D9C210E56EF004EF2F7 /* AVLTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 47926D9A210E56EF004EF2F7 /* AVLTree.m */; };
+		47926DB6210E824A004EF2F7 /* TrieNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 47926DB4210E824A004EF2F7 /* TrieNode.h */; };
+		47926DB7210E824A004EF2F7 /* TrieNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 47926DB5210E824A004EF2F7 /* TrieNode.m */; };
+		47926DBA210E8258004EF2F7 /* Trie.h in Headers */ = {isa = PBXBuildFile; fileRef = 47926DB8210E8258004EF2F7 /* Trie.h */; };
+		47926DBB210E8258004EF2F7 /* Trie.m in Sources */ = {isa = PBXBuildFile; fileRef = 47926DB9210E8258004EF2F7 /* Trie.m */; };
+		47926DC0210E996B004EF2F7 /* NSString+ToAndFromArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 47926DBD210E8F0D004EF2F7 /* NSString+ToAndFromArray.m */; };
+		47926DC4210EA029004EF2F7 /* NSArray+BinarySearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 47926DC2210EA029004EF2F7 /* NSArray+BinarySearch.h */; };
+		47926DC5210EA029004EF2F7 /* NSArray+BinarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 47926DC3210EA029004EF2F7 /* NSArray+BinarySearch.m */; };
+		47926DC6210EA4B7004EF2F7 /* NSArray+BinarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 47926DC3210EA029004EF2F7 /* NSArray+BinarySearch.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		47926D8E210E500E004EF2F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 47926D70210E4FF2004EF2F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47926D77210E4FF2004EF2F7;
+			remoteInfo = TreesAndTries;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		47926D78210E4FF2004EF2F7 /* libTreesAndTries.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTreesAndTries.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		47926D88210E500E004EF2F7 /* TreesAndTriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TreesAndTriesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		47926D8A210E500E004EF2F7 /* TreesAndTriesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreesAndTriesTests.m; sourceTree = "<group>"; };
+		47926D8C210E500E004EF2F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47926D95210E5095004EF2F7 /* AVLNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVLNode.h; sourceTree = "<group>"; };
+		47926D96210E5095004EF2F7 /* AVLNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVLNode.m; sourceTree = "<group>"; };
+		47926D99210E56EF004EF2F7 /* AVLTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVLTree.h; sourceTree = "<group>"; };
+		47926D9A210E56EF004EF2F7 /* AVLTree.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVLTree.m; sourceTree = "<group>"; };
+		47926DB4210E824A004EF2F7 /* TrieNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrieNode.h; sourceTree = "<group>"; };
+		47926DB5210E824A004EF2F7 /* TrieNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrieNode.m; sourceTree = "<group>"; };
+		47926DB8210E8258004EF2F7 /* Trie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trie.h; sourceTree = "<group>"; };
+		47926DB9210E8258004EF2F7 /* Trie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trie.m; sourceTree = "<group>"; };
+		47926DBC210E8F0D004EF2F7 /* NSString+ToAndFromArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ToAndFromArray.h"; sourceTree = "<group>"; };
+		47926DBD210E8F0D004EF2F7 /* NSString+ToAndFromArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+ToAndFromArray.m"; sourceTree = "<group>"; };
+		47926DC2210EA029004EF2F7 /* NSArray+BinarySearch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+BinarySearch.h"; sourceTree = "<group>"; };
+		47926DC3210EA029004EF2F7 /* NSArray+BinarySearch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BinarySearch.m"; sourceTree = "<group>"; };
+		47926DC7210EA5E2004EF2F7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		47926D75210E4FF2004EF2F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47926D85210E500E004EF2F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47926D8D210E500E004EF2F7 /* libTreesAndTries.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		47926D6F210E4FF2004EF2F7 = {
+			isa = PBXGroup;
+			children = (
+				47926DC7210EA5E2004EF2F7 /* README.md */,
+				47926D7A210E4FF2004EF2F7 /* TreesAndTries */,
+				47926D89210E500E004EF2F7 /* TreesAndTriesTests */,
+				47926D79210E4FF2004EF2F7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		47926D79210E4FF2004EF2F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				47926D78210E4FF2004EF2F7 /* libTreesAndTries.a */,
+				47926D88210E500E004EF2F7 /* TreesAndTriesTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		47926D7A210E4FF2004EF2F7 /* TreesAndTries */ = {
+			isa = PBXGroup;
+			children = (
+				47926DC1210EA003004EF2F7 /* BinarySearch */,
+				47926D94210E5080004EF2F7 /* Trie */,
+				47926D93210E5079004EF2F7 /* AVLTree */,
+			);
+			path = TreesAndTries;
+			sourceTree = "<group>";
+		};
+		47926D89210E500E004EF2F7 /* TreesAndTriesTests */ = {
+			isa = PBXGroup;
+			children = (
+				47926DBC210E8F0D004EF2F7 /* NSString+ToAndFromArray.h */,
+				47926DBD210E8F0D004EF2F7 /* NSString+ToAndFromArray.m */,
+				47926D8A210E500E004EF2F7 /* TreesAndTriesTests.m */,
+				47926D8C210E500E004EF2F7 /* Info.plist */,
+			);
+			path = TreesAndTriesTests;
+			sourceTree = "<group>";
+		};
+		47926D93210E5079004EF2F7 /* AVLTree */ = {
+			isa = PBXGroup;
+			children = (
+				47926D95210E5095004EF2F7 /* AVLNode.h */,
+				47926D96210E5095004EF2F7 /* AVLNode.m */,
+				47926D99210E56EF004EF2F7 /* AVLTree.h */,
+				47926D9A210E56EF004EF2F7 /* AVLTree.m */,
+			);
+			path = AVLTree;
+			sourceTree = "<group>";
+		};
+		47926D94210E5080004EF2F7 /* Trie */ = {
+			isa = PBXGroup;
+			children = (
+				47926DB4210E824A004EF2F7 /* TrieNode.h */,
+				47926DB5210E824A004EF2F7 /* TrieNode.m */,
+				47926DB8210E8258004EF2F7 /* Trie.h */,
+				47926DB9210E8258004EF2F7 /* Trie.m */,
+			);
+			path = Trie;
+			sourceTree = "<group>";
+		};
+		47926DC1210EA003004EF2F7 /* BinarySearch */ = {
+			isa = PBXGroup;
+			children = (
+				47926DC2210EA029004EF2F7 /* NSArray+BinarySearch.h */,
+				47926DC3210EA029004EF2F7 /* NSArray+BinarySearch.m */,
+			);
+			path = BinarySearch;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		47926D76210E4FF2004EF2F7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47926DC4210EA029004EF2F7 /* NSArray+BinarySearch.h in Headers */,
+				47926DBA210E8258004EF2F7 /* Trie.h in Headers */,
+				47926D9B210E56EF004EF2F7 /* AVLTree.h in Headers */,
+				47926DB6210E824A004EF2F7 /* TrieNode.h in Headers */,
+				47926D97210E5095004EF2F7 /* AVLNode.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		47926D77210E4FF2004EF2F7 /* TreesAndTries */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47926D81210E4FF2004EF2F7 /* Build configuration list for PBXNativeTarget "TreesAndTries" */;
+			buildPhases = (
+				47926D74210E4FF2004EF2F7 /* Sources */,
+				47926D75210E4FF2004EF2F7 /* Frameworks */,
+				47926D76210E4FF2004EF2F7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TreesAndTries;
+			productName = TreesAndTries;
+			productReference = 47926D78210E4FF2004EF2F7 /* libTreesAndTries.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		47926D87210E500E004EF2F7 /* TreesAndTriesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47926D90210E500E004EF2F7 /* Build configuration list for PBXNativeTarget "TreesAndTriesTests" */;
+			buildPhases = (
+				47926D84210E500E004EF2F7 /* Sources */,
+				47926D85210E500E004EF2F7 /* Frameworks */,
+				47926D86210E500E004EF2F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				47926D8F210E500E004EF2F7 /* PBXTargetDependency */,
+			);
+			name = TreesAndTriesTests;
+			productName = TreesAndTriesTests;
+			productReference = 47926D88210E500E004EF2F7 /* TreesAndTriesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		47926D70210E4FF2004EF2F7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Don Clore";
+				TargetAttributes = {
+					47926D77210E4FF2004EF2F7 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					47926D87210E500E004EF2F7 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 47926D73210E4FF2004EF2F7 /* Build configuration list for PBXProject "TreesAndTries" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 47926D6F210E4FF2004EF2F7;
+			productRefGroup = 47926D79210E4FF2004EF2F7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				47926D77210E4FF2004EF2F7 /* TreesAndTries */,
+				47926D87210E500E004EF2F7 /* TreesAndTriesTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		47926D86210E500E004EF2F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		47926D74210E4FF2004EF2F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47926DC5210EA029004EF2F7 /* NSArray+BinarySearch.m in Sources */,
+				47926D98210E5095004EF2F7 /* AVLNode.m in Sources */,
+				47926DBB210E8258004EF2F7 /* Trie.m in Sources */,
+				47926D9C210E56EF004EF2F7 /* AVLTree.m in Sources */,
+				47926DB7210E824A004EF2F7 /* TrieNode.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47926D84210E500E004EF2F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47926DC6210EA4B7004EF2F7 /* NSArray+BinarySearch.m in Sources */,
+				47926DC0210E996B004EF2F7 /* NSString+ToAndFromArray.m in Sources */,
+				47926D8B210E500E004EF2F7 /* TreesAndTriesTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		47926D8F210E500E004EF2F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 47926D77210E4FF2004EF2F7 /* TreesAndTries */;
+			targetProxy = 47926D8E210E500E004EF2F7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		47926D7F210E4FF2004EF2F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		47926D80210E4FF2004EF2F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		47926D82210E4FF2004EF2F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 63HZLY9JEQ;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		47926D83210E4FF2004EF2F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 63HZLY9JEQ;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		47926D91210E500E004EF2F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 63HZLY9JEQ;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = TreesAndTriesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.beerbarrelpokerstudios.TreesAndTriesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		47926D92210E500E004EF2F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 63HZLY9JEQ;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				INFOPLIST_FILE = TreesAndTriesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.beerbarrelpokerstudios.TreesAndTriesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		47926D73210E4FF2004EF2F7 /* Build configuration list for PBXProject "TreesAndTries" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47926D7F210E4FF2004EF2F7 /* Debug */,
+				47926D80210E4FF2004EF2F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		47926D81210E4FF2004EF2F7 /* Build configuration list for PBXNativeTarget "TreesAndTries" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47926D82210E4FF2004EF2F7 /* Debug */,
+				47926D83210E4FF2004EF2F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		47926D90210E500E004EF2F7 /* Build configuration list for PBXNativeTarget "TreesAndTriesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47926D91210E500E004EF2F7 /* Debug */,
+				47926D92210E500E004EF2F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 47926D70210E4FF2004EF2F7 /* Project object */;
+}
