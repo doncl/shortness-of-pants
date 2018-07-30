@@ -8,7 +8,6 @@
 
 #import "AVLNode.h"
 
-
 @interface AVLNode ()
 // This is rewriting attributes of height to readwrite so we can calculate it in
 // recalculateHeight
@@ -16,6 +15,9 @@
 @end
 
 @implementation AVLNode
+
+#pragma mark - initialization
+
 - (instancetype)init {
   self = [self initWithValue:@1];
   @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -35,6 +37,7 @@
   return self;
 }
 
+#pragma mark - displaying tree to console
 // From Wenderlich's book on Data Structures and Algorithms in Swift, which itself
 // took this algorithm from https://www.objc.io/books/optimizing-collections.  I
 // translated it from Swift - didn't look at the original, not that it matters. 
@@ -61,6 +64,15 @@
   return [NSString stringWithFormat:@"%@\n%@\n%@", right, newRoot, left];
 }
 
+#pragma mark - furthest child on left side - recursive.
+- (AVLNode *)getMin {
+  if (self.leftChild == nil) {
+    return self;
+  }
+  return [self.leftChild getMin];
+}
+
+#pragma mark - node height
 - (NSInteger)leftHeight {
   if (!self.leftChild) {
     return -1;
@@ -77,13 +89,6 @@
 
 - (NSInteger)balanceFactor {
   return self.leftHeight - self.rightHeight;
-}
-
-- (AVLNode *)getMin {
-  if (self.leftChild == nil) {
-    return self;
-  }
-  return [self.leftChild getMin];
 }
 
 - (void)recalculateHeight {

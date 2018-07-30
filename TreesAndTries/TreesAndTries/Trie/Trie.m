@@ -17,6 +17,8 @@ const int intialCapacity = 50;
 
 @implementation Trie
 
+#pragma mark - initialization
+
 - (instancetype)init {
   self = [super init];
   if (self) {
@@ -25,6 +27,7 @@ const int intialCapacity = 50;
   return self;
 }
 
+#pragma mark - insert and contains
 - (void)insert:(NSArray *)collection {
   TrieNode *current = self.root;
   
@@ -52,6 +55,7 @@ const int intialCapacity = 50;
   return current.isTerminating;
 }
 
+#pragma mark - collections from prefix (autocomplete)
 - (NSArray<NSArray *> *)collections:(NSArray *)prefix {
   TrieNode *current = self.root;
   

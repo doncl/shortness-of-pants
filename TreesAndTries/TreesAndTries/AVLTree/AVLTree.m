@@ -44,6 +44,7 @@
   return [@"\n" stringByAppendingString:dia];
 }
 
+#pragma mark - insertions
 - (void)insert:(id)value {
   self.root = [self insert:value after:self.root];
 }
@@ -64,6 +65,7 @@
   return bal;
 }
 
+#pragma mark - removal
 - (void)remove:(id)value {
     self.root = [self remove:value after:self.root];
 }
@@ -97,7 +99,7 @@
   return bal;
 }
 
-#pragma balancing_act
+#pragma mark - balancing_act
 - (AVLNode *)leftRotate:(AVLNode *)node {
   NSAssert(node.rightChild, @"Right child nil on leftRotate");
   AVLNode *pivot = node.rightChild;
