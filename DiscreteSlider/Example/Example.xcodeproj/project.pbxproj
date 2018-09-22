@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4773E3461F33B21900913498 /* DiscreteSlider.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4773E3441F33B20800913498 /* DiscreteSlider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		47A2FF5D21562C6D009E525B /* DiscreteSlider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A2FF5C21562C6D009E525B /* DiscreteSlider.framework */; };
+		47A2FF5F21562C75009E525B /* DiscreteSlider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 47A2FF5C21562C6D009E525B /* DiscreteSlider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		47AF8A821F3370F7002B1552 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AF8A811F3370F7002B1552 /* AppDelegate.swift */; };
 		47AF8A841F3370F7002B1552 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AF8A831F3370F7002B1552 /* ViewController.swift */; };
 		47AF8A871F3370F7002B1552 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47AF8A851F3370F7002B1552 /* Main.storyboard */; };
@@ -16,20 +17,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4773E3421F33715C00913498 /* CopyFiles */ = {
+		47A2FF6021562C76009E525B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4773E3461F33B21900913498 /* DiscreteSlider.framework in CopyFiles */,
+				47A2FF5F21562C75009E525B /* DiscreteSlider.framework in Embed Frameworks */,
 			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4773E3441F33B20800913498 /* DiscreteSlider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiscreteSlider.framework; path = "../Debug-iphonesimulator/DiscreteSlider.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47A2FF5C21562C6D009E525B /* DiscreteSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DiscreteSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47AF8A7E1F3370F7002B1552 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47AF8A811F3370F7002B1552 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47AF8A831F3370F7002B1552 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47A2FF5D21562C6D009E525B /* DiscreteSlider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +57,7 @@
 		4773E33F1F33714600913498 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				47A2FF5C21562C6D009E525B /* DiscreteSlider.framework */,
 				4773E3441F33B20800913498 /* DiscreteSlider.framework */,
 			);
 			name = Frameworks;
@@ -98,7 +103,7 @@
 				47AF8A7A1F3370F7002B1552 /* Sources */,
 				47AF8A7B1F3370F7002B1552 /* Frameworks */,
 				47AF8A7C1F3370F7002B1552 /* Resources */,
-				4773E3421F33715C00913498 /* CopyFiles */,
+				47A2FF6021562C76009E525B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
