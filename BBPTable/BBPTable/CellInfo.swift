@@ -8,13 +8,13 @@
 
 import UIKit
 
-class CellInfo: NSObject {
-    var fontSize: CGFloat?
-    var fontName: String?
-    var textColor: UIColor?
-    var backgroundColor: UIColor?
-    var borderColor: UIColor?
-    var borderWidth: CGFloat?
-    var textAlignment: NSTextAlignment?
-    var baselineAdjustment: UIBaselineAdjustment?
+struct CellInfo {
+    var fontSize: CGFloat
+    var fontName: String
+    var textColor: UIColor
+    var backgroundColor: UIColor
+    var borderColor: UIColor
+    var borderWidth: CGFloat
+    var textAlignment: NSTextAlignment
+    var baselineAdjustment: UIBaselineAdjustment
 }

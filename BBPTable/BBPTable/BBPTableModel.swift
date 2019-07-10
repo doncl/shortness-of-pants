@@ -104,14 +104,14 @@ class BBPTableModel: NSObject {
             in: CharacterSet.whitespacesAndNewlines)
 
         let result = pattern.firstMatch(in: textToSearch, options:[],
-                    range:NSMakeRange(0, textToSearch.characters.count))!
+                    range:NSMakeRange(0, textToSearch.count))!
 
         let matchRange = result.range
         if matchRange.location == NSNotFound {
             return nil
         }
 
-        let matchGroupRange = result.rangeAt(index)
+        let matchGroupRange = result.range(at: index)
         let nsString = textToSearch as NSString
         let str =  nsString.substring(with: matchGroupRange)
         return str
@@ -125,12 +125,12 @@ class BBPTableModel: NSObject {
         in: CharacterSet.whitespacesAndNewlines)
 
         let matches = pattern.matches(in: textToSearch, options:[],
-                range:NSMakeRange(0, textToSearch.characters.count))
+                range:NSMakeRange(0, textToSearch.count))
 
         for match in matches {
-            var matchRange = match.rangeAt(index)
+            var matchRange = match.range(at: index)
             if matchRange.location == NSNotFound {
-               matchRange = match.rangeAt(index + 1)
+               matchRange = match.range(at: index + 1)
                if matchRange.location == NSNotFound {
                    fatalError("dang")
                }

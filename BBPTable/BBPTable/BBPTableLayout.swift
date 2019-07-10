@@ -7,30 +7,6 @@
 //
 
 import UIKit
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
 
 class BBPTableLayout: UICollectionViewLayout {
     //MARK: static constants
@@ -111,7 +87,8 @@ class BBPTableLayout: UICollectionViewLayout {
         for i in 0..<columns {
             let columnSize = calculateColumnSize(model, columnIndex: i, rowCount: rows!)
             columnWidths.append(columnSize.width)
-            if columnSize.height > rowHeight {
+            assert(rowHeight != nil)
+            if columnSize.height > rowHeight! {
                 rowHeight = columnSize.height
             }
             tableWidth! += columnSize.width
@@ -129,18 +106,18 @@ class BBPTableLayout: UICollectionViewLayout {
         for i in 0..<rowCount {
             let cellData = model.dataAtLocation(i, column: columnIndex)
             let type = model.getCellType(i)
-            let cellInfo = BBPTableCell.getCellInfoForTypeOfCell(type)
-            let font = UIFont(name: cellInfo.fontName!, size: cellInfo.fontSize!)
+            let cellInfo = BBPTableCell.getCellInfoForTypeOfCell(type)            
+            let font = UIFont(name: cellInfo.fontName, size: cellInfo.fontSize)
             
             // The Interwebs suggests we'll get better and more accurate required lengths for
             // strings by replacing the spaces with a capital letter glyph.
             let newString = cellData.replacingOccurrences(of: " ", with: "X")
-            let attributes = [NSFontAttributeName : font!]
+            let attributes = [convertFromNSAttributedStringKey(NSAttributedString.Key.font) : font!]
             
             let rect = NSString(string: newString).boundingRect(
                 with: CGSize(width: CGFloat.greatestFiniteMagnitude, height:CGFloat.greatestFiniteMagnitude),
                 options:NSStringDrawingOptions.usesLineFragmentOrigin,
-                attributes:attributes,
+                attributes:convertToOptionalNSAttributedStringKeyDictionary(attributes),
                 context:nil)
             
             if rect.size.height > largestHeight {
@@ -157,3 +134,12 @@ class BBPTableLayout: UICollectionViewLayout {
     }
 }
 
+
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+  return input.rawValue
+}
+
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}

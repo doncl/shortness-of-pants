@@ -47,8 +47,8 @@ class BBPTableCell: UICollectionViewCell {
         super.init(frame: frame)
 
         label = UILabel(frame: self.contentView.bounds)
-        label.setContentHuggingPriority(0, for:.horizontal)
-        label.setContentCompressionResistancePriority(1000, for:.horizontal)
+        label.setContentHuggingPriority(UILayoutPriority(rawValue: 0), for:.horizontal)
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1000), for:.horizontal)
         label.numberOfLines = 0
         setupCellInfo(.dataOdd)
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +87,7 @@ class BBPTableCell: UICollectionViewCell {
         let viewDict = ["cellLabel" : label! as Any]
         let horizontalConstraints =
         NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[cellLabel]-0-|",
-            options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict)
+            options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewDict)
         
         let centeringXConstraint =
         NSLayoutConstraint(item: self, attribute:.centerX,
@@ -108,42 +108,40 @@ class BBPTableCell: UICollectionViewCell {
     
     func setupCellInfo(_ cellType: CellType) {
         let ci = BBPTableCell.getCellInfoForTypeOfCell(cellType)
-        layer.borderWidth = ci.borderWidth!
-        layer.borderColor = ci.borderColor!.cgColor
-        label.baselineAdjustment = ci.baselineAdjustment!
+        layer.borderWidth = ci.borderWidth
+        layer.borderColor = ci.borderColor.cgColor
+        label.baselineAdjustment = ci.baselineAdjustment
         label.backgroundColor = ci.backgroundColor
         backgroundColor = ci.backgroundColor
-        label.textAlignment = ci.textAlignment!
-        label.font = UIFont(name: ci.fontName!, size: ci.fontSize!)
-        label.textColor = ci.textColor!
+        label.textAlignment = ci.textAlignment
+        label.font = UIFont(name: ci.fontName, size: ci.fontSize)
+        label.textColor = ci.textColor
     }
     
     static func getCellInfoForTypeOfCell(_ cellType: CellType) -> CellInfo {
-        let info = CellInfo()
-        info.borderColor = BBPTableCell.borderColor
-        info.borderWidth = BBPTableCell.borderWidth
-        info.baselineAdjustment = .alignCenters
-        info.textAlignment = .center
+      let fontSize: CGFloat
+      let textColor: UIColor
+      let fontName: String
+      let backgroundColor: UIColor
+      
+      switch cellType {
         
-        // TODO: a Swift switch statement might be better here.
-        if cellType == .dataOdd || cellType == .dataEven {
-            info.textColor = BBPTableCell.dataCellTextColor
-            info.fontSize = BBPTableCell.dataCellFontSize
-            info.fontName = BBPTableCell.dataCellFontName
-            info.backgroundColor = cellType == .dataOdd ?
-                BBPTableCell.oddRowColor : BBPTableCell.evenRowColor
-        } else if cellType == .columnHeading {
-            info.backgroundColor = BBPTableCell.headerColor
-            info.textColor = BBPTableCell.headerTextColor
-            info.fontSize = BBPTableCell.headerFontSize
-            info.fontName = BBPTableCell.headerFontName
-        } else {
-            fatalError("Unknown cellType \(cellType)")
-        }
+      case .columnHeading:
+        fontSize = BBPTableCell.headerFontSize
+        textColor = BBPTableCell.headerTextColor
+        fontName = BBPTableCell.headerFontName
+        backgroundColor = BBPTableCell.headerColor
         
-        return info
-    }
-    
-    // MARK: overriden methods
-
+      case .dataOdd, .dataEven:
+        fontSize = BBPTableCell.dataCellFontSize
+        fontName = BBPTableCell.dataCellFontName
+        backgroundColor = cellType == .dataOdd ? BBPTableCell.oddRowColor : BBPTableCell.evenRowColor
+        textColor = BBPTableCell.dataCellTextColor
+      }
+      
+      return CellInfo(fontSize: fontSize, fontName: fontName, textColor: textColor,
+                      backgroundColor: backgroundColor, borderColor: BBPTableCell.borderColor,
+                      borderWidth: BBPTableCell.borderWidth, textAlignment: NSTextAlignment.center,
+                      baselineAdjustment: UIBaselineAdjustment.alignCenters)
+    }    
 }
