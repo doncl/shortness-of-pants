@@ -162,7 +162,7 @@ class BBPTableModel: NSObject {
         var nonFixedOuterArray = Array<Array<String>>()
                                                 
         for i in 0..<rows {
-            var srcRow = srcModel.rowData[i];
+            let srcRow = srcModel.rowData[i];
             let fixedRow = srcRow[0...fixedColumnCount - 1]
             let nonFixedRow = srcRow[fixedColumnCount...srcRow.count - 1]
             
