@@ -44,7 +44,7 @@ class LozengeCell: UICollectionViewCell {
         addGestureRecognizer(tapDeleteImageRecognizer!)
     }
     
-    func tappedDelete() {
+    @objc func tappedDelete() {
         print("delete tapped")
         if let delegate = delegate {
             delegate.deleteTapped(self)

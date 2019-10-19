@@ -96,7 +96,7 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
             //btnDone.setImage(UIImage(named: "done@2x.png"), forState: .Normal)
             btnDone.layer.cornerRadius = 10.0
             btnDone .backgroundColor = UIColor(red: 116.0 / 255.0, green: 116.0 / 255.0, blue: 116.0 / 255.0, alpha: 0.7)
-            btnDone.setTitle("Done", for:UIControlState())
+            btnDone.setTitle("Done", for: .normal)
             btnDone.titleLabel!.textColor = UIColor(red: 238.0 / 255.0, green: 238.0 / 255.0, blue: 238.0 / 255.0, alpha: 1.0)
             btnDone.addTarget(self, action: #selector(BBPDropDownPopup.clickDone), for: .touchUpInside)
             addSubview(btnDone)
@@ -105,7 +105,7 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Action targets
     
-    func clickDone() {
+    @objc func clickDone() {
         print("clickDone called")
         if let delegate = delegate {
             var responseData = [String]()
@@ -174,7 +174,7 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isMultipleSelection {
             if selectedItems.contains(indexPath) {
-                if let idx = selectedItems.index(of: indexPath) {
+              if let idx = selectedItems.firstIndex(of: indexPath) {
                     selectedItems.remove(at: idx)
                 }
             } else {
@@ -239,8 +239,8 @@ class BBPDropDownPopup: UIView, UITableViewDataSource, UITableViewDelegate {
 
             let font = UIFont(name: "HelveticaNeue", size: 16.0)!
 
-            let attrs : [String :AnyObject] = [NSFontAttributeName : font,
-                                               NSForegroundColorAttributeName: headerTextColor]
+          let attrs : [NSAttributedString.Key: Any] = [NSAttributedString.Key.font : font,
+                                                       NSAttributedString.Key.foregroundColor: headerTextColor]
 
             titleText?.draw(in: titleRect, withAttributes: attrs)
 

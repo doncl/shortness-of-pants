@@ -108,7 +108,7 @@ protocol BBPDropDownDelegate {
     @IBInspectable var lozengeTextColor : UIColor?
     @IBInspectable var borderColor : UIColor = UIColor.lightGray
     @IBInspectable var borderWidth : CGFloat = 1.0
-    @IBInspectable var delegate: BBPDropDownDelegate?
+    var delegate: BBPDropDownDelegate?
     @IBInspectable var isMultiple : Bool = false {
         didSet(newValue){
             setUIStateForSelectionMode(newValue)
@@ -251,14 +251,14 @@ protocol BBPDropDownDelegate {
         if isMultiple {
             // If it's the mult-select case, grovel through the lozengeData
             for selection in lozengeData {
-                if let idx = data.index(of: selection) {
+              if let idx = data.firstIndex(of: selection) {
                     let indexPath = IndexPath(item: idx, section: 0)
                     indexes.append(indexPath)
                 }
             }
         } else {
             // if it's the single-selectet, the singleItemLabel has the data.
-            if let text = singleItemText, let idx = data.index(of: text) {
+          if let text = singleItemText, let idx = data.firstIndex(of: text) {
                 let indexPath = IndexPath(item: idx, section: 0)
                 indexes.append(indexPath)
             }
@@ -268,8 +268,8 @@ protocol BBPDropDownDelegate {
     
     // MARK: - tap handlers
     
-    // Ugh! - why can't these be private?  Evidently targets for tap handlers cannot be.
-    func tappedForPopup(_ sender: AnyObject) {
+    // Ugh! - why can't these be private?  Evidently targets for tap handlers cannot be.    
+  @objc func tappedForPopup(_ sender: AnyObject) {
         if !ready {
             return
         }

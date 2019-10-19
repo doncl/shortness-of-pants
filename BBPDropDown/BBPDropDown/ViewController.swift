@@ -45,7 +45,7 @@ class ViewController: UIViewController, BBPDropDownDelegate {
 
     // MARK: - BBPDropDownDelegate implementation
     func requestNewHeight(_ dropDown: BBPDropdown, newHeight: CGFloat) {
-        UIView.animate(withDuration: 0.6, delay:0.2, options:UIViewAnimationOptions(), animations: {
+        UIView.animate(withDuration: 0.6, delay:0.2, options:UIView.AnimationOptions(), animations: {
             if dropDown === self.bbpDropDownMulti {
                 self.bbpDropDownMultiHeightConstraint.constant = newHeight
             } else {
