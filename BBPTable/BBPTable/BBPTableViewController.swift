@@ -189,6 +189,20 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
             return nonFixedModel!
         }
     }
+  
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+      super.viewWillTransition(to: size, with: coordinator)
+      guard let nonFixed = nonFixedView, let fixed = fixedView else {
+        return
+      }
+      nonFixed.collectionViewLayout.invalidateLayout()
+      fixed.collectionViewLayout.invalidateLayout()
+
+      coordinator.animate(alongsideTransition: { ctxt in
+        nonFixed.layoutIfNeeded()
+        fixed.layoutIfNeeded()
+      }, completion: nil)
+    }
 
 }
 
