@@ -120,7 +120,7 @@ public class DiscreteSlider : UIControl {
     }
     
     let nsString = NSString(string: "text String")
-    let textSize = nsString.size(attributes: [NSFontAttributeName : font])
+    let textSize = nsString.size(withAttributes: [NSAttributedString.Key.font : font])
     textHeight = textSize.height
   }
   
@@ -135,7 +135,7 @@ public class DiscreteSlider : UIControl {
     var width : CGFloat = 0
     for text in values {
       let nsText = NSString(string: text)
-      let textRect = nsText.size(attributes: [NSFontAttributeName : font])
+      let textRect = nsText.size(withAttributes: [NSAttributedString.Key.font : font])
       width += textRect.width + Constants.horzPad
     }
     return CGSize(width: width, height: height)
@@ -313,7 +313,7 @@ public class DiscreteSlider : UIControl {
         let text = values[i]
         let nsText = NSString(string: text)
         let trf = textRectFonts[i]
-        nsText.draw(in: trf.rect, withAttributes: [NSFontAttributeName : trf.font])
+        nsText.draw(in: trf.rect, withAttributes: [NSAttributedString.Key.font : trf.font])
       }
     }
   }
@@ -413,7 +413,7 @@ public class DiscreteSlider : UIControl {
     }
     
     let rect = trf.rect
-    nsText.draw(in: rect, withAttributes: [NSFontAttributeName : fontToDraw])
+    nsText.draw(in: rect, withAttributes: [NSAttributedString.Key.font : fontToDraw])
   }
   
   fileprivate struct TextRectFont {
@@ -440,7 +440,7 @@ public class DiscreteSlider : UIControl {
         continue
       }
       
-      let textSize = nsText.size(attributes: [NSFontAttributeName : font])
+      let textSize = nsText.size(withAttributes: [NSAttributedString.Key.font : font])
       
       var x : CGFloat = ballRect.midX - textSize.width / 2
       if i == 0 {
