@@ -38,7 +38,8 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+       loadMode = .defaultView
+       super.init(coder: aDecoder)
     }
 
     override func loadView() {
@@ -59,30 +60,46 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
             let frame = CGRect(x: 0, y:0, width:viewWidth!, height: fixedLayout.tableHeight!)
             self.view = UIView(frame: frame)
         }
-
+     
         fixedView = createCollectionView(view, layout: fixedLayout, x: 0.0,
-            width: fixedLayout.tableWidth!)
+            width: fixedLayout.tableWidth!, fixed: true)
         
         let nonFixedX = view.frame.origin.x + fixedLayout.tableWidth!
         let nonFixedWidth = view.frame.size.width - nonFixedX
         
         nonFixedView = createCollectionView(view, layout: nonFixedLayout,
-            x: nonFixedX, width: nonFixedWidth)
+                                            x: nonFixedX, width: nonFixedWidth, fixed: false)
         
         nonFixedView!.isScrollEnabled = true
         nonFixedView!.showsHorizontalScrollIndicator = true
-        
-        view.addSubview(fixedView!)
-        view.addSubview(nonFixedView!)
     }
     
     fileprivate func createCollectionView(_ parentView: UIView,
-        layout: BBPTableLayout, x: CGFloat, width: CGFloat) -> UICollectionView {
-            
-        let frame = CGRect(x: x, y:parentView.frame.origin.y, width:width,
-                height: parentView.frame.size.height)
-            
+        layout: BBPTableLayout, x: CGFloat, width: CGFloat, fixed: Bool) -> UICollectionView {
+
+        // N.B.  There's some hackery here to compensate for the fact that this control wasn't
+        // written with autolayout (more's the pity).  It was early on - I'd only been doing
+        // iOS for about 5 months, and I shied away from doing AutoLayout in code.  There's
+        // some tech debt here - I've just patched it up well enough to work for now.
+        var tabBarOffset : CGFloat = 0.0
+        var navBarOffset : CGFloat = 0.0
+        if let nav = navigationController {
+          navBarOffset += nav.navigationBar.frame.height
+        }
+      
+        if let tab = tabBarController {
+          tabBarOffset += tab.tabBar.frame.height
+        }
+      
+        let statusBarOffset = UIApplication.shared.statusBarFrame.height
+      
+        let height = parentView.frame.height - (navBarOffset + tabBarOffset + statusBarOffset)
+  
+        let frame = CGRect(x: x, y:parentView.frame.origin.y + navBarOffset + statusBarOffset,
+          width:width, height: height)
+      
         let collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
+        parentView.addSubview(collectionView)
         collectionView.bounces = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
@@ -90,6 +107,19 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
         collectionView.register(BBPTableCell.self,
             forCellWithReuseIdentifier: "cellIdentifier")
         collectionView.backgroundColor = UIColor.white
+      
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+          collectionView.topAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.topAnchor),
+          collectionView.leftAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.leftAnchor, constant: x),
+          collectionView.bottomAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.bottomAnchor),
+        ])
+      
+        if fixed {
+          collectionView.widthAnchor.constraint(equalToConstant: width).isActive = true
+        } else {
+          collectionView.rightAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.rightAnchor).isActive = true
+        }
         return collectionView
     }
     
@@ -159,6 +189,21 @@ class BBPTableViewController: UIViewController, UICollectionViewDataSource,
             return nonFixedModel!
         }
     }
+  
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+      super.viewWillTransition(to: size, with: coordinator)
+      guard let nonFixed = nonFixedView, let fixed = fixedView else {
+        return
+      }
+      nonFixed.collectionViewLayout.invalidateLayout()
+      fixed.collectionViewLayout.invalidateLayout()
+
+      coordinator.animate(alongsideTransition: { ctxt in
+        nonFixed.layoutIfNeeded()
+        fixed.layoutIfNeeded()
+      }, completion: nil)
+    }
 
 }
+
 
