@@ -21,7 +21,11 @@
   NSComparisonResult comparison = comparator(middleValue, value);
   if (comparison == NSOrderedSame) {
     return middleIndex;
-  } else if (comparison == NSOrderedDescending) {
+  } else if (range.length <= 1) {
+    return NSNotFound;
+  }
+  
+  if (comparison == NSOrderedDescending) {
     return [self binarySearchFor:value withComparator:comparator inRange:NSMakeRange(range.location, size / 2)];
   } else {
     return [self binarySearchFor:value withComparator:comparator inRange:NSMakeRange(middleIndex, size / 2)];
