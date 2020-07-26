@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4711823A24CE101A003C1E12 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711823924CE101A003C1E12 /* main.m */; };
-		4711823E24CE1308003C1E12 /* NSArray+BinarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 47926DC3210EA029004EF2F7 /* NSArray+BinarySearch.m */; };
+		4711825824CE4AE1003C1E12 /* NSArray+BinarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711825624CE4AE1003C1E12 /* NSArray+BinarySearch.m */; };
+		4711825924CE4AE1003C1E12 /* NSArray+BinarySearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 4711825724CE4AE1003C1E12 /* NSArray+BinarySearch.h */; };
+		4711825A24CE4B75003C1E12 /* NSArray+BinarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711825624CE4AE1003C1E12 /* NSArray+BinarySearch.m */; };
 		47926D8B210E500E004EF2F7 /* TreesAndTriesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 47926D8A210E500E004EF2F7 /* TreesAndTriesTests.m */; };
 		47926D8D210E500E004EF2F7 /* libTreesAndTries.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47926D78210E4FF2004EF2F7 /* libTreesAndTries.a */; };
 		47926D97210E5095004EF2F7 /* AVLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 47926D95210E5095004EF2F7 /* AVLNode.h */; };
@@ -32,21 +33,9 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		4711823524CE101A003C1E12 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		4711823724CE101A003C1E12 /* BSearchDriver */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BSearchDriver; sourceTree = BUILT_PRODUCTS_DIR; };
-		4711823924CE101A003C1E12 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4711825624CE4AE1003C1E12 /* NSArray+BinarySearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BinarySearch.m"; sourceTree = "<group>"; };
+		4711825724CE4AE1003C1E12 /* NSArray+BinarySearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BinarySearch.h"; sourceTree = "<group>"; };
 		47926D78210E4FF2004EF2F7 /* libTreesAndTries.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTreesAndTries.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		47926D88210E500E004EF2F7 /* TreesAndTriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TreesAndTriesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47926D8A210E500E004EF2F7 /* TreesAndTriesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreesAndTriesTests.m; sourceTree = "<group>"; };
@@ -61,19 +50,10 @@
 		47926DB9210E8258004EF2F7 /* Trie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trie.m; sourceTree = "<group>"; };
 		47926DBC210E8F0D004EF2F7 /* NSString+ToAndFromArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ToAndFromArray.h"; sourceTree = "<group>"; };
 		47926DBD210E8F0D004EF2F7 /* NSString+ToAndFromArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+ToAndFromArray.m"; sourceTree = "<group>"; };
-		47926DC2210EA029004EF2F7 /* NSArray+BinarySearch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+BinarySearch.h"; sourceTree = "<group>"; };
-		47926DC3210EA029004EF2F7 /* NSArray+BinarySearch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BinarySearch.m"; sourceTree = "<group>"; };
 		47926DC7210EA5E2004EF2F7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		4711823424CE101A003C1E12 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		47926D75210E4FF2004EF2F7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -92,14 +72,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4711823824CE101A003C1E12 /* BSearchDriver */ = {
+		4711824A24CE3D7C003C1E12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				47926DC2210EA029004EF2F7 /* NSArray+BinarySearch.h */,
-				47926DC3210EA029004EF2F7 /* NSArray+BinarySearch.m */,
-				4711823924CE101A003C1E12 /* main.m */,
 			);
-			path = BSearchDriver;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4711825524CE4AC7003C1E12 /* BinarySearch */ = {
+			isa = PBXGroup;
+			children = (
+				4711825724CE4AE1003C1E12 /* NSArray+BinarySearch.h */,
+				4711825624CE4AE1003C1E12 /* NSArray+BinarySearch.m */,
+			);
+			path = BinarySearch;
 			sourceTree = "<group>";
 		};
 		47926D6F210E4FF2004EF2F7 = {
@@ -108,8 +94,8 @@
 				47926DC7210EA5E2004EF2F7 /* README.md */,
 				47926D7A210E4FF2004EF2F7 /* TreesAndTries */,
 				47926D89210E500E004EF2F7 /* TreesAndTriesTests */,
-				4711823824CE101A003C1E12 /* BSearchDriver */,
 				47926D79210E4FF2004EF2F7 /* Products */,
+				4711824A24CE3D7C003C1E12 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,7 +104,6 @@
 			children = (
 				47926D78210E4FF2004EF2F7 /* libTreesAndTries.a */,
 				47926D88210E500E004EF2F7 /* TreesAndTriesTests.xctest */,
-				4711823724CE101A003C1E12 /* BSearchDriver */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +111,7 @@
 		47926D7A210E4FF2004EF2F7 /* TreesAndTries */ = {
 			isa = PBXGroup;
 			children = (
+				4711825524CE4AC7003C1E12 /* BinarySearch */,
 				47926D94210E5080004EF2F7 /* Trie */,
 				47926D93210E5079004EF2F7 /* AVLTree */,
 			);
@@ -172,6 +158,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4711825924CE4AE1003C1E12 /* NSArray+BinarySearch.h in Headers */,
 				47926DBA210E8258004EF2F7 /* Trie.h in Headers */,
 				47926D9B210E56EF004EF2F7 /* AVLTree.h in Headers */,
 				47926DB6210E824A004EF2F7 /* TrieNode.h in Headers */,
@@ -182,23 +169,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4711823624CE101A003C1E12 /* BSearchDriver */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4711823D24CE101A003C1E12 /* Build configuration list for PBXNativeTarget "BSearchDriver" */;
-			buildPhases = (
-				4711823324CE101A003C1E12 /* Sources */,
-				4711823424CE101A003C1E12 /* Frameworks */,
-				4711823524CE101A003C1E12 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BSearchDriver;
-			productName = BSearchDriver;
-			productReference = 4711823724CE101A003C1E12 /* BSearchDriver */;
-			productType = "com.apple.product-type.tool";
-		};
 		47926D77210E4FF2004EF2F7 /* TreesAndTries */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47926D81210E4FF2004EF2F7 /* Build configuration list for PBXNativeTarget "TreesAndTries" */;
@@ -243,9 +213,6 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Don Clore";
 				TargetAttributes = {
-					4711823624CE101A003C1E12 = {
-						CreatedOnToolsVersion = 11.6;
-					};
 					47926D77210E4FF2004EF2F7 = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
@@ -268,7 +235,6 @@
 			targets = (
 				47926D77210E4FF2004EF2F7 /* TreesAndTries */,
 				47926D87210E500E004EF2F7 /* TreesAndTriesTests */,
-				4711823624CE101A003C1E12 /* BSearchDriver */,
 			);
 		};
 /* End PBXProject section */
@@ -284,19 +250,11 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4711823324CE101A003C1E12 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4711823A24CE101A003C1E12 /* main.m in Sources */,
-				4711823E24CE1308003C1E12 /* NSArray+BinarySearch.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		47926D74210E4FF2004EF2F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4711825824CE4AE1003C1E12 /* NSArray+BinarySearch.m in Sources */,
 				47926D98210E5095004EF2F7 /* AVLNode.m in Sources */,
 				47926DBB210E8258004EF2F7 /* Trie.m in Sources */,
 				47926D9C210E56EF004EF2F7 /* AVLTree.m in Sources */,
@@ -309,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47926DC0210E996B004EF2F7 /* NSString+ToAndFromArray.m in Sources */,
+				4711825A24CE4B75003C1E12 /* NSArray+BinarySearch.m in Sources */,
 				47926D8B210E500E004EF2F7 /* TreesAndTriesTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,31 +283,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		4711823B24CE101A003C1E12 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 63HZLY9JEQ;
-				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		4711823C24CE101A003C1E12 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 63HZLY9JEQ;
-				ENABLE_HARDENED_RUNTIME = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MTL_FAST_MATH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		47926D7F210E4FF2004EF2F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -521,15 +455,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4711823D24CE101A003C1E12 /* Build configuration list for PBXNativeTarget "BSearchDriver" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4711823B24CE101A003C1E12 /* Debug */,
-				4711823C24CE101A003C1E12 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		47926D73210E4FF2004EF2F7 /* Build configuration list for PBXProject "TreesAndTries" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
