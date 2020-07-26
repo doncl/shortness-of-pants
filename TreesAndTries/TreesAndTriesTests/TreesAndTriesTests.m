@@ -123,7 +123,7 @@
   NSUInteger search31 = [array indexOfObject:@31];
   NSLog(@"%ld", (unsigned long)search31);
   
-  NSUInteger binarySearch31 = [array binarySearchFor:@31 withComparer:^NSInteger(id n0, id n1) {
+  NSUInteger binarySearch31 = [array binarySearchFor:@31 withComparator:^NSInteger(id n0, id n1) {
     NSNumber *num0 = (NSNumber *)n0;
     NSNumber *num1 = (NSNumber *)n1;
     return num0.intValue - num1.intValue;
