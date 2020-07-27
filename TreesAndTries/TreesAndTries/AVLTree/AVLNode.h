@@ -10,7 +10,7 @@
 
 @class AVLNode;
 
-typedef NSString * (^NodeDescriber)(AVLNode *);
+typedef NSString * _Nonnull (^NodeDescriber)(AVLNode *_Nonnull);
 
 NS_ASSUME_NONNULL_BEGIN
 

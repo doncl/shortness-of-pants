@@ -60,51 +60,34 @@
 
 - (void)testTrieInsertAndContains {
   Trie *t = [[Trie alloc] init];
-  NSArray<NSString *> *cuteArray = [@"cute" toStringArray];
-  [t insert:cuteArray];
+  NSString *cute = @"cute";
+  [t insert:cute];
 
-  XCTAssert([t contains: cuteArray]);
-}
-
-- (void)insertStringValue:(Trie *)t stringValue: (NSString *)stringValue {
-  NSArray<NSString *> *strArray = [stringValue toStringArray];
-  [t insert:strArray];
+  XCTAssert([t contains: cute]);
 }
 
 - (void)testTrieAutoSuggest {
   Trie *t = [[Trie alloc] init];
-  [self insertStringValue:t stringValue:@"car"];
-  [self insertStringValue:t stringValue:@"card"];
-  [self insertStringValue:t stringValue:@"care"];
-  [self insertStringValue:t stringValue:@"cared"];
-  [self insertStringValue:t stringValue:@"cars"];
-  [self insertStringValue:t stringValue:@"carbs"];
-  [self insertStringValue:t stringValue:@"carapace"];
-  [self insertStringValue:t stringValue:@"cargo"];
+  [t insert:@"car"];
+  [t insert:@"card"];
+  [t insert:@"care"];
+  [t insert:@"cared"];
+  [t insert:@"cars"];
+  [t insert:@"carbs"];
+  [t insert:@"carapace"];
+  [t insert:@"cargo"];
   
-  NSArray<NSString *> *results = [self prefixedResults:t startingWith:@"car"];
+  NSArray<NSString *> *results = [t collections:@"car"];
   XCTAssert(results.count == 8);
   for (NSString *result in results) {
     NSLog(@"%@", result);
   }
 
-  results = [self prefixedResults:t startingWith:@"care"];
+  results = [t collections:@"care"];
   XCTAssert(results.count == 2);
   for (NSString *result in results) {
     NSLog(@"%@", result);
   }
-}
-
-- (NSArray<NSString *> *)prefixedResults:(Trie *) t startingWith: (NSString *)prefix {
-  NSLog(@"Collections starting with \"%@\"", prefix);
-  NSArray<NSString *> *array = [prefix toStringArray];
-  NSArray<NSArray<NSString *> *> *prefixed = [t collections:array];
-  NSMutableArray<NSString *> *results = [[NSMutableArray<NSString *> alloc] initWithCapacity:prefixed.count];
-  for (NSArray<NSString *> *stringArray in prefixed) {
-    NSString *result = [NSString fromStringArray:stringArray];
-    [results addObject:result];
-  }
-  return results;
 }
 
 - (void)testBinarySearch {
@@ -119,20 +102,60 @@
   [array addObject:@31];
   [array addObject:@105];
   [array addObject:@150];
-  
+
   NSUInteger search31 = [array indexOfObject:@31];
   NSLog(@"%ld", (unsigned long)search31);
-  
-  NSUInteger binarySearch31 = [array binarySearchFor:@31 withComparator:^NSInteger(id n0, id n1) {
-    NSNumber *num0 = (NSNumber *)n0;
-    NSNumber *num1 = (NSNumber *)n1;
+
+  NSUInteger binarySearch31 = [array binarySearchFor:@31 withComparator:^NSComparisonResult(id lhs, id rhs) {
+    NSNumber *num0 = (NSNumber *)lhs;
+    NSNumber *num1 = (NSNumber *)rhs;
     return num0.intValue - num1.intValue;
   }];
-  
+
   NSLog(@"%ld", (unsigned long)binarySearch31);
-  
+
   XCTAssertEqual(search31, binarySearch31);
 }
+
+- (void) testMoreBinSearch {
+  NSArray<NSString *> * items = @[@"mangoes", @"apples", @"cherries", @"oranges",
+                                   @"grapes", @"bananas", @"periwinkles", @"pears"];
+
+   NSArray<NSString *> * sorted = [items sortedArrayUsingComparator: ^NSComparisonResult(id lhs, id rhs) {
+     return [lhs compare: rhs options:NSCaseInsensitiveSearch];
+   }];
+
+   NSLog(@"Result from sorting invariant array = %@", sorted);
+
+   NSMutableArray<NSString *> *mutableItems = [[NSMutableArray<NSString *> alloc] initWithArray:items];
+
+   [mutableItems sortUsingComparator:^NSComparisonResult(id lhs, id rhs) {
+     return [lhs compare: rhs options:NSCaseInsensitiveSearch];
+   }];
+
+   NSLog(@"Sorting mutable items in place using comparator = %@", mutableItems);
+
+   NSArray<NSString *> *sortedItems = [items sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+
+   NSLog(@"Result of sorting invariant items with selector = %@", sortedItems);
+
+   for (NSInteger i = 0; i < sortedItems.count; i++) {
+     NSString *itemToFind = sortedItems[i];
+     NSInteger index = [sortedItems binarySearchFor:itemToFind withComparator:^NSComparisonResult(id lhs, id rhs) {
+       return [lhs compare:rhs options:NSCaseInsensitiveSearch];
+     }];
+     NSString *itemFound = sortedItems[index];
+     NSLog(@"Index = %lu, string found = %@", index, itemFound);
+   }
+
+   NSString *notExist = @"Does not Exist";
+   NSInteger notFoundIndex = [sortedItems binarySearchFor:notExist withComparator:^NSComparisonResult(id lhs, id rhs) {
+     return [lhs compare: rhs options: NSCaseInsensitiveSearch];
+   }];
+
+   NSLog(@"findResult for \"%@\" is found = %@", notExist, notFoundIndex == NSNotFound ? @"NO" : @"YES" );
+}
+
 
 
 @end

@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-// Assume nillable.
-@interface TrieNode<ObjectType> : NSObject
-@property (readwrite) ObjectType key;
-@property (readwrite) TrieNode<ObjectType> *parent;
-@property (readwrite) BOOL isTerminating;
-@property (readwrite) NSMutableDictionary<ObjectType, TrieNode *> *children;
 
-- (instancetype)initWithKey:(ObjectType)key andParent: (TrieNode *)parent;
+// Assume nillable.
+@interface TrieNode : NSObject
+@property (readwrite) NSString *key;
+@property (readwrite) TrieNode *parent;
+@property (readwrite) BOOL isTerminating;
+@property (readwrite) NSMutableDictionary<NSString *, TrieNode *> *children;
+
+- (instancetype)initWithKey:(NSString *)key andParent: (TrieNode *)parent;
 @end

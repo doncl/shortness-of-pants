@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Trie<ObjectType> : NSObject
+@interface Trie : NSObject
 
 - (instancetype)init;
-- (void)insert:(NSArray<ObjectType> *)collection;
-- (BOOL)contains:(NSArray<ObjectType> *)collection;
-- (NSArray *)collections:(NSArray<ObjectType> *)prefix;
+- (void)insert:(NSString *)collection;
+- (BOOL)contains:(NSString *)collection;
+- (NSArray *)collections:(NSString *)prefix;
 @end

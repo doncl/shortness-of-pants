@@ -9,12 +9,12 @@
 #import "TrieNode.h"
 
 @implementation TrieNode
-- (instancetype)initWithKey:(id)key andParent:(TrieNode *)parent {
+- (instancetype)initWithKey:(NSString *)key andParent:(TrieNode *)parent {
   self = [super init];
   if (self) {
     self.key = key;
     self.parent = parent;
-    self.children = [NSMutableDictionary<id, TrieNode *> new];
+    self.children = [NSMutableDictionary<NSString *, TrieNode *> new];
   }
   return self;
 }

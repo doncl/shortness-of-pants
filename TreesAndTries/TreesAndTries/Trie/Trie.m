@@ -28,10 +28,12 @@ const int intialCapacity = 50;
 }
 
 #pragma mark - insert and contains
-- (void)insert:(NSArray *)collection {
+- (void)insert:(NSString *)collection {
   TrieNode *current = self.root;
   
-  for (id element in collection) {
+  for (NSInteger i = 0; i < collection.length; i++) {
+    unichar c = [collection characterAtIndex:i];
+    NSString *element = [NSString stringWithFormat:@"%C", c];
     TrieNode *child = current.children[element];
     if (!child) {
       current.children[element] = [[TrieNode alloc] initWithKey:element andParent:current];
@@ -42,10 +44,13 @@ const int intialCapacity = 50;
   current.isTerminating = YES;
 }
 
-- (BOOL)contains:(NSArray *)collection {
+- (BOOL)contains:(NSString *)collection {
   TrieNode *current = self.root;
   
-  for (id element in collection) {
+  for (NSInteger i = 0; i < collection.length; i++) {
+    unichar c = [collection characterAtIndex:i];
+    NSString *element = [NSString stringWithFormat:@"%C", c];
+
     TrieNode *child = current.children[element];
     if (!child) {
       return NO;
@@ -56,10 +61,13 @@ const int intialCapacity = 50;
 }
 
 #pragma mark - collections from prefix (autocomplete)
-- (NSArray<NSArray *> *)collections:(NSArray *)prefix {
+- (NSArray<NSString *> *)collections:(NSString *)prefix {
   TrieNode *current = self.root;
   
-  for (id element in prefix) {
+  for (NSInteger i = 0; i < prefix.length; i++) {
+    unichar c = [prefix characterAtIndex:i];
+    NSString *element = [NSString stringWithFormat:@"%C", c];
+
     TrieNode *child = current.children[element];
     if (!child) {
       return [NSArray new];  // empty
@@ -70,7 +78,7 @@ const int intialCapacity = 50;
   return [self collections:prefix after:current];
 }
 
-- (NSArray<NSArray *> *)collections:(NSArray *)prefix after: (TrieNode *)node {
+- (NSArray<NSString *> *)collections:(NSString *)prefix after: (TrieNode *)node {
   NSMutableArray *values = [[NSMutableArray alloc] initWithCapacity:intialCapacity];
 
   if (node.isTerminating) {
@@ -78,8 +86,8 @@ const int intialCapacity = 50;
   }
   
   for (TrieNode *child in node.children.allValues) {
-    NSMutableArray *newPrefix = [prefix mutableCopy];
-    [newPrefix addObject:child.key];
+    NSMutableString *newPrefix = [prefix mutableCopy];
+    [newPrefix appendString:child.key];
     NSArray *intermediateResults = [self collections:newPrefix after:child];
     [values addObjectsFromArray:intermediateResults];
   }
