@@ -21,6 +21,8 @@
 		47926DBA210E8258004EF2F7 /* Trie.h in Headers */ = {isa = PBXBuildFile; fileRef = 47926DB8210E8258004EF2F7 /* Trie.h */; };
 		47926DBB210E8258004EF2F7 /* Trie.m in Sources */ = {isa = PBXBuildFile; fileRef = 47926DB9210E8258004EF2F7 /* Trie.m */; };
 		47926DC0210E996B004EF2F7 /* NSString+ToAndFromArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 47926DBD210E8F0D004EF2F7 /* NSString+ToAndFromArray.m */; };
+		4796C48724CFFCCF00BCC41F /* Queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 4796C48524CFFCCF00BCC41F /* Queue.h */; };
+		4796C48824CFFCCF00BCC41F /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4796C48624CFFCCF00BCC41F /* Queue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		47926DBC210E8F0D004EF2F7 /* NSString+ToAndFromArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ToAndFromArray.h"; sourceTree = "<group>"; };
 		47926DBD210E8F0D004EF2F7 /* NSString+ToAndFromArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+ToAndFromArray.m"; sourceTree = "<group>"; };
 		47926DC7210EA5E2004EF2F7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4796C48524CFFCCF00BCC41F /* Queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		4796C48624CFFCCF00BCC41F /* Queue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 		47926D7A210E4FF2004EF2F7 /* TreesAndTries */ = {
 			isa = PBXGroup;
 			children = (
+				4796C48424CFFCAD00BCC41F /* Queue */,
 				4711825524CE4AC7003C1E12 /* BinarySearch */,
 				47926D94210E5080004EF2F7 /* Trie */,
 				47926D93210E5079004EF2F7 /* AVLTree */,
@@ -151,6 +156,15 @@
 			path = Trie;
 			sourceTree = "<group>";
 		};
+		4796C48424CFFCAD00BCC41F /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				4796C48524CFFCCF00BCC41F /* Queue.h */,
+				4796C48624CFFCCF00BCC41F /* Queue.m */,
+			);
+			path = Queue;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -158,6 +172,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4796C48724CFFCCF00BCC41F /* Queue.h in Headers */,
 				4711825924CE4AE1003C1E12 /* NSArray+BinarySearch.h in Headers */,
 				47926DBA210E8258004EF2F7 /* Trie.h in Headers */,
 				47926D9B210E56EF004EF2F7 /* AVLTree.h in Headers */,
@@ -257,6 +272,7 @@
 				4711825824CE4AE1003C1E12 /* NSArray+BinarySearch.m in Sources */,
 				47926D98210E5095004EF2F7 /* AVLNode.m in Sources */,
 				47926DBB210E8258004EF2F7 /* Trie.m in Sources */,
+				4796C48824CFFCCF00BCC41F /* Queue.m in Sources */,
 				47926D9C210E56EF004EF2F7 /* AVLTree.m in Sources */,
 				47926DB7210E824A004EF2F7 /* TrieNode.m in Sources */,
 			);

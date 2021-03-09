@@ -32,8 +32,8 @@
             timestampString = "554607895.4870681"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "-testExerciseAvlTreeInsertions"
             landmarkType = "7">
             <Locations>

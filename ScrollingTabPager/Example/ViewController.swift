@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     headerHeight: 60, headerUnderline: true,
     headerUnderlineColor: UIColor.orange,
     headerTextColor: UIColor.black,
-    headerFont: UIFont.boldSystemFont(ofSize: 16.0),
+    headerFont: UIFont.boldSystemFont(ofSize: 24.0),
     showsHeaderMoreContentArrow: false)
   
   private lazy var pager: ScrollingTabPager = {
@@ -63,7 +63,8 @@ class ViewController: UIViewController {
       pager.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
       pager.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
     ])
-    
+   
+    pager.setup()
   }
 }
 

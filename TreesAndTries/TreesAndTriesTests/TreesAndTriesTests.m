@@ -11,6 +11,7 @@
 #import "Trie.h"
 #import "NSString+ToAndFromArray.h"
 #import "NSArray+BinarySearch.h"
+#import "Queue.h"
 
 @interface TreesAndTriesTests : XCTestCase
 
@@ -156,6 +157,21 @@
    NSLog(@"findResult for \"%@\" is found = %@", notExist, notFoundIndex == NSNotFound ? @"NO" : @"YES" );
 }
 
-
+- (void)testQ {
+  Queue<NSNumber *> *q = [[Queue<NSNumber *> alloc] init];
+  [q enqueue:@1];
+  [q enqueue:@5];
+  [q enqueue:@15];
+  
+  NSNumber *deq = [q dequeue];
+  XCTAssertEqual(deq.intValue, 1);
+  deq = [q dequeue];
+  XCTAssertEqual(deq.intValue, 5);
+  deq = [q dequeue];
+  XCTAssertEqual(deq.intValue, 15);
+  
+  deq = [q dequeue];
+  XCTAssertNil(deq);
+}
 
 @end
