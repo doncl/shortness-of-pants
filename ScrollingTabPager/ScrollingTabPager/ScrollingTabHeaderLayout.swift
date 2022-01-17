@@ -6,7 +6,7 @@
 //
 import UIKit
 
-public protocol ScrollingTabHeaderLayoutDelegate: class {
+public protocol ScrollingTabHeaderLayoutDelegate: AnyObject {
     var designObject: ScrollingTabPager.DesignObject { get }
     var titles: [String] { get }
     func getHeaderContentWidth(titles: [String]) -> CGFloat

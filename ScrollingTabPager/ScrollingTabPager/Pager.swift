@@ -6,7 +6,7 @@
 //
 import UIKit
 
-public protocol PagerDelegate: class {
+public protocol PagerDelegate: AnyObject {
     func viewController(forIndex index: Int) -> UIViewController
     func reverted(to index: Int)
     func update(_ horizontalPercent: CGFloat, direction: PanDirection, from sourcePageIndex: Int, to destPageIndex: Int)

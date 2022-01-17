@@ -6,12 +6,12 @@
 //
 import UIKit
 
-public protocol ScrollingTabPagerDelegate: class {
+public protocol ScrollingTabPagerDelegate: AnyObject {
   func viewController(forIndex index: Int, and delegateId: String?) -> UIViewController
   func pageSelected(forIndex index: Int, and delegateId: String?)
 }
 
-private protocol DesignObjectDelegate: class {
+private protocol DesignObjectDelegate: AnyObject {
   func didSetAlignment(alignment: ScrollingTabPager.HeaderAlignment)
   func didSetBackgroundColor(color: UIColor)
   func didSetExtraTabWidth(extraTabWidth: CGFloat)
