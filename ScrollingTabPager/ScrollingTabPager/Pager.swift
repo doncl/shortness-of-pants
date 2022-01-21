@@ -10,7 +10,8 @@ public protocol PagerDelegate: AnyObject {
     func viewController(forIndex index: Int) -> UIViewController
     func reverted(to index: Int)
     func update(_ horizontalPercent: CGFloat, direction: PanDirection, from sourcePageIndex: Int, to destPageIndex: Int)
-    func didMove(to viewControllerIndex: Int)
+    func didMove(toDestinationViewController: UIViewController, atIndex destIndex: Int,
+                 fromSourceViewController: UIViewController, atIndex srcIndex: Int)
 }
 
 public enum PanDirection {
@@ -351,11 +352,20 @@ public class Pager: UIViewController {
 extension Pager {
     private func scrollTo(_ viewControllerIndex: Int, animated: Bool = true) {
         guard let delegate = delegate else { return }
-        guard viewControllerIndex != currPage else { return }
+        guard viewControllerIndex != currPage, let srcVC = currentVC else {
+            return
+        }
 
+        let srcIndex = currPage
+        let destIndex = viewControllerIndex
+        
+        let destVC: UIViewController
+        
         let direction: PanDirection = currPage < viewControllerIndex ? .forward : .backward
 
         let viewControllerToScrollTo: UIViewController = delegate.viewController(forIndex: viewControllerIndex)
+        destVC = viewControllerToScrollTo
+        
         let viewX: CGFloat = pageWidth * CGFloat(viewControllerIndex)
         let animFromX: CGFloat = viewX + (direction == .forward ? pageWidth : -pageWidth)
         let initialRect: CGRect = CGRect(x: animFromX, y: 0, width: pageWidth, height: view.bounds.height)
@@ -407,6 +417,9 @@ extension Pager {
             if viewControllerIndex < (self.numPages - 1) {
                 self.reload(at: viewControllerIndex + 1)
             }
+            
+            delegate.didMove(toDestinationViewController: destVC, atIndex: destIndex,
+                             fromSourceViewController: srcVC, atIndex: srcIndex)
         })
     }
 
@@ -504,6 +517,12 @@ extension Pager {
         let absVelocity = abs(velocity)
         let distances = calculatePageDistances(direction: direction)
         let crossedVelocityThreshold = absVelocity > velocityThreshold
+        guard let sourceVC = currentVC else {
+            fatalError("This should never, ever happen.")
+        }
+        
+        let sourceIndex: Int = currPage
+        
         if direction == .backward {
             if weAreGoodToSnapInPanDirection(crossedVelocityThreshold, distances.distanceToDest)
                 && currPage > 0 {
@@ -514,11 +533,15 @@ extension Pager {
                     removeOldVC(vcToEject: sub)
                     self.subsequentVC = nil
                 }
+                let destinationVC: UIViewController
+                
                 subsequentVC = currentVC
                 if precedingVC == nil {
-                    currentVC = addViewController(at: currPage, initialFrame: r)
+                    destinationVC = addViewController(at: currPage, initialFrame: r)
+                    currentVC = destinationVC
                 } else {
-                    currentVC = precedingVC
+                    destinationVC = precedingVC! // Only willing to do this because of the check for nil 4 lines earlier
+                    currentVC = destinationVC
                     precedingVC = nil
                 }
                 if currPage > 0 {
@@ -528,7 +551,10 @@ extension Pager {
                 } else {
                     precedingVC = nil
                 }
-                delegate.didMove(to: currPage)
+
+                delegate.didMove(toDestinationViewController: destinationVC, atIndex: currPage,
+                                 fromSourceViewController: sourceVC, atIndex: sourceIndex)
+                
                 return -distances.distanceToDest  // complete backwards.
             } else {
                 delegate.reverted(to: currPage)
@@ -537,8 +563,9 @@ extension Pager {
         } else {
             if weAreGoodToSnapInPanDirection(crossedVelocityThreshold, distances.distanceToDest) &&
                 currPage < (numPages - 1) {
-
                 currPage += 1
+                            
+                let destVC: UIViewController
 
                 if let prev = precedingVC {
                     removeOldVC(vcToEject: prev)
@@ -546,11 +573,13 @@ extension Pager {
                 }
                 precedingVC = currentVC
                 let r: CGRect = CGRect(x: CGFloat(currPage) * pageWidth, y: 0, width: pageWidth, height: view.bounds.height)
-                if subsequentVC == nil {
-                    currentVC = addViewController(at: currPage, initialFrame: r)
-                } else {
+                if let subsequentVC = subsequentVC {
+                    destVC = subsequentVC
                     currentVC = subsequentVC
-                    subsequentVC = nil
+                    self.subsequentVC = nil
+                } else {
+                    destVC = addViewController(at: currPage, initialFrame: r)
+                    currentVC = destVC
                 }
                 if currPage < (numPages - 1) {
                     if subsequentVC == nil {
@@ -560,7 +589,9 @@ extension Pager {
                     subsequentVC = nil
                 }
                     
-                delegate.didMove(to: currPage)
+                delegate.didMove(toDestinationViewController: destVC, atIndex: currPage,
+                                 fromSourceViewController: sourceVC, atIndex: sourceIndex)
+                
                 return distances.distanceToDest  // complete forwards
             } else {
                 delegate.reverted(to: currPage)

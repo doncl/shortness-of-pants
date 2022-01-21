@@ -515,17 +515,21 @@ extension ScrollingTabPager: PagerDelegate {
     }
     return delegate.viewController(forIndex: index, and: delegateId)
   }
-
-  public func didMove(to viewControllerIndex: Int) {
-    currentIndex = viewControllerIndex
-    let scrollPosition = getScrollPositionForAlignmentStyle()
-    header.selectItem(at: IndexPath(item: currentIndex, section: 0), animated: true,
-                        scrollPosition: scrollPosition)
     
-    pageSelectedWrapper(index: viewControllerIndex, doHaptic: false)
-    showOrHideArrowAsAppropriate(contentWidth: header.contentSize.width, currIndex: viewControllerIndex)
-  }
-  
+    public func didMove(toDestinationViewController: UIViewController, atIndex destIndex: Int, fromSourceViewController: UIViewController, atIndex srcIndex: Int) {
+        
+        print("\(#function) - srcIndex \(srcIndex) - title \(fromSourceViewController.title ?? ""), destIndex \(destIndex) title \(toDestinationViewController.title ?? "")")
+        currentIndex = destIndex
+        let scrollPosition = getScrollPositionForAlignmentStyle()
+        
+        header.selectItem(at: IndexPath(item: currentIndex, section: 0), animated: true,
+                            scrollPosition: scrollPosition)
+        
+        pageSelectedWrapper(index: destIndex, doHaptic: false)
+        
+        showOrHideArrowAsAppropriate(contentWidth: header.contentSize.width, currIndex: destIndex)
+    }
+
   func pageSelectedWrapper(index: Int, doHaptic: Bool = true) {
     if doHaptic {
       bumpPhone()

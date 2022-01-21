@@ -17,6 +17,7 @@ class ColorVC: UIViewController {
     self.colorTitle = colorTitle
     self.color = color
     super.init(nibName:  nil, bundle: nil)
+    self.title = colorTitle
   }
   
   required init?(coder: NSCoder) {
