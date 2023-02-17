@@ -111,6 +111,9 @@ public class BottomSheetTransitionController {
   
   public func dismissedFromButton(vc: UIViewController) {
     interactiveDismissal = false
+    defer {
+      interactiveDismissal = true 
+    }
     vc.dismiss(animated: true)
     panHandler.dismissedFromButton()
     guard let completion else {
