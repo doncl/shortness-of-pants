@@ -38,7 +38,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "A1AE2EDA-6508-4DA5-8C5F-42EBFF746025 - 227a991cce2e3ded"
+                  uuid = "A1AE2EDA-6508-4DA5-8C5F-42EBFF746025 - 30a212d3663d39f1"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -54,7 +54,7 @@
                   offsetFromSymbolStart = "16">
                </Location>
                <Location
-                  uuid = "A1AE2EDA-6508-4DA5-8C5F-42EBFF746025 - ee942b8410cd6d76"
+                  uuid = "A1AE2EDA-6508-4DA5-8C5F-42EBFF746025 - fc4ca04bb8de690b"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -238,6 +238,22 @@
             endingLineNumber = "37"
             landmarkName = "main(argc, argv)"
             landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E2BF839D-860B-456E-B402-FC02CC621F2C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TreesAndTriesTests/TreesAndTriesTests.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-testMoreBinSearch"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

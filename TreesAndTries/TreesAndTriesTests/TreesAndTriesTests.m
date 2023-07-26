@@ -142,7 +142,7 @@
 
    for (NSInteger i = 0; i < sortedItems.count; i++) {
      NSString *itemToFind = sortedItems[i];
-     NSInteger index = [sortedItems binarySearchFor:itemToFind withComparator:^NSComparisonResult(id lhs, id rhs) {
+     NSInteger index = [sortedItems binarySearchFor:itemToFind withComparator:^NSComparisonResult (id lhs, id rhs) {
        return [lhs compare:rhs options:NSCaseInsensitiveSearch];
      }];
      NSString *itemFound = sortedItems[index];

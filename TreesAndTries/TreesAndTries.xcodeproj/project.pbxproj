@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4711825824CE4AE1003C1E12 /* NSArray+BinarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711825624CE4AE1003C1E12 /* NSArray+BinarySearch.m */; };
-		4711825924CE4AE1003C1E12 /* NSArray+BinarySearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 4711825724CE4AE1003C1E12 /* NSArray+BinarySearch.h */; };
-		4711825A24CE4B75003C1E12 /* NSArray+BinarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711825624CE4AE1003C1E12 /* NSArray+BinarySearch.m */; };
+		4724328F2A70A18600D21F48 /* NSArray+BinarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4724328C2A708AFF00D21F48 /* NSArray+BinarySearch.m */; };
 		47926D8B210E500E004EF2F7 /* TreesAndTriesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 47926D8A210E500E004EF2F7 /* TreesAndTriesTests.m */; };
 		47926D8D210E500E004EF2F7 /* libTreesAndTries.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47926D78210E4FF2004EF2F7 /* libTreesAndTries.a */; };
 		47926D97210E5095004EF2F7 /* AVLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 47926D95210E5095004EF2F7 /* AVLNode.h */; };
@@ -36,8 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4711825624CE4AE1003C1E12 /* NSArray+BinarySearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BinarySearch.m"; sourceTree = "<group>"; };
-		4711825724CE4AE1003C1E12 /* NSArray+BinarySearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BinarySearch.h"; sourceTree = "<group>"; };
+		4724328B2A708AFF00D21F48 /* NSArray+BinarySearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BinarySearch.h"; sourceTree = "<group>"; };
+		4724328C2A708AFF00D21F48 /* NSArray+BinarySearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BinarySearch.m"; sourceTree = "<group>"; };
 		47926D78210E4FF2004EF2F7 /* libTreesAndTries.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTreesAndTries.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		47926D88210E500E004EF2F7 /* TreesAndTriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TreesAndTriesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47926D8A210E500E004EF2F7 /* TreesAndTriesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreesAndTriesTests.m; sourceTree = "<group>"; };
@@ -83,11 +81,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4711825524CE4AC7003C1E12 /* BinarySearch */ = {
+		472432832A70866200D21F48 /* BinarySearch */ = {
 			isa = PBXGroup;
 			children = (
-				4711825724CE4AE1003C1E12 /* NSArray+BinarySearch.h */,
-				4711825624CE4AE1003C1E12 /* NSArray+BinarySearch.m */,
 			);
 			path = BinarySearch;
 			sourceTree = "<group>";
@@ -115,8 +111,8 @@
 		47926D7A210E4FF2004EF2F7 /* TreesAndTries */ = {
 			isa = PBXGroup;
 			children = (
+				472432832A70866200D21F48 /* BinarySearch */,
 				4796C48424CFFCAD00BCC41F /* Queue */,
-				4711825524CE4AC7003C1E12 /* BinarySearch */,
 				47926D94210E5080004EF2F7 /* Trie */,
 				47926D93210E5079004EF2F7 /* AVLTree */,
 			);
@@ -126,6 +122,8 @@
 		47926D89210E500E004EF2F7 /* TreesAndTriesTests */ = {
 			isa = PBXGroup;
 			children = (
+				4724328B2A708AFF00D21F48 /* NSArray+BinarySearch.h */,
+				4724328C2A708AFF00D21F48 /* NSArray+BinarySearch.m */,
 				47926DBC210E8F0D004EF2F7 /* NSString+ToAndFromArray.h */,
 				47926DBD210E8F0D004EF2F7 /* NSString+ToAndFromArray.m */,
 				47926D8A210E500E004EF2F7 /* TreesAndTriesTests.m */,
@@ -173,7 +171,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4796C48724CFFCCF00BCC41F /* Queue.h in Headers */,
-				4711825924CE4AE1003C1E12 /* NSArray+BinarySearch.h in Headers */,
 				47926DBA210E8258004EF2F7 /* Trie.h in Headers */,
 				47926D9B210E56EF004EF2F7 /* AVLTree.h in Headers */,
 				47926DB6210E824A004EF2F7 /* TrieNode.h in Headers */,
@@ -269,7 +266,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4711825824CE4AE1003C1E12 /* NSArray+BinarySearch.m in Sources */,
 				47926D98210E5095004EF2F7 /* AVLNode.m in Sources */,
 				47926DBB210E8258004EF2F7 /* Trie.m in Sources */,
 				4796C48824CFFCCF00BCC41F /* Queue.m in Sources */,
@@ -283,7 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47926DC0210E996B004EF2F7 /* NSString+ToAndFromArray.m in Sources */,
-				4711825A24CE4B75003C1E12 /* NSArray+BinarySearch.m in Sources */,
+				4724328F2A70A18600D21F48 /* NSArray+BinarySearch.m in Sources */,
 				47926D8B210E500E004EF2F7 /* TreesAndTriesTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
